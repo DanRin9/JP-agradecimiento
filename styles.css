@@ -1,0 +1,347 @@
+/* Las fuentes se cargan con su propio <link> en el HTML, no con @import:
+   un @import obliga al navegador a bajar este archivo antes de siquiera
+   enterarse de que existen las fuentes. */
+
+/* ============================================================================
+   SISTEMA
+   ============================================================================ */
+:root {
+  --negro:        #0A0A0A;
+  --superficie:   #151515;
+  --superficie-2: #1A1A1A;
+  --borde:        #262626;
+
+  --dorado:       #E8B923;
+  --dorado-grad:  linear-gradient(135deg, #F0C94A 0%, #C9971A 100%);
+  --dorado-linea: rgba(232, 185, 35, 0.22);
+
+  --texto:        #F5F5F5;
+  --texto-2:      #9A9A9A;   /* gris cálido, no azulado */
+  --whatsapp:     #25D366;
+
+  --radio:        12px;
+  --ancho:        480px;
+  --escala-rec:   0.8;       /* escala de los logos del footer (mobile) */
+
+  /* El único glow de la página. Reservado al CTA de Hotmart. */
+  --glow: 0 8px 28px rgba(232, 185, 35, 0.18);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;        /* seguro contra scroll lateral en mobile */
+}
+
+body {
+  background: var(--negro);
+  color: var(--texto);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Foco visible y consistente en navegación por teclado. */
+:focus-visible {
+  outline: 2px solid var(--dorado);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.envoltorio {
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: 28px 20px 0;
+}
+
+/* ============================================================================
+   HEADER — lockup isotipo + wordmark
+   ============================================================================ */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding-bottom: 34px;
+}
+.header__isotipo  { height: 36px; width: auto; display: block; }
+.header__wordmark { height: 21px; width: auto; display: block; opacity: 0.92; }
+
+/* ============================================================================
+   HERO
+   ============================================================================ */
+.hero { text-align: center; padding-bottom: 34px; }
+
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dorado);
+  border: 1px solid var(--dorado-linea);
+  background: rgba(232, 185, 35, 0.06);
+  border-radius: 999px;      /* pill acá SÍ: es un chip, no un botón */
+  padding: 6px 15px;
+  margin-bottom: 22px;
+}
+
+.hero__titulo {
+  font-family: 'Archivo', sans-serif;
+  font-style: italic;
+  font-weight: 800;
+  font-size: clamp(30px, 8.5vw, 42px);
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+}
+
+.hero__subtitulo {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 10px;
+  color: var(--texto);
+}
+
+.hero__parrafo {
+  font-size: 14.5px;
+  color: var(--texto-2);
+  margin: 0;
+  text-wrap: pretty;
+}
+.hero__parrafo strong { color: var(--texto); font-weight: 500; }
+
+/* Línea divisoria fina dorada, degradada hacia los bordes. */
+.divisor {
+  height: 1px;
+  border: 0;
+  margin: 0 0 26px;
+  background: linear-gradient(90deg, transparent, var(--dorado-linea) 50%, transparent);
+}
+
+/* ============================================================================
+   BOTONES
+   Base común. Área de toque mínima 48px en todos.
+   ============================================================================ */
+.botones {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 44px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  min-height: 56px;
+  padding: 14px 18px;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: var(--superficie);
+  color: var(--texto);
+  font-family: inherit;
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.35;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+.btn__icono { flex: 0 0 auto; width: 21px; height: 21px; }
+.btn__icono svg { width: 100%; height: 100%; display: block; }
+.btn__texto { flex: 1 1 auto; }
+
+/* Estado deshabilitado genérico: aplica a cualquier botón cuyo dato siga pendiente,
+   no solo al de Hotmart. Un botón que no se puede tocar no debe verse tocable. */
+.btn.esta-deshabilitado {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: saturate(0.6);
+}
+.btn.esta-deshabilitado:hover { transform: none; }
+
+/* Chip "Próximamente". Por defecto claro, para los botones de fondo oscuro. */
+.btn__proximamente {
+  flex: 0 0 auto;
+  align-self: center;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  padding: 4px 9px;
+  white-space: nowrap;
+}
+
+/* --- 1. WhatsApp grupo: filled, canal primario --------------------------- */
+.btn--wa-grupo {
+  background: var(--whatsapp);
+  border-color: var(--whatsapp);
+  color: #08240F;
+  font-weight: 600;
+}
+.btn--wa-grupo:hover { background: #2EE676; border-color: #2EE676; }
+
+/* --- 2. WhatsApp soporte: outline, canal secundario ---------------------- */
+.btn--wa-soporte {
+  background: transparent;
+  border-color: rgba(37, 211, 102, 0.42);
+  color: var(--whatsapp);
+}
+.btn--wa-soporte:hover {
+  background: rgba(37, 211, 102, 0.08);
+  border-color: var(--whatsapp);
+}
+
+/* --- 3. Hotmart: el botón más importante de la página -------------------- */
+.btn--hotmart {
+  min-height: 78px;
+  padding: 20px 22px;
+  background: var(--dorado-grad);
+  border: 0;
+  color: #1A1205;                /* texto oscuro sobre dorado: contraste alto */
+  font-family: 'Archivo', sans-serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 17.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  box-shadow: var(--glow);
+}
+.btn--hotmart:hover { box-shadow: 0 10px 34px rgba(232, 185, 35, 0.28); }
+.btn--hotmart .btn__icono { width: 25px; height: 25px; }
+
+/* Deshabilitado mientras no cierra la negociación con Hotmart.
+   Se atenúa menos que el resto (0.62 vs 0.5): sigue siendo el botón que tiene que
+   ganar la página, y a 0.42 quedaba por debajo del verde de WhatsApp. */
+.btn--hotmart.esta-deshabilitado {
+  opacity: 0.62;
+  box-shadow: none;
+}
+.btn--hotmart.esta-deshabilitado:hover { box-shadow: none; }
+
+/* Sobre el dorado el chip claro se pierde: acá va en oscuro. */
+.btn--hotmart .btn__proximamente {
+  color: #1A1205;
+  background: rgba(0, 0, 0, 0.16);
+  border-color: rgba(0, 0, 0, 0.22);
+}
+
+/* --- 4 y 5. Telegram y agenda: sistema dorado/negro ---------------------- */
+.btn--dorado {
+  background: var(--superficie-2);
+  border-color: var(--dorado-linea);
+}
+.btn--dorado:hover {
+  background: #201B0E;
+  border-color: rgba(232, 185, 35, 0.45);
+}
+.btn--dorado .btn__icono svg { fill: #FFFFFF; }
+
+.btn__flecha {
+  flex: 0 0 auto;
+  color: var(--texto-2);
+  font-size: 17px;
+  line-height: 1;
+}
+
+/* ============================================================================
+   FOOTER
+   ============================================================================ */
+.footer {
+  border-top: 1px solid var(--borde);
+  padding: 30px 20px 38px;
+  text-align: center;
+}
+.footer__inner { max-width: var(--ancho); margin: 0 auto; }
+
+.footer__titulo {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #8A8A8A;
+  margin: 0 0 18px;
+}
+
+.reconocimientos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px 20px;
+  margin-bottom: 26px;
+}
+/* Grayscale + opacidad uniforme: unifica wordmarks blancos y medallones a color
+   sin aplanarlos a blanco (eso convertiría los medallones en manchas sólidas).
+   La altura de cada logo viene de config.js como --alto y se escala en bloque:
+   a tamaño completo los 5 no entran en una fila de 375px. */
+.reconocimientos img {
+  width: auto;
+  height: calc(var(--alto) * var(--escala-rec) * 1px);
+  filter: grayscale(1) brightness(1.15);
+  opacity: 0.55;
+  transition: opacity 0.2s ease;
+}
+.reconocimientos img:hover { opacity: 0.9; }
+
+.footer__logo {
+  height: 26px;
+  width: auto;
+  opacity: 0.5;
+  margin-bottom: 12px;
+}
+.footer__tagline { font-size: 12px; color: var(--texto-2); margin: 0 0 6px; }
+.footer__meta { font-size: 11.5px; color: #8A8A8A; margin: 0; }
+.footer__meta a { color: var(--texto-2); text-decoration: none; }
+.footer__meta a:hover { color: var(--dorado); }
+
+/* ============================================================================
+   NOSCRIPT
+   ============================================================================ */
+.sin-js {
+  display: block;
+  margin: 0 0 20px;
+  padding: 16px;
+  border: 1px solid var(--dorado-linea);
+  border-radius: var(--radio);
+  background: var(--superficie);
+  color: var(--texto-2);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* ============================================================================
+   RESPETAR PREFERENCIAS DE MOVIMIENTO
+   ============================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+  .btn:hover { transform: none; }
+}
+
+/* ============================================================================
+   DESKTOP — la página es mobile-first; acá solo respira un poco más
+   ============================================================================ */
+@media (min-width: 560px) {
+  :root { --escala-rec: 1; }
+  .envoltorio { padding-top: 44px; }
+  .header { padding-bottom: 44px; }
+  .hero { padding-bottom: 40px; }
+  .btn { font-size: 15px; }
+  .btn--hotmart { font-size: 19px; }
+}

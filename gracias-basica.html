@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0A0A0A">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Bienvenido a tu Membresía Básica de Tactical Trading. Accede a tus canales, tu Zona de Miembros y agenda tu sesión de onboarding.">
+  <title>Membresía Básica — Tactical Trading</title>
+
+  <link rel="icon" href="/assets/logo-isotipo.webp" type="image/webp">
+  <link rel="preload" href="/assets/fonts/archivo-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/fonts/fonts.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<!-- data-tier selecciona la entrada de CONFIG.tiers. Es la ÚNICA diferencia
+     entre esta página y gracias-premium.html. -->
+<body data-tier="basica">
+
+  <div class="envoltorio">
+
+    <header class="header">
+      <img class="header__isotipo" src="/assets/logo-isotipo.webp" alt="Tactical Trading" width="36" height="40">
+      <img class="header__wordmark" src="/assets/logo-wordmark.webp" alt="" width="39" height="21">
+    </header>
+
+    <main>
+      <section class="hero">
+        <span class="badge" id="badge"></span>
+        <h1 class="hero__titulo" id="titulo"></h1>
+        <p class="hero__subtitulo" id="subtitulo"></p>
+        <p class="hero__parrafo" id="parrafo"></p>
+      </section>
+
+      <hr class="divisor">
+
+      <noscript>
+        <p class="sin-js">
+          Necesitás activar JavaScript para ver tus accesos.
+          Si no podés, escribinos por WhatsApp desde
+          <a href="https://www.ttrading.co">ttrading.co</a> y te los pasamos.
+        </p>
+      </noscript>
+
+      <nav class="botones" id="botones" aria-label="Accesos de tu membresía"></nav>
+    </main>
+
+  </div>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__titulo">Reconocimientos</p>
+      <div class="reconocimientos" id="reconocimientos"></div>
+      <img class="footer__logo" src="/assets/logo-isotipo.webp" alt="" width="23" height="26" loading="lazy">
+      <p class="footer__tagline" id="footer-tagline"></p>
+      <p class="footer__meta">
+        <a id="footer-sitio" href="#" target="_blank" rel="noopener noreferrer"></a>
+        · <span id="footer-legal"></span>
+      </p>
+    </div>
+  </footer>
+
+  <script src="/config.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
