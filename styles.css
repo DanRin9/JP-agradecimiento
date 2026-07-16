@@ -38,7 +38,7 @@ html, body {
 body {
   background: var(--negro);
   color: var(--texto);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -67,8 +67,9 @@ body {
   gap: 11px;
   padding-bottom: 34px;
 }
-.header__isotipo  { height: 36px; width: auto; display: block; }
-.header__wordmark { height: 21px; width: auto; display: block; opacity: 0.92; }
+/* Lockup oficial de marca en un solo archivo. El manual fija una reducción
+   mínima de 1,5 cm: a 40px de alto estamos holgados. */
+.header__logo { height: 40px; width: auto; display: block; }
 
 /* ============================================================================
    HERO
@@ -90,12 +91,11 @@ body {
 }
 
 .hero__titulo {
-  font-family: 'Archivo', sans-serif;
-  font-style: italic;
+  font-family: 'Raleway', sans-serif;
   font-weight: 800;
-  font-size: clamp(30px, 8.5vw, 42px);
-  line-height: 1.04;
-  letter-spacing: -0.015em;
+  font-size: clamp(28px, 7.8vw, 38px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
   margin: 0 0 16px;
 }
@@ -174,7 +174,7 @@ body {
 .btn__proximamente {
   flex: 0 0 auto;
   align-self: center;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-style: normal;
   font-size: 9.5px;
   font-weight: 600;
@@ -215,12 +215,11 @@ body {
   background: var(--dorado-grad);
   border: 0;
   color: #1A1205;                /* texto oscuro sobre dorado: contraste alto */
-  font-family: 'Archivo', sans-serif;
-  font-style: italic;
-  font-weight: 700;
-  font-size: 17.5px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
   text-transform: uppercase;
-  letter-spacing: 0.005em;
+  letter-spacing: 0.02em;
   box-shadow: var(--glow);
 }
 .btn--hotmart:hover { box-shadow: 0 10px 34px rgba(232, 185, 35, 0.28); }

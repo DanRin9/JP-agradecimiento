@@ -2,13 +2,6 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
-  "redirects": [
-    { "source": "/", "destination": "https://www.ttrading.co", "permanent": false }
-  ],
-  "rewrites": [
-    { "source": "/basica", "destination": "/gracias-basica.html" },
-    { "source": "/premium", "destination": "/gracias-premium.html" }
-  ],
   "headers": [
     {
       "source": "/assets/(.*)",

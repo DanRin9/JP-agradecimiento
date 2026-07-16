@@ -87,20 +87,19 @@ const CONFIG = {
 
   /* --------------------------------------------------------------------------
      FOOTER
-     Para agregar un reconocimiento (ej. Wealth Expo cuando aparezca el logo):
-     dejá el .webp en /assets y sumá una línea acá.
+     Para agregar un reconocimiento: dejá el .webp en /assets y sumá una línea acá.
      `alto` es la altura de render en px — se ajusta a ojo, no matemáticamente,
      porque un wordmark ancho y un medallón cuadrado no pesan igual a la misma altura.
+     Los logos se muestran en escala de grises al 55% para que la fila lea pareja.
      -------------------------------------------------------------------------- */
   reconocimientos: [
     { src: '/assets/rec-bvc.webp',              alt: 'Bolsa de Valores de Colombia', alto: 40 },
     { src: '/assets/rec-rankia.webp',           alt: 'Rankia Awards 2024',           alto: 44 },
     { src: '/assets/rec-banrep.webp',           alt: 'Banco de la República',        alto: 44 },
-    { src: '/assets/rec-bloomberg.webp',        alt: 'Bloomberg',                    alto: 20 },
     { src: '/assets/rec-bolsa-millonaria.webp', alt: 'Bolsa Millonaria',             alto: 38 },
-    // TODO (no bloquea): falta el logo de Wealth Expo Colombia. Cuando lo tengas,
-    // dejalo en /assets como rec-wealth-expo.webp y descomentá:
-    // { src: '/assets/rec-wealth-expo.webp',   alt: 'Wealth Expo Colombia',         alto: 40 },
+    // Más bajo que el resto a propósito: es un wordmark ancho y a igual altura
+    // pesa mucho más que los medallones, dominando a los premios reales.
+    { src: '/assets/rec-exness-team-pro.webp',  alt: 'Exness Team Pro',              alto: 19 },
   ],
 
   footer: {
