@@ -8,6 +8,9 @@ Sin build, sin dependencias, sin backend.
 | Básica  | `/basica`  | `gracias-basica.html`  |
 | Premium | `/premium` | `gracias-premium.html` |
 
+No hay `index.html`: el sitio no tiene raíz propia porque solo existe para las dos
+URLs de agradecimiento. `/` redirige (302) a `ttrading.co` vía `vercel.json`.
+
 En Hotmart hay que configurar **una URL de agradecimiento distinta por plan**.
 No hay detección de tier en el código: la página no sabe qué compró el usuario,
 lo define la URL a la que Hotmart redirige.
