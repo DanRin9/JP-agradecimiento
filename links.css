@@ -1,0 +1,212 @@
+/* ============================================================================
+   LINKS — solo /links-comunidad. Se carga DESPUÉS de styles.css y todo cuelga
+   de .pagina-links, así las landings (ya desplegadas y verificadas) no se tocan.
+
+   Al revés que las landings, ésta es desktop-first: el tráfico no viene del
+   checkout en el celular, viene de un link compartido que se abre en pantalla.
+   ============================================================================ */
+
+.pagina-links {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Halo dorado de fondo -------------------------------------------------
+   Fijo detrás de todo, respirando muy lento. Es el único elemento decorativo
+   de la página: da profundidad sin convertirse en un fondo animado. */
+.links-fondo {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 50% at 50% 32%, rgba(255, 198, 0, 0.10) 0%, transparent 70%),
+    radial-gradient(40% 40% at 50% 100%, rgba(255, 198, 0, 0.05) 0%, transparent 70%);
+  animation: respirar 9s ease-in-out infinite;
+}
+@keyframes respirar {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.06); }
+}
+
+.links-envoltorio {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 24px 28px;
+}
+
+.links-header { padding-bottom: 24px; }
+
+/* El bloque central se queda con el espacio sobrante: en una pantalla alta el
+   contenido se centra solo, en una baja simplemente respira menos. */
+.links-main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8px 0 32px;
+}
+
+/* ============================================================================
+   HERO
+   ============================================================================ */
+.links-hero {
+  text-align: center;
+  padding-bottom: 26px;
+}
+
+/* 24ch lo deja en 2–3 líneas en desktop. Con menos se estira a cinco y empuja
+   el footer fuera de pantalla, que es justo lo contrario de "usar el ancho". */
+.links-titulo {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  max-width: 24ch;
+  margin: 0 auto 12px;
+  text-wrap: balance;
+}
+/* Solo "más exclusiva" en amarillo: si se doran más palabras el titular deja de
+   tener jerarquía y se vuelve un cartel. */
+.links-titulo em {
+  font-style: normal;
+  color: var(--amarillo);
+  white-space: nowrap;   /* que "MÁS EXCLUSIVA" no se parta entre dos líneas */
+}
+
+.links-subtitulo {
+  font-size: clamp(14.5px, 1.5vw, 17px);
+  color: var(--texto-2);
+  margin: 0;
+}
+
+/* Entrada: el hero primero, los botones después (ver --orden más abajo). */
+.links-hero .badge,
+.links-titulo,
+.links-subtitulo {
+  animation: aparecer 0.6s cubic-bezier(0.2, 0.7, 0.3, 1) backwards;
+}
+.links-hero .badge { animation-delay: 0.05s; }
+.links-titulo      { animation-delay: 0.12s; }
+.links-subtitulo   { animation-delay: 0.20s; }
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Un brillo recorre el divisor una sola vez, al cargar. */
+.divisor--brillo {
+  margin-bottom: 28px;
+  position: relative;
+  overflow: hidden;
+}
+.divisor--brillo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--amarillo), transparent);
+  transform: translateX(-100%);
+  animation: recorrer 1.5s ease-out 0.5s 1 forwards;
+}
+@keyframes recorrer {
+  to { transform: translateX(100%); }
+}
+
+/* ============================================================================
+   BOTONES — lo importante de la página
+   Grid 2×2: usa el ancho en vez de apilar cuatro botones en una columna.
+   ============================================================================ */
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.btn--links {
+  position: relative;
+  overflow: hidden;             /* recorta la luz del cursor al radio del botón */
+  min-height: 96px;
+  padding: 22px 26px;
+  gap: 18px;
+  font-size: 16px;
+  animation: aparecer 0.6s cubic-bezier(0.2, 0.7, 0.3, 1) backwards;
+  animation-delay: calc(0.3s + var(--orden) * 0.09s);
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.25s ease;
+}
+.btn--links:hover { transform: translateY(-3px); }
+
+.btn--links .btn__icono { width: 27px; height: 27px; }
+.btn--links .btn__flecha { font-size: 20px; }
+
+/* Luz que sigue al cursor. --mx/--my los actualiza links.js en pointermove;
+   sin JS (o sin puntero) el gradiente queda centrado y la opacidad en 0, así que
+   simplemente no se ve. */
+.btn--links::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  background: radial-gradient(
+    circle 140px at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.16),
+    transparent 70%
+  );
+}
+.btn--links:hover::before { opacity: 1; }
+
+/* El ícono y el texto tienen que quedar sobre la luz, no debajo. */
+.btn--links > * { position: relative; z-index: 1; }
+
+/* Glow al pasar, en el color de cada canal. El de Hotmart no aplica: ese botón
+   no existe en esta página. */
+.btn--links.btn--wa-grupo:hover  { box-shadow: 0 14px 40px rgba(43, 232, 115, 0.28); }
+.btn--links.btn--telegram:hover  { box-shadow: 0 14px 40px rgba(42, 171, 238, 0.28); }
+.btn--links.btn--sistema:hover   { box-shadow: 0 14px 40px rgba(255, 198, 0, 0.16); }
+.btn--links.btn--wa-soporte:hover { box-shadow: 0 14px 40px rgba(37, 211, 102, 0.14); }
+
+/* Deshabilitado: sin glow ni luz de cursor. Un botón que no se puede tocar no
+   debe reaccionar como si se pudiera. */
+.btn--links.esta-deshabilitado:hover {
+  transform: none;
+  box-shadow: none;
+}
+.btn--links.esta-deshabilitado::before { display: none; }
+
+/* ============================================================================
+   FOOTER — más liviano que el de las landings: acá no cierra la página, la apoya
+   ============================================================================ */
+.links-footer {
+  border-top: 1px solid var(--borde);
+  padding-top: 26px;
+  text-align: center;
+}
+.links-footer .reconocimientos { margin-bottom: 16px; }
+.links-footer .footer__meta { margin: 0; }
+
+/* ============================================================================
+   MOBILE — no es el target, pero tiene que funcionar igual
+   ============================================================================ */
+@media (max-width: 720px) {
+  .links-grid { grid-template-columns: 1fr; gap: 14px; }
+  .btn--links { min-height: 72px; padding: 16px 18px; font-size: 15px; }
+  .links-envoltorio { padding: 24px 18px 24px; }
+  .links-main { padding-bottom: 28px; }
+}
+
+/* En pantallas táctiles la "luz que sigue al cursor" no tiene sentido: sin
+   cursor se queda pegada donde tocaste. */
+@media (hover: none) {
+  .btn--links::before { display: none; }
+}
