@@ -211,6 +211,127 @@
   .btn--links::before { display: none; }
 }
 
+/* Nota bajo los botones de /links-comunidad/{basica,premium}: repite lo del
+   selector, porque mucha gente va a llegar acá por link directo sin pasar por él. */
+.links-nota {
+  margin: 22px 0 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--texto-2);
+}
+.links-nota a { color: var(--amarillo); text-decoration: none; }
+.links-nota a:hover { text-decoration: underline; }
+
+/* ============================================================================
+   /links-comunidad — selector de tier
+   ============================================================================ */
+.pagina-selector .links-grid {
+  width: 100%;
+  max-width: 880px;
+  align-self: center;   /* no `margin: 0 auto`: cancelaría el stretch del flex padre */
+}
+
+.pagina-selector .links-subtitulo {
+  max-width: 62ch;
+  margin: 0 auto;
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+/* El titular es corto: no necesita el tamaño del de /estrategia-tactical. */
+.pagina-selector .links-titulo { max-width: 20ch; }
+.pagina-selector .links-titulo em { white-space: normal; }
+
+/* --- Los dos botones de tier --------------------------------------------- */
+.btn--tier {
+  position: relative;
+  min-height: 118px;
+  padding: 24px 26px;
+  align-items: center;
+}
+.btn--tier .btn__texto { display: flex; flex-direction: column; gap: 3px; }
+
+.tier__nombre {
+  font-family: 'Raleway', sans-serif;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.tier__pie { font-size: 13px; font-weight: 500; opacity: 0.72; }
+
+.btn--tier .btn__flecha { font-size: 22px; opacity: 0.8; }
+
+/* Básica: outline sobrio. No es el hermano pobre — es el que no grita. */
+.btn--tier-basica {
+  background: var(--superficie);
+  border-color: var(--borde);
+}
+.btn--tier-basica:hover {
+  background: var(--superficie-2);
+  border-color: var(--amarillo-linea);
+}
+.btn--links.btn--tier-basica:hover { box-shadow: 0 14px 40px rgba(255, 255, 255, 0.05); }
+
+/* Premium: el dorado del sistema. Acá no existe el botón de Hotmart, así que el
+   dorado está libre y no le compite a nada. */
+.btn--tier-premium {
+  background: var(--amarillo-grad);
+  border: 0;
+  color: #1F1600;
+  box-shadow: var(--glow);
+}
+.btn--links.btn--tier-premium:hover { box-shadow: 0 16px 46px rgba(255, 198, 0, 0.4); }
+/* Más opaco que el 0.72 del resto: a 0.62 el pie caía a 3.91:1 contra el extremo
+   oscuro del degradé (#F0B400) y no llegaba a AA. */
+.btn--tier-premium .tier__pie { opacity: 0.8; }
+
+/* El brillo que lo recorre. Va en ::after porque el ::before ya lo ocupa la luz
+   del cursor. Ciclo largo con pausa: un shimmer rápido y continuo se vuelve ruido
+   —y es justo el efecto "IA genérica" que el brief prohíbe—; así solo destella
+   cada tanto y el ojo vuelve. */
+.btn--tier-premium::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 65%
+  );
+  transform: translateX(-100%);
+  animation: barrer 5.5s ease-in-out 1.2s infinite;
+}
+@keyframes barrer {
+  0%        { transform: translateX(-100%); }
+  35%, 100% { transform: translateX(100%); }
+}
+
+/* Chip "PREMIUM": esquina superior derecha, fuera del flujo, para no empujar el
+   texto ni desalinear los dos botones. */
+.tier__chip {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  z-index: 2;
+  font-family: 'Raleway', sans-serif;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.68);
+  background: rgba(0, 0, 0, 0.13);
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  border-radius: 999px;
+  padding: 3px 9px;
+}
+
+@media (max-width: 720px) {
+  .btn--tier { min-height: 96px; }
+  .pagina-selector .links-subtitulo { font-size: 13.5px; }
+}
+
 /* ============================================================================
    /estrategia-tactical — misma página base, dos botones en vez de cuatro
    ============================================================================ */

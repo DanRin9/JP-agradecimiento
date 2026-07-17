@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0A0A0A">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="description" content="Los canales de la comunidad de Tactical Trading: grupo de WhatsApp, canal de Telegram, soporte y la sesión de onboarding.">
-  <title>Links de la comunidad — Tactical Trading</title>
+  <meta name="description" content="Los canales de la Membresía Premium de Tactical Trading: grupo de WhatsApp, canal de Telegram, soporte y la sesión de onboarding.">
+  <title>Links Premium — Tactical Trading</title>
 
   <link rel="icon" href="/assets/logo-isotipo.webp" type="image/webp">
   <link rel="preload" href="/assets/fonts/raleway.woff2" as="font" type="font/woff2" crossorigin>
@@ -15,9 +15,9 @@
   <link rel="stylesheet" href="/links.css">
 </head>
 
-<!-- Sin data-tier: no es una landing de compra. links.js toma los canales de
-     CONFIG.tiers.basica. El botón de Hotmart no va acá a propósito. -->
-<body class="pagina-links">
+<!-- data-tier selecciona la entrada de CONFIG.tiers. Es la ÚNICA diferencia
+     de fondo con basica.html: mismo diseño, distintos links. -->
+<body class="pagina-links" data-tier="premium">
 
   <div class="links-fondo" aria-hidden="true"></div>
 
@@ -29,7 +29,7 @@
 
     <main class="links-main">
       <section class="links-hero">
-        <span class="badge">La comunidad</span>
+        <span class="badge" id="badge"></span>
         <h1 class="links-titulo">Bienvenido a la comunidad de trading <em>más exclusiva</em> de Colombia</h1>
         <p class="links-subtitulo">Todos tus canales, en un solo lugar.</p>
       </section>
@@ -45,6 +45,11 @@
       </noscript>
 
       <nav class="links-grid" id="botones" aria-label="Canales de la comunidad"></nav>
+
+      <p class="links-nota">
+        El ingreso al grupo lo aprueba un administrador.
+        <a href="/links-comunidad">¿Este no es tu tier?</a>
+      </p>
     </main>
 
     <footer class="links-footer">

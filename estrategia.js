@@ -5,17 +5,7 @@
 (function () {
   'use strict';
 
-  const { ICONOS, estaPendiente, crearBoton, pintarReconocimientos } = window.TT;
-
-  /* La luz que sigue al cursor. Se guarda como % sobre el propio botón, así el
-     radial-gradient del ::before no necesita saber ni su tamaño ni su posición. */
-  function seguirCursor(btn) {
-    btn.addEventListener('pointermove', function (e) {
-      const caja = btn.getBoundingClientRect();
-      btn.style.setProperty('--mx', ((e.clientX - caja.left) / caja.width * 100) + '%');
-      btn.style.setProperty('--my', ((e.clientY - caja.top) / caja.height * 100) + '%');
-    });
-  }
+  const { ICONOS, estaPendiente, crearBoton, pintarReconocimientos, seguirCursor } = window.TT;
 
   function render() {
     const cfg = window.CONFIG || CONFIG;

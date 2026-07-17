@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0A0A0A">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Elegí tu tier de membresía para ver los canales que te corresponden.">
+  <title>¿Cuál es tu tier? — Tactical Trading</title>
+
+  <link rel="icon" href="/assets/logo-isotipo.webp" type="image/webp">
+  <link rel="preload" href="/assets/fonts/raleway.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/fonts/fonts.css">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/links.css">
+</head>
+
+<!-- Pantalla de tránsito: pregunta el tier y enruta. NO es control de acceso —
+     el control real es el administrador que aprueba el número en el grupo. Lo que
+     hace acá es avisar ANTES de que alguien pida entrar al grupo equivocado. -->
+<body class="pagina-links pagina-selector">
+
+  <div class="links-fondo" aria-hidden="true"></div>
+
+  <div class="links-envoltorio">
+
+    <header class="links-header">
+      <img class="header__logo" src="/assets/logo-lockup.webp" alt="Tactical Trading" width="42" height="40">
+    </header>
+
+    <main class="links-main">
+      <section class="links-hero">
+        <span class="badge">Acceso a la comunidad</span>
+        <h1 class="links-titulo">¿Cuál es tu <em>tier</em>?</h1>
+        <p class="links-subtitulo">
+          Cada membresía tiene sus propios grupos y el ingreso lo aprueba un administrador:
+          nos reservamos el derecho de admisión. Si pides entrar a un grupo que no corresponde
+          a tu membresía, tu solicitud será rechazada.
+        </p>
+      </section>
+
+      <hr class="divisor divisor--brillo">
+
+      <nav class="links-grid" aria-label="Elegí tu membresía">
+
+        <!-- Estáticos y no vía TT.crearBoton(): las rutas son fijas (no salen de
+             config), no son links externos y el de Premium lleva chip propio. -->
+        <a class="btn btn--links btn--tier btn--tier-basica" href="/links-comunidad/basica" style="--orden: 0">
+          <span class="btn__texto">
+            <span class="tier__nombre">Membresía Básica</span>
+            <span class="tier__pie">Ver mis canales</span>
+          </span>
+          <span class="btn__flecha" aria-hidden="true">→</span>
+        </a>
+
+        <a class="btn btn--links btn--tier btn--tier-premium" href="/links-comunidad/premium" style="--orden: 1">
+          <span class="tier__chip">Premium</span>
+          <span class="btn__texto">
+            <span class="tier__nombre">Membresía Premium</span>
+            <span class="tier__pie">Ver mis canales</span>
+          </span>
+          <span class="btn__flecha" aria-hidden="true">→</span>
+        </a>
+
+      </nav>
+    </main>
+
+    <footer class="links-footer">
+      <p class="footer__titulo">Reconocimientos</p>
+      <div class="reconocimientos" id="reconocimientos"></div>
+      <p class="footer__meta">
+        <a href="https://www.ttrading.co" target="_blank" rel="noopener noreferrer">ttrading.co</a>
+        · <span>Tactical Assets S.A.S.</span>
+      </p>
+    </footer>
+
+  </div>
+
+  <script src="/config.js"></script>
+  <script src="/shared.js"></script>
+  <script src="/selector.js"></script>
+</body>
+</html>

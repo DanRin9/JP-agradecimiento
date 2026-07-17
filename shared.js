@@ -198,6 +198,17 @@
     setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
   }
 
+  /* --- Luz que sigue al cursor -------------------------------------------
+     Se guarda como % sobre el propio botón, así el radial-gradient del ::before
+     no necesita saber ni su tamaño ni su posición. */
+  function seguirCursor(btn) {
+    btn.addEventListener('pointermove', function (e) {
+      const caja = btn.getBoundingClientRect();
+      btn.style.setProperty('--mx', ((e.clientX - caja.left) / caja.width * 100) + '%');
+      btn.style.setProperty('--my', ((e.clientY - caja.top) / caja.height * 100) + '%');
+    });
+  }
+
   /* --- Footer de reconocimientos (idéntico en todas las páginas) ----------- */
   function pintarReconocimientos(cfg, contenedor) {
     contenedor.innerHTML = '';
@@ -220,5 +231,6 @@
     construirICS: construirICS,
     descargarICS: descargarICS,
     pintarReconocimientos: pintarReconocimientos,
+    seguirCursor: seguirCursor,
   };
 })();

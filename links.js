@@ -1,27 +1,29 @@
 /* ============================================================================
-   LINKS — render de /links-comunidad.
+   LINKS — render de /links-comunidad/basica y /links-comunidad/premium.
    Hub de canales de la comunidad. No es una landing de compra: no lleva Hotmart.
-   Usa los canales de CONFIG.tiers.basica (decisión tomada: es el canal general).
+
+   El tier sale del data-tier del <body>, igual que en las landings (app.js).
+   Las dos páginas son el mismo diseño: lo único que cambia son los links.
    ============================================================================ */
 (function () {
   'use strict';
 
-  const { ICONOS, estaPendiente, crearBoton, waLink, descargarICS, pintarReconocimientos } = window.TT;
-
-  /* La luz que sigue al cursor. Se guarda como % sobre el propio botón, así el
-     radial-gradient del ::before no necesita saber ni su tamaño ni su posición. */
-  function seguirCursor(btn) {
-    btn.addEventListener('pointermove', function (e) {
-      const caja = btn.getBoundingClientRect();
-      btn.style.setProperty('--mx', ((e.clientX - caja.left) / caja.width * 100) + '%');
-      btn.style.setProperty('--my', ((e.clientY - caja.top) / caja.height * 100) + '%');
-    });
-  }
+  const { ICONOS, estaPendiente, crearBoton, waLink, descargarICS,
+          pintarReconocimientos, seguirCursor } = window.TT;
 
   function render() {
     const cfg = window.CONFIG || CONFIG;
-    const tier = cfg.tiers.basica;
+    const clave = document.body.dataset.tier;
+    const tier = cfg.tiers[clave];
+
+    if (!tier) {
+      console.error('[links] data-tier inválido en <body>:', clave);
+      return;
+    }
+
     const pendientes = [];
+
+    document.getElementById('badge').textContent = tier.badge;
 
     const cont = document.getElementById('botones');
     cont.innerHTML = '';
@@ -30,9 +32,9 @@
     // donde los textos hablan de "tu membresía". Acá nadie compró todavía.
     const definiciones = [];
 
-    // 1. WhatsApp — grupo de la comunidad
+    // 1. WhatsApp — grupo del tier
     const grupoPend = estaPendiente(tier.whatsappGrupo);
-    if (grupoPend) pendientes.push('whatsappGrupo de basica');
+    if (grupoPend) pendientes.push('whatsappGrupo de ' + clave);
     definiciones.push({
       clases: 'btn--wa-grupo',
       icono: ICONOS.whatsapp,
@@ -42,10 +44,10 @@
       etiquetaPendiente: cfg.hotmart.labelSoon,
     });
 
-    // 2. Telegram — si no hay canal (telegram: null), el botón no se dibuja
+    // 2. Telegram — si el tier no tiene canal (telegram: null), el botón no se dibuja
     if (tier.telegram !== null && tier.telegram !== undefined) {
       const tgPend = estaPendiente(tier.telegram);
-      if (tgPend) pendientes.push('telegram de basica');
+      if (tgPend) pendientes.push('telegram de ' + clave);
       definiciones.push({
         clases: 'btn--telegram',
         icono: ICONOS.telegram,
