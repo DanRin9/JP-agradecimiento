@@ -2,7 +2,7 @@
    CONFIG — único archivo que hay que tocar para actualizar la landing.
    Todo lo variable vive acá. No hay links sueltos en el HTML.
 
-   PENDIENTES: buscá "TODO" abajo. Hay 5.
+   PENDIENTES: buscá "TODO" abajo. Hay 6.
    ============================================================================ */
 
 const CONFIG = {
@@ -29,6 +29,16 @@ const CONFIG = {
     // Formato wa.me: solo dígitos, con indicativo, sin "+" y sin espacios.
     // Ej: +57 312 388 4238  ->  573123884238
     whatsappCS: '57XXXXXXXXXX',        // TODO: reemplazar por el WhatsApp de Customer Success
+  },
+
+  /* --------------------------------------------------------------------------
+     ESTRATEGIA TACTICAL (/estrategia-tactical)
+     Los dos botones de esa página. A diferencia del resto, acá los links ya son
+     reales, así que los botones salen activos.
+     -------------------------------------------------------------------------- */
+  estrategia: {
+    zoom: 'https://www.youtube.com',   // TODO: reemplazar por el link real de Zoom del portafolio en vivo
+    bitacora: 'https://bitacora.ttrading.shop',
   },
 
   /* --------------------------------------------------------------------------

@@ -210,3 +210,57 @@
 @media (hover: none) {
   .btn--links::before { display: none; }
 }
+
+/* ============================================================================
+   /estrategia-tactical — misma página base, dos botones en vez de cuatro
+   ============================================================================ */
+
+/* Con solo dos accesos el bloque no necesita 1100px de ancho: a esa medida los
+   botones quedan larguísimos y el ojo tiene que viajar de más.
+   Centrado con align-self y NO con `margin: 0 auto`: un margen auto en el eje
+   transversal cancela el stretch del flex padre y el grid colapsa al ancho de su
+   contenido, ignorando el max-width. */
+.pagina-estrategia .links-grid {
+  width: 100%;
+  max-width: 880px;
+  align-self: center;
+}
+
+/* Acá el titular es el protagonista: no compite con cuatro botones. */
+.pagina-estrategia .links-titulo {
+  font-size: clamp(30px, 4.2vw, 56px);
+  max-width: 18ch;
+}
+.pagina-estrategia .links-subtitulo { max-width: 46ch; margin: 0 auto; }
+
+/* El nowrap del em existe para "MÁS EXCLUSIVA" (dos palabras) en /links-comunidad.
+   Acá el resaltado son cinco y en mobile se sale de la pantalla: tiene que partir. */
+.pagina-estrategia .links-titulo em { white-space: normal; }
+
+/* Los dos botones son la razón de la página: más altos que en /links-comunidad. */
+.pagina-estrategia .btn--links { min-height: 112px; }
+
+/* --- Zoom: outline azul, no relleno ---------------------------------------
+   El dorado tiene que ganar la página (es la bitácora, lo que se vende). Dos
+   rellenos brillantes lado a lado se anulan entre sí, así que Zoom va en outline
+   sobre superficie: se lee como su marca sin pelearle al amarillo. */
+.btn--zoom {
+  background: var(--superficie);
+  border-color: rgba(45, 140, 255, 0.42);
+  color: #6BB0FF;              /* el #2D8CFF de marca no llega a AA sobre #151515 */
+  font-weight: 600;
+}
+.btn--zoom:hover {
+  background: rgba(45, 140, 255, 0.09);
+  border-color: #2D8CFF;
+}
+.btn--zoom .btn__icono svg { fill: currentColor; }
+.btn--links.btn--zoom:hover { box-shadow: 0 14px 40px rgba(45, 140, 255, 0.16); }
+
+/* El dorado de la bitácora reusa .btn--hotmart tal cual (mismo degradé y glow):
+   en esta página no existe el botón de Hotmart, así que no hay conflicto. */
+.pagina-estrategia .btn--hotmart .btn__icono svg { fill: currentColor; }
+
+@media (max-width: 720px) {
+  .pagina-estrategia .btn--links { min-height: 84px; }
+}
