@@ -11,20 +11,30 @@
   --superficie-2: #1A1A1A;
   --borde:        #262626;
 
-  --dorado:       #E8B923;
-  --dorado-grad:  linear-gradient(135deg, #F0C94A 0%, #C9971A 100%);
-  --dorado-linea: rgba(232, 185, 35, 0.22);
+  /* Amarillo de marca: Pantone 7548 C = #FFC600, tomado del manual de identidad
+     y muestreado de los logos oficiales. Reemplaza al #E8B923 anterior, que era
+     más apagado y además no coincidía con el checkout de Hotmart ni con la web. */
+  --amarillo:       #FFC600;
+  --amarillo-grad:  linear-gradient(135deg, #FFD84A 0%, #F0B400 100%);
+  --amarillo-linea: rgba(255, 198, 0, 0.26);
 
   --texto:        #F5F5F5;
   --texto-2:      #9A9A9A;   /* gris cálido, no azulado */
-  --whatsapp:     #25D366;
+
+  /* Verdes de WhatsApp: #25D366 es el de marca y se mantiene como ancla en el
+     botón outline. El relleno usa el tinte más brillante para que empuje más. */
+  --whatsapp:       #25D366;
+  --whatsapp-vivo:  #2BE873;
+
+  /* Azul de marca de Telegram. */
+  --telegram:       #2AABEE;
 
   --radio:        12px;
   --ancho:        480px;
   --escala-rec:   0.8;       /* escala de los logos del footer (mobile) */
 
   /* El único glow de la página. Reservado al CTA de Hotmart. */
-  --glow: 0 8px 28px rgba(232, 185, 35, 0.18);
+  --glow: 0 8px 30px rgba(255, 198, 0, 0.24);
 }
 
 * { box-sizing: border-box; }
@@ -47,7 +57,7 @@ body {
 
 /* Foco visible y consistente en navegación por teclado. */
 :focus-visible {
-  outline: 2px solid var(--dorado);
+  outline: 2px solid var(--amarillo);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -59,7 +69,7 @@ body {
 }
 
 /* ============================================================================
-   HEADER — lockup isotipo + wordmark
+   HEADER — lockup oficial de marca
    ============================================================================ */
 .header {
   display: flex;
@@ -82,9 +92,9 @@ body {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--dorado);
-  border: 1px solid var(--dorado-linea);
-  background: rgba(232, 185, 35, 0.06);
+  color: var(--amarillo);
+  border: 1px solid var(--amarillo-linea);
+  background: rgba(255, 198, 0, 0.07);
   border-radius: 999px;      /* pill acá SÍ: es un chip, no un botón */
   padding: 6px 15px;
   margin-bottom: 22px;
@@ -115,12 +125,12 @@ body {
 }
 .hero__parrafo strong { color: var(--texto); font-weight: 500; }
 
-/* Línea divisoria fina dorada, degradada hacia los bordes. */
+/* Línea divisoria fina amarilla, degradada hacia los bordes. */
 .divisor {
   height: 1px;
   border: 0;
   margin: 0 0 26px;
-  background: linear-gradient(90deg, transparent, var(--dorado-linea) 50%, transparent);
+  background: linear-gradient(90deg, transparent, var(--amarillo-linea) 50%, transparent);
 }
 
 /* ============================================================================
@@ -190,12 +200,12 @@ body {
 
 /* --- 1. WhatsApp grupo: filled, canal primario --------------------------- */
 .btn--wa-grupo {
-  background: var(--whatsapp);
-  border-color: var(--whatsapp);
-  color: #08240F;
-  font-weight: 600;
+  background: var(--whatsapp-vivo);
+  border-color: var(--whatsapp-vivo);
+  color: #06210D;
+  font-weight: 700;
 }
-.btn--wa-grupo:hover { background: #2EE676; border-color: #2EE676; }
+.btn--wa-grupo:hover { background: #45F088; border-color: #45F088; }
 
 /* --- 2. WhatsApp soporte: outline, canal secundario ---------------------- */
 .btn--wa-soporte {
@@ -212,9 +222,9 @@ body {
 .btn--hotmart {
   min-height: 78px;
   padding: 20px 22px;
-  background: var(--dorado-grad);
+  background: var(--amarillo-grad);
   border: 0;
-  color: #1A1205;                /* texto oscuro sobre dorado: contraste alto */
+  color: #1F1600;                /* texto oscuro sobre amarillo: contraste alto */
   font-family: 'Raleway', sans-serif;
   font-weight: 800;
   font-size: 16px;
@@ -222,7 +232,7 @@ body {
   letter-spacing: 0.02em;
   box-shadow: var(--glow);
 }
-.btn--hotmart:hover { box-shadow: 0 10px 34px rgba(232, 185, 35, 0.28); }
+.btn--hotmart:hover { box-shadow: 0 12px 38px rgba(255, 198, 0, 0.36); }
 .btn--hotmart .btn__icono { width: 25px; height: 25px; }
 
 /* Deshabilitado mientras no cierra la negociación con Hotmart.
@@ -234,27 +244,46 @@ body {
 }
 .btn--hotmart.esta-deshabilitado:hover { box-shadow: none; }
 
-/* Sobre el dorado el chip claro se pierde: acá va en oscuro. */
-.btn--hotmart .btn__proximamente {
-  color: #1A1205;
-  background: rgba(0, 0, 0, 0.16);
-  border-color: rgba(0, 0, 0, 0.22);
+/* Sobre los rellenos claros (amarillo, verde, azul) el chip claro se pierde:
+   en esos tres va en oscuro. */
+.btn--hotmart .btn__proximamente,
+.btn--wa-grupo .btn__proximamente,
+.btn--telegram .btn__proximamente {
+  color: rgba(0, 0, 0, 0.72);
+  background: rgba(0, 0, 0, 0.14);
+  border-color: rgba(0, 0, 0, 0.2);
 }
 
-/* --- 4 y 5. Telegram y agenda: sistema dorado/negro ---------------------- */
-.btn--dorado {
+/* --- 4. Telegram: azul de marca -----------------------------------------
+   El brief original pedía dorado/negro para que el ojo no saltara a un color
+   ajeno; Daniel prefirió el azul real de Telegram. Texto oscuro y no blanco:
+   blanco sobre #2AABEE no llega a AA. */
+.btn--telegram {
+  background: var(--telegram);
+  border-color: var(--telegram);
+  color: #05283A;
+  font-weight: 700;
+}
+.btn--telegram:hover { background: #45BDF7; border-color: #45BDF7; }
+.btn--telegram .btn__icono svg { fill: #05283A; }
+
+/* --- 5. Agenda: sistema amarillo/negro ----------------------------------- */
+.btn--sistema {
   background: var(--superficie-2);
-  border-color: var(--dorado-linea);
+  border-color: var(--amarillo-linea);
 }
-.btn--dorado:hover {
+.btn--sistema:hover {
   background: #201B0E;
-  border-color: rgba(232, 185, 35, 0.45);
+  border-color: rgba(255, 198, 0, 0.5);
 }
-.btn--dorado .btn__icono svg { fill: #FFFFFF; }
+.btn--sistema .btn__icono svg { fill: #FFFFFF; }
 
+/* Hereda el color del texto del botón en vez de un gris fijo: sobre los rellenos
+   brillantes (verde, amarillo, azul) un gris medio queda ilegible (~1.7:1). */
 .btn__flecha {
   flex: 0 0 auto;
-  color: var(--texto-2);
+  color: currentColor;
+  opacity: 0.75;
   font-size: 17px;
   line-height: 1;
 }
@@ -308,7 +337,7 @@ body {
 .footer__tagline { font-size: 12px; color: var(--texto-2); margin: 0 0 6px; }
 .footer__meta { font-size: 11.5px; color: #8A8A8A; margin: 0; }
 .footer__meta a { color: var(--texto-2); text-decoration: none; }
-.footer__meta a:hover { color: var(--dorado); }
+.footer__meta a:hover { color: var(--amarillo); }
 
 /* ============================================================================
    NOSCRIPT
@@ -317,7 +346,7 @@ body {
   display: block;
   margin: 0 0 20px;
   padding: 16px;
-  border: 1px solid var(--dorado-linea);
+  border: 1px solid var(--amarillo-linea);
   border-radius: var(--radio);
   background: var(--superficie);
   color: var(--texto-2);

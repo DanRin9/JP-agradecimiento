@@ -257,7 +257,7 @@
       const tgPend = estaPendiente(tier.telegram);
       if (tgPend) pendientes.push('telegram de ' + clave);
       cont.appendChild(crearBoton({
-        clases: 'btn--dorado',
+        clases: 'btn--telegram',
         icono: ICONOS.telegram,
         texto: c.telegram,
         href: tier.telegram,
@@ -270,7 +270,7 @@
     const zoomPend = estaPendiente(cfg.onboarding.zoomLink);
     if (zoomPend) pendientes.push('zoomLink');
     cont.appendChild(crearBoton({
-      clases: 'btn--dorado',
+      clases: 'btn--sistema',
       icono: ICONOS.calendario,
       texto: c.agenda,
       pendiente: zoomPend,
