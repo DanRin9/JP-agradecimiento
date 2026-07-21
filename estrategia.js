@@ -1,5 +1,5 @@
 /* ============================================================================
-   ESTRATEGIA — render de /estrategia-tactical.
+   ESTRATEGIA: render de /estrategia-tactical.
    Dos accesos: la sesión en vivo (Zoom) y la bitácora de operaciones.
    ============================================================================ */
 (function () {

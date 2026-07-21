@@ -1,5 +1,5 @@
 /* ============================================================================
-   LINKS — render de /links-comunidad/basica y /links-comunidad/premium.
+   LINKS: render de /links-comunidad/basica y /links-comunidad/premium.
    Hub de canales de la comunidad. No es una landing de compra: no lleva Hotmart.
 
    El tier sale del data-tier del <body>, igual que en las landings (app.js).
@@ -32,7 +32,7 @@
     // donde los textos hablan de "tu membresía". Acá nadie compró todavía.
     const definiciones = [];
 
-    // 1. WhatsApp — grupo del tier
+    // 1. WhatsApp: grupo del tier
     const grupoPend = estaPendiente(tier.whatsappGrupo);
     if (grupoPend) pendientes.push('whatsappGrupo de ' + clave);
     definiciones.push({
@@ -44,21 +44,21 @@
       etiquetaPendiente: cfg.hotmart.labelSoon,
     });
 
-    // 2. Telegram — si el tier no tiene canal (telegram: null), el botón no se dibuja
+    // 2. Telegram: si el tier no tiene canal (telegram: null), el botón no se dibuja
     if (tier.telegram !== null && tier.telegram !== undefined) {
       const tgPend = estaPendiente(tier.telegram);
       if (tgPend) pendientes.push('telegram de ' + clave);
       definiciones.push({
         clases: 'btn--telegram',
         icono: ICONOS.telegram,
-        texto: 'Canal de Telegram — Señales y Estrategia',
+        texto: 'Canal de Telegram: Señales y Estrategia',
         href: tier.telegram,
         pendiente: tgPend,
         etiquetaPendiente: cfg.hotmart.labelSoon,
       });
     }
 
-    // 3. Onboarding — descarga el .ics generado desde config
+    // 3. Onboarding: descarga el .ics generado desde config
     const zoomPend = estaPendiente(cfg.onboarding.zoomLink);
     if (zoomPend) pendientes.push('zoomLink');
     definiciones.push({
@@ -70,13 +70,13 @@
       onClick: function () { descargarICS(cfg); },
     });
 
-    // 4. WhatsApp — soporte. Último a propósito: es el canal de menor peso.
+    // 4. WhatsApp: soporte. Último a propósito, es el canal de menor peso.
     const csPend = estaPendiente(cfg.shared.whatsappCS);
     if (csPend) pendientes.push('whatsappCS');
     definiciones.push({
       clases: 'btn--wa-soporte',
       icono: ICONOS.whatsapp,
-      texto: '¿Dudas? Escríbenos — Soporte',
+      texto: '¿Dudas? Escríbenos: Soporte',
       href: csPend ? '' : waLink(cfg.shared.whatsappCS),
       pendiente: csPend,
       etiquetaPendiente: cfg.hotmart.labelSoon,

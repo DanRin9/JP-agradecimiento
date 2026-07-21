@@ -1,5 +1,5 @@
 /* ============================================================================
-   LINKS — solo /links-comunidad. Se carga DESPUÉS de styles.css y todo cuelga
+   LINKS: solo /links-comunidad. Se carga DESPUÉS de styles.css y todo cuelga
    de .pagina-links, así las landings (ya desplegadas y verificadas) no se tocan.
 
    Al revés que las landings, ésta es desktop-first: el tráfico no viene del
@@ -123,7 +123,7 @@
 }
 
 /* ============================================================================
-   BOTONES — lo importante de la página
+   BOTONES: lo importante de la página
    Grid 2×2: usa el ancho en vez de apilar cuatro botones en una columna.
    ============================================================================ */
 .links-grid {
@@ -185,7 +185,7 @@
 .btn--links.esta-deshabilitado::before { display: none; }
 
 /* ============================================================================
-   FOOTER — más liviano que el de las landings: acá no cierra la página, la apoya
+   FOOTER: más liviano que el de las landings, acá no cierra la página, la apoya
    ============================================================================ */
 .links-footer {
   border-top: 1px solid var(--borde);
@@ -196,7 +196,7 @@
 .links-footer .footer__meta { margin: 0; }
 
 /* ============================================================================
-   MOBILE — no es el target, pero tiene que funcionar igual
+   MOBILE: no es el target, pero tiene que funcionar igual
    ============================================================================ */
 @media (max-width: 720px) {
   .links-grid { grid-template-columns: 1fr; gap: 14px; }
@@ -223,7 +223,7 @@
 .links-nota a:hover { text-decoration: underline; }
 
 /* ============================================================================
-   /links-comunidad — selector de tier
+   /links-comunidad: selector de tier
    ============================================================================ */
 .pagina-selector .links-grid {
   width: 100%;
@@ -261,7 +261,7 @@
 
 .btn--tier .btn__flecha { font-size: 22px; opacity: 0.8; }
 
-/* Básica: outline sobrio. No es el hermano pobre — es el que no grita. */
+/* Básica: outline sobrio. No es el hermano pobre, es el que no grita. */
 .btn--tier-basica {
   background: var(--superficie);
   border-color: var(--borde);
@@ -287,7 +287,7 @@
 
 /* El brillo que lo recorre. Va en ::after porque el ::before ya lo ocupa la luz
    del cursor. Ciclo largo con pausa: un shimmer rápido y continuo se vuelve ruido
-   —y es justo el efecto "IA genérica" que el brief prohíbe—; así solo destella
+   (y es justo el efecto "IA genérica" que el brief prohíbe); así solo destella
    cada tanto y el ojo vuelve. */
 .btn--tier-premium::after {
   content: '';
@@ -333,7 +333,7 @@
 }
 
 /* ============================================================================
-   /estrategia-tactical — misma página base, cuatro botones (Zoom, Bitácora,
+   /estrategia-tactical: misma página base, cuatro botones (Zoom, Bitácora,
    Pre-Mercado, Exness)
    ============================================================================ */
 

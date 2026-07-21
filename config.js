@@ -1,8 +1,8 @@
 /* ============================================================================
-   CONFIG — único archivo que hay que tocar para actualizar la landing.
+   CONFIG: único archivo que hay que tocar para actualizar la landing.
    Todo lo variable vive acá. No hay links sueltos en el HTML.
 
-   PENDIENTES: buscá "TODO" abajo. Hay 3.
+   PENDIENTES: buscá "TODO" abajo. Hay 2.
    ============================================================================ */
 
 const CONFIG = {
@@ -15,7 +15,7 @@ const CONFIG = {
      Cambiá `enabled` a true. El link ya está.
      -------------------------------------------------------------------------- */
   hotmart: {
-    enabled: false,   // TODO: cambiar a true cuando cierre la negociación con Hotmart
+    enabled: true,
     url: 'https://hotmart.com/es/club/tactical-investors',
     labelSoon: 'Próximamente',
   },
@@ -44,7 +44,7 @@ const CONFIG = {
      El botón genera un archivo .ics (calendario universal) con estos datos.
      -------------------------------------------------------------------------- */
   onboarding: {
-    titulo: 'Sesión de Onboarding — Tactical Trading',
+    titulo: 'Sesión de Onboarding, Tactical Trading',
     descripcion: 'Sesión de bienvenida y onboarding de tu membresía de Tactical Trading con el equipo.',
     zoomLink: 'https://us06web.zoom.us/j/83942944549?pwd=ikYh0CRObhc9dst3u98ycw3ahzpZRg.1',
 
@@ -79,12 +79,12 @@ const CONFIG = {
   copy: {
     titulo: '¡Bienvenido a Tactical Trading!',
     subtitulo: 'Ahora eres parte de la comunidad de trading más exclusiva de Colombia.',
-    parrafo: 'Estás acompañado por el trader reconocido por la Bolsa de Valores de Colombia — y desde hoy tienes acceso a todo lo que tu membresía incluye.',
+    parrafo: 'Estás acompañado por el trader reconocido por la Bolsa de Valores de Colombia, y desde hoy tienes acceso a todo lo que tu membresía incluye.',
     botones: {
       grupo: 'Únete al grupo de WhatsApp de tu membresía',
-      soporte: '¿Dudas? Escríbenos — Soporte y Customer Success',
+      soporte: '¿Dudas? Escríbenos: Soporte y Customer Success',
       hotmart: 'Ingresa a tu Zona de Miembros',
-      telegram: 'Únete al Canal de Telegram — Señales y Estrategia',
+      telegram: 'Únete al Canal de Telegram: Señales y Estrategia',
       agenda: 'Agenda tu sesión de Onboarding',
     },
   },
@@ -92,7 +92,7 @@ const CONFIG = {
   /* --------------------------------------------------------------------------
      FOOTER
      Para agregar un reconocimiento: dejá el .webp en /assets y sumá una línea acá.
-     `alto` es la altura de render en px — se ajusta a ojo, no matemáticamente,
+     `alto` es la altura de render en px: se ajusta a ojo, no matemáticamente,
      porque un wordmark ancho y un medallón cuadrado no pesan igual a la misma altura.
      Los logos se muestran en escala de grises al 55% para que la fila lea pareja.
      -------------------------------------------------------------------------- */
@@ -107,7 +107,7 @@ const CONFIG = {
   ],
 
   footer: {
-    tagline: 'Juan Pablo Vieira — Mejor trader del país según la BVC',
+    tagline: 'Juan Pablo Vieira, Mejor trader del país según la BVC',
     sitio: { texto: 'ttrading.co', url: 'https://www.ttrading.co' },
     legal: 'Tactical Assets S.A.S.',
   },

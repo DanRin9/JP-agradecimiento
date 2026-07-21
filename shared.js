@@ -1,5 +1,5 @@
 /* ============================================================================
-   SHARED — lo que usan todas las páginas: íconos, botones y el generador de .ics.
+   SHARED: lo que usan todas las páginas: íconos, botones y el generador de .ics.
    No hay nada configurable acá. Todo lo variable vive en config.js.
    Se expone en window.TT. Cargar SIEMPRE después de config.js.
    ============================================================================ */

@@ -1,4 +1,4 @@
-# Landing de agradecimiento — Membresía JP Tactical Trading
+# Landing de agradecimiento, Membresía JP Tactical Trading
 
 Dos páginas estáticas que Hotmart muestra apenas alguien paga la membresía.
 Sin build, sin dependencias, sin backend.
@@ -60,7 +60,7 @@ Nada más. No hay que tocar ningún otro archivo.
 ### Si un tier no tiene Telegram
 
 Poné `telegram: null` y el botón desaparece de esa página. El inventario de
-ttrading.co dice que algunos tiers usan Telegram y otros WhatsApp — vale confirmarlo
+ttrading.co dice que algunos tiers usan Telegram y otros WhatsApp, vale confirmarlo
 antes de publicar.
 
 ---
@@ -85,7 +85,7 @@ cambiar también el `BYDAY=FR` del `RRULE` en `app.js`).
 Los reconocimientos salen de `config.reconocimientos`. Para sumar uno: dejá el
 `.webp` en `/assets` y agregá una línea.
 
-**Falta el logo de Wealth Expo Colombia** — ya hay una línea comentada lista para
+**Falta el logo de Wealth Expo Colombia**: ya hay una línea comentada lista para
 descomentar cuando aparezca.
 
 Se muestran en escala de grises al 55% de opacidad para que la fila lea pareja: los
@@ -102,7 +102,7 @@ npx serve .
 ```
 
 Ojo: `serve` **no** aplica los rewrites de `vercel.json`, así que en local las rutas
-`/basica` y `/premium` no funcionan — usá los nombres de archivo. En Vercel sí andan.
+`/basica` y `/premium` no funcionan, usá los nombres de archivo. En Vercel sí andan.
 
 ## Deploy
 

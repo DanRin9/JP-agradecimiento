@@ -1,5 +1,5 @@
 /* ============================================================================
-   APP — render de las landings de agradecimiento (/basica, /premium).
+   APP: render de las landings de agradecimiento (/basica, /premium).
    Los íconos, los botones y el generador de .ics viven en shared.js (window.TT),
    porque /links-comunidad los reusa. Todo lo variable vive en config.js.
    ============================================================================ */
@@ -25,14 +25,14 @@
     document.getElementById('titulo').textContent = cfg.copy.titulo;
     document.getElementById('subtitulo').textContent = cfg.copy.subtitulo;
     document.getElementById('parrafo').textContent = cfg.copy.parrafo;
-    document.title = tier.badge + ' — Tactical Trading';
+    document.title = tier.badge + ', Tactical Trading';
 
     /* --- Botones --- */
     const cont = document.getElementById('botones');
     cont.innerHTML = '';
     const c = cfg.copy.botones;
 
-    // 1. WhatsApp — grupo de la membresía
+    // 1. WhatsApp: grupo de la membresía
     const grupoPend = estaPendiente(tier.whatsappGrupo);
     if (grupoPend) pendientes.push('whatsappGrupo de ' + clave);
     cont.appendChild(crearBoton({
@@ -44,7 +44,7 @@
       etiquetaPendiente: cfg.hotmart.labelSoon,
     }));
 
-    // 2. WhatsApp — Customer Success (canal secundario)
+    // 2. WhatsApp: Customer Success (canal secundario)
     const csPend = estaPendiente(cfg.shared.whatsappCS);
     if (csPend) pendientes.push('whatsappCS');
     cont.appendChild(crearBoton({
@@ -56,7 +56,7 @@
       etiquetaPendiente: cfg.hotmart.labelSoon,
     }));
 
-    // 3. Zona de Miembros Hotmart — el CTA principal
+    // 3. Zona de Miembros Hotmart: el CTA principal
     const hotPend = !cfg.hotmart.enabled || estaPendiente(cfg.hotmart.url);
     cont.appendChild(crearBoton({
       clases: 'btn--hotmart',
@@ -67,7 +67,7 @@
       etiquetaPendiente: cfg.hotmart.labelSoon,
     }));
 
-    // 4. Telegram — si el tier no tiene canal (telegram: null), el botón no se dibuja
+    // 4. Telegram: si el tier no tiene canal (telegram: null), el botón no se dibuja
     if (tier.telegram !== null && tier.telegram !== undefined) {
       const tgPend = estaPendiente(tier.telegram);
       if (tgPend) pendientes.push('telegram de ' + clave);
@@ -81,7 +81,7 @@
       }));
     }
 
-    // 5. Onboarding — descarga el .ics generado desde config
+    // 5. Onboarding: descarga el .ics generado desde config
     const zoomPend = estaPendiente(cfg.onboarding.zoomLink);
     if (zoomPend) pendientes.push('zoomLink');
     cont.appendChild(crearBoton({
