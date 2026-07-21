@@ -100,6 +100,17 @@ body {
   margin-bottom: 22px;
 }
 
+/* Texto plano, sin pill ni glow — SOLO el badge dinámico de tier (básica/premium).
+   Scoping por #id, no por .badge: el badge estático de /links-comunidad ("Acceso a la
+   comunidad") y el de /estrategia-tactical ("Estrategia Tactical") no llevan id="badge",
+   así que no se tocan. */
+#badge {
+  border: 0;
+  background: none;
+  padding: 0;
+  margin-bottom: 14px;
+}
+
 .hero__titulo {
   font-family: 'Raleway', sans-serif;
   font-weight: 800;
@@ -267,16 +278,18 @@ body {
 .btn--telegram:hover { background: #45BDF7; border-color: #45BDF7; }
 .btn--telegram .btn__icono svg { fill: #05283A; }
 
-/* --- 5. Agenda: sistema amarillo/negro ----------------------------------- */
+/* --- 5. Agenda: outline azul Zoom (mismo azul que .btn--zoom en links.css) */
 .btn--sistema {
-  background: var(--superficie-2);
-  border-color: var(--amarillo-linea);
+  background: var(--superficie);
+  border-color: rgba(45, 140, 255, 0.42);
+  color: #6BB0FF;
+  font-weight: 600;
 }
 .btn--sistema:hover {
-  background: #201B0E;
-  border-color: rgba(255, 198, 0, 0.5);
+  background: rgba(45, 140, 255, 0.09);
+  border-color: #2D8CFF;
 }
-.btn--sistema .btn__icono svg { fill: #FFFFFF; }
+.btn--sistema .btn__icono svg { fill: currentColor; }
 
 /* Hereda el color del texto del botón en vez de un gris fijo: sobre los rellenos
    brillantes (verde, amarillo, azul) un gris medio queda ilegible (~1.7:1). */

@@ -21,6 +21,12 @@
     const bitPend = estaPendiente(e.bitacora);
     if (bitPend) pendientes.push('estrategia.bitacora');
 
+    const premercadoPend = estaPendiente(e.canalPremercado);
+    if (premercadoPend) pendientes.push('estrategia.canalPremercado');
+
+    const exnessPend = estaPendiente(e.exness);
+    if (exnessPend) pendientes.push('estrategia.exness');
+
     const definiciones = [
       {
         clases: 'btn--zoom',
@@ -38,6 +44,24 @@
         texto: 'Abre la Bitácora',
         href: e.bitacora,
         pendiente: bitPend,
+        etiquetaPendiente: cfg.hotmart.labelSoon,
+      },
+      {
+        clases: 'btn--wa-soporte',
+        icono: ICONOS.whatsapp,
+        texto: 'Canal de Pre-Mercado',
+        href: e.canalPremercado,
+        pendiente: premercadoPend,
+        etiquetaPendiente: cfg.hotmart.labelSoon,
+      },
+      // Todavía no hay live: sale deshabilitado por estaPendiente() hasta que
+      // se pegue el link real, igual que cualquier otro botón sin completar.
+      {
+        clases: 'btn--sistema btn--exness',
+        icono: '<img src="/assets/exness-logo.png" alt="Exness" loading="lazy">',
+        texto: '',
+        href: e.exness,
+        pendiente: exnessPend,
         etiquetaPendiente: cfg.hotmart.labelSoon,
       },
     ];

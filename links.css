@@ -173,7 +173,7 @@
    no existe en esta página. */
 .btn--links.btn--wa-grupo:hover  { box-shadow: 0 14px 40px rgba(43, 232, 115, 0.28); }
 .btn--links.btn--telegram:hover  { box-shadow: 0 14px 40px rgba(42, 171, 238, 0.28); }
-.btn--links.btn--sistema:hover   { box-shadow: 0 14px 40px rgba(255, 198, 0, 0.16); }
+.btn--links.btn--sistema:hover   { box-shadow: 0 14px 40px rgba(45, 140, 255, 0.16); }
 .btn--links.btn--wa-soporte:hover { box-shadow: 0 14px 40px rgba(37, 211, 102, 0.14); }
 
 /* Deshabilitado: sin glow ni luz de cursor. Un botón que no se puede tocar no
@@ -333,11 +333,11 @@
 }
 
 /* ============================================================================
-   /estrategia-tactical — misma página base, dos botones en vez de cuatro
+   /estrategia-tactical — misma página base, cuatro botones (Zoom, Bitácora,
+   Pre-Mercado, Exness)
    ============================================================================ */
 
-/* Con solo dos accesos el bloque no necesita 1100px de ancho: a esa medida los
-   botones quedan larguísimos y el ojo tiene que viajar de más.
+/* A esta medida los botones no quedan larguísimos ni el ojo viaja de más.
    Centrado con align-self y NO con `margin: 0 auto`: un margen auto en el eje
    transversal cancela el stretch del flex padre y el grid colapsa al ancho de su
    contenido, ignorando el max-width. */
@@ -357,9 +357,6 @@
 /* El nowrap del em existe para "MÁS EXCLUSIVA" (dos palabras) en /links-comunidad.
    Acá el resaltado son cinco y en mobile se sale de la pantalla: tiene que partir. */
 .pagina-estrategia .links-titulo em { white-space: normal; }
-
-/* Los dos botones son la razón de la página: más altos que en /links-comunidad. */
-.pagina-estrategia .btn--links { min-height: 112px; }
 
 /* --- Zoom: outline azul, no relleno ---------------------------------------
    El dorado tiene que ganar la página (es la bitácora, lo que se vende). Dos
@@ -382,6 +379,6 @@
    en esta página no existe el botón de Hotmart, así que no hay conflicto. */
 .pagina-estrategia .btn--hotmart .btn__icono svg { fill: currentColor; }
 
-@media (max-width: 720px) {
-  .pagina-estrategia .btn--links { min-height: 84px; }
-}
+/* --- Exness: el ícono es el wordmark completo, no un glifo cuadrado -------- */
+.btn--exness .btn__icono { width: 90px; height: auto; }
+.btn--exness .btn__icono img { width: 100%; height: auto; display: block; }

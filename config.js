@@ -2,7 +2,7 @@
    CONFIG — único archivo que hay que tocar para actualizar la landing.
    Todo lo variable vive acá. No hay links sueltos en el HTML.
 
-   PENDIENTES: buscá "TODO" abajo. Hay 6.
+   PENDIENTES: buscá "TODO" abajo. Hay 3.
    ============================================================================ */
 
 const CONFIG = {
@@ -12,13 +12,11 @@ const CONFIG = {
      El botón principal de la página.
 
      >>> PARA ACTIVARLO CUANDO CIERRE LA NEGOCIACIÓN CON HOTMART: <<<
-     1. Pegá el link real en `url`
-     2. Cambiá `enabled` a true
-     Eso es todo. No hay que tocar ningún otro archivo.
+     Cambiá `enabled` a true. El link ya está.
      -------------------------------------------------------------------------- */
   hotmart: {
-    enabled: false,
-    url: 'HOTMART_MEMBERS_AREA_URL',   // TODO: reemplazar por el link real
+    enabled: false,   // TODO: cambiar a true cuando cierre la negociación con Hotmart
+    url: 'https://hotmart.com/es/club/tactical-investors',
     labelSoon: 'Próximamente',
   },
 
@@ -26,19 +24,19 @@ const CONFIG = {
      CANALES COMPARTIDOS (iguales para Básica y Premium)
      -------------------------------------------------------------------------- */
   shared: {
-    // Formato wa.me: solo dígitos, con indicativo, sin "+" y sin espacios.
-    // Ej: +57 312 388 4238  ->  573123884238
-    whatsappCS: '57XXXXXXXXXX',        // TODO: reemplazar por el WhatsApp de Customer Success
+    whatsappCS: '573245942816',
   },
 
   /* --------------------------------------------------------------------------
      ESTRATEGIA TACTICAL (/estrategia-tactical)
-     Los dos botones de esa página. A diferencia del resto, acá los links ya son
-     reales, así que los botones salen activos.
+     Los cuatro botones de esa página. A diferencia del resto, acá los links ya son
+     reales, así que los botones salen activos (salvo los que siguen marcados TODO).
      -------------------------------------------------------------------------- */
   estrategia: {
     zoom: 'https://www.youtube.com',   // TODO: reemplazar por el link real de Zoom del portafolio en vivo
     bitacora: 'https://bitacora.ttrading.shop',
+    canalPremercado: 'https://whatsapp.com/channel/0029VaNf7Pq23n3Xfc3Rpt3D',
+    exness: 'EXNESS_LIVE_URL',         // TODO: reemplazar cuando exista el live recurrente en Exness
   },
 
   /* --------------------------------------------------------------------------
@@ -48,7 +46,7 @@ const CONFIG = {
   onboarding: {
     titulo: 'Sesión de Onboarding — Tactical Trading',
     descripcion: 'Sesión de bienvenida y onboarding de tu membresía de Tactical Trading con el equipo.',
-    zoomLink: 'ZOOM_LINK_ONBOARDING',  // TODO: reemplazar por el link de Zoom fijo
+    zoomLink: 'https://us06web.zoom.us/j/83942944549?pwd=ikYh0CRObhc9dst3u98ycw3ahzpZRg.1',
 
     // Fecha de la PRIMERA sesión, en formato YYYY-MM-DD. Tiene que caer viernes.
     // A partir de acá el evento se repite todos los viernes automáticamente.
@@ -65,17 +63,13 @@ const CONFIG = {
   tiers: {
     basica: {
       badge: 'Membresía Básica',
-      // TODO: link de invitación al grupo de WhatsApp de Básica (https://chat.whatsapp.com/...)
-      whatsappGrupo: 'WHATSAPP_GRUPO_BASICA_URL',
-      // TODO: canal de Telegram de Básica.
-      // OJO: el inventario de ttrading.co dice que algunos tiers usan Telegram y otros
-      // WhatsApp. Si Básica NO tiene Telegram, poné null y el botón desaparece solo.
-      telegram: 'TELEGRAM_BASICA_URL',
+      whatsappGrupo: 'https://chat.whatsapp.com/DvA3GBU0qzvAryd0CZEJAR?s=cl&p=i&ilr=4',
+      telegram: 'https://t.me/+IPDeHZUDFzMxMTFh',
     },
     premium: {
       badge: 'Membresía Premium',
-      whatsappGrupo: 'WHATSAPP_GRUPO_PREMIUM_URL',  // TODO
-      telegram: 'TELEGRAM_PREMIUM_URL',             // TODO
+      whatsappGrupo: 'https://chat.whatsapp.com/FpLc71qGE9p26d7Wbw1FPy?s=cl&p=i&ilr=4',
+      telegram: 'https://t.me/+kFpsUGJY2y9jZmYx',
     },
   },
 

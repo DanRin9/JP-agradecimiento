@@ -63,7 +63,7 @@
     if (zoomPend) pendientes.push('zoomLink');
     definiciones.push({
       clases: 'btn--sistema',
-      icono: ICONOS.calendario,
+      icono: ICONOS.video,
       texto: 'Agenda tu sesión de Onboarding',
       pendiente: zoomPend,
       etiquetaPendiente: cfg.hotmart.labelSoon,

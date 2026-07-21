@@ -86,7 +86,7 @@
     if (zoomPend) pendientes.push('zoomLink');
     cont.appendChild(crearBoton({
       clases: 'btn--sistema',
-      icono: ICONOS.calendario,
+      icono: ICONOS.video,
       texto: c.agenda,
       pendiente: zoomPend,
       etiquetaPendiente: cfg.hotmart.labelSoon,
