@@ -52,7 +52,7 @@ const CONFIG = {
     pdfTexto: 'Descarga la introducción del programa',
     pdfUrl: '/assets/de-cero-a-tactical-introduccion-2026.pdf',
     modulos: [
-      { titulo: 'Introducción: El Sistema Circulatorio', youtubeId: 'Q64biFwECPY' },
+      { titulo: 'Introducción: El Sistema Circulatorio del Mercado', youtubeId: 'Q64biFwECPY' },
       { titulo: 'Macroeconomía del Trading', youtubeId: '2xFYgbf_vmc' },
       { titulo: 'Psicología de los Ciclos y Supervivencia', youtubeId: 'XpYsRLAGMBU' },
       { titulo: 'Introducción a los Mercados Financieros', youtubeId: 'ASjhS7tM6a4' },
