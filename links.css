@@ -386,9 +386,17 @@
 /* ============================================================================
    /video-intro-tactical: PDF + módulos de video en una sola columna. Los
    iframes necesitan ancho de verdad, así que no reusa el grid de 2 columnas
-   de botones (.links-grid) — acá el layout es de una sola columna apilada.
+   de botones (.links-grid): acá el layout es de una sola columna apilada.
    ============================================================================ */
 .pagina-video .links-envoltorio { max-width: 760px; }
+
+/* Halo más intenso que el del resto del sitio: es un programa premium, la
+   página tiene que sentirse un escalón arriba de una simple lista de links. */
+.pagina-video .links-fondo {
+  background:
+    radial-gradient(65% 55% at 50% 28%, rgba(255, 198, 0, 0.16) 0%, transparent 72%),
+    radial-gradient(45% 45% at 50% 100%, rgba(255, 198, 0, 0.08) 0%, transparent 70%);
+}
 
 .video-grid {
   display: flex;
@@ -397,12 +405,38 @@
 }
 
 /* El botón de descarga del PDF es el único "botón" de la página: mismo trato
-   visual que el resto (glow, luz de cursor, entrada escalonada). */
-.video-pdf { min-height: 78px; }
+   visual que el resto (glow, luz de cursor, entrada escalonada), con un glow
+   un poco más marcado que el estándar para que abra la página con fuerza. */
+.video-pdf {
+  min-height: 78px;
+  box-shadow: 0 10px 40px rgba(255, 198, 0, 0.3);
+}
 
 .video-modulo {
   animation: aparecer 0.6s cubic-bezier(0.2, 0.7, 0.3, 1) backwards;
   animation-delay: calc(0.3s + var(--orden) * 0.09s);
+}
+
+/* Separador dorado entre módulos: un acento corto, no una línea completa como
+   el divisor del hero, para no repetir el mismo elemento dos veces en la página.
+   `.video-modulo + .video-modulo` y no `:not(:first-child)`: el botón del PDF
+   también es hermano del primer módulo, así que `:first-child` no aplica y sin
+   este selector el acento aparecía de más arriba del primer video. */
+.video-modulo + .video-modulo {
+  position: relative;
+  padding-top: 30px;
+}
+.video-modulo + .video-modulo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 56px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--amarillo-grad);
+  box-shadow: 0 0 14px rgba(255, 198, 0, 0.5);
 }
 
 .video-modulo__titulo {
@@ -414,7 +448,9 @@
 
 /* Wrapper 16:9 clásico: padding-top en % se calcula sobre el ancho del propio
    elemento, así el iframe absoluto adentro siempre mantiene la proporción sin
-   depender de JS ni de conocer el alto real del video. */
+   depender de JS ni de conocer el alto real del video. Borde y sombra con tinte
+   dorado (en vez del borde gris plano del resto del sitio) para que el bloque
+   se sienta parte de un producto premium, no una lista de botones más. */
 .video-modulo__embed {
   position: relative;
   width: 100%;
@@ -422,7 +458,13 @@
   border-radius: var(--radio);
   overflow: hidden;
   background: var(--superficie);
-  border: 1px solid var(--borde);
+  border: 1px solid rgba(255, 198, 0, 0.18);
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45);
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.video-modulo__embed:hover {
+  border-color: rgba(255, 198, 0, 0.4);
+  box-shadow: 0 14px 44px rgba(255, 198, 0, 0.16);
 }
 .video-modulo__embed iframe {
   position: absolute;
