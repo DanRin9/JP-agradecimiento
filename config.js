@@ -53,7 +53,7 @@ const CONFIG = {
     pdfUrl: '/assets/de-cero-a-tactical-introduccion-2026.pdf',
     modulos: [
       { titulo: 'Introducción: El Sistema Circulatorio', youtubeId: 'Q64biFwECPY' },
-      { titulo: 'Microeconomía del Trading', youtubeId: '2xFYgbf_vmc' },
+      { titulo: 'Macroeconomía del Trading', youtubeId: '2xFYgbf_vmc' },
       { titulo: 'Psicología de los Ciclos y Supervivencia', youtubeId: 'XpYsRLAGMBU' },
       { titulo: 'Introducción a los Mercados Financieros', youtubeId: 'ASjhS7tM6a4' },
     ],
