@@ -40,6 +40,26 @@ const CONFIG = {
   },
 
   /* --------------------------------------------------------------------------
+     DE CERO A TACTICAL INVESTOR (/video-intro-tactical)
+     Programa premium separado de la membresía. Página pública solo con el link,
+     sin gate. Los videos están subidos a YouTube como "no listados": nadie los
+     encuentra buscando, solo con el link del embed.
+     -------------------------------------------------------------------------- */
+  videoIntro: {
+    badge: 'Programa Premium',
+    titulo: 'De Cero a Tactical Investor',
+    subtitulo: 'Los métodos de Juan Pablo Vieira, paso a paso.',
+    pdfTexto: 'Descarga la introducción del programa',
+    pdfUrl: '/assets/de-cero-a-tactical-introduccion-2026.pdf',
+    modulos: [
+      { titulo: 'Introducción: El Sistema Circulatorio', youtubeId: 'Q64biFwECPY' },
+      { titulo: 'Microeconomía del Trading', youtubeId: '2xFYgbf_vmc' },
+      { titulo: 'Psicología de los Ciclos y Supervivencia', youtubeId: 'XpYsRLAGMBU' },
+      { titulo: 'Introducción a los Mercados Financieros', youtubeId: 'ASjhS7tM6a4' },
+    ],
+  },
+
+  /* --------------------------------------------------------------------------
      SESIÓN DE ONBOARDING
      El botón genera un archivo .ics (calendario universal) con estos datos.
      -------------------------------------------------------------------------- */

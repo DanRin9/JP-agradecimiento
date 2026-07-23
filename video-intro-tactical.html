@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0A0A0A">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="De Cero a Tactical Investor: los módulos en video y el material del programa premium de Juan Pablo Vieira.">
+  <title>De Cero a Tactical Investor, Tactical Trading</title>
+
+  <link rel="icon" href="/assets/logo-isotipo.webp" type="image/webp">
+  <link rel="preload" href="/assets/fonts/raleway.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/fonts/fonts.css">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/links.css">
+</head>
+
+<!-- pagina-links trae todo el layout (halo, envoltorio, hero, footer);
+     pagina-video ajusta el grid a una columna de módulos (PDF + videos)
+     en vez del grid de 2 columnas de botones que usan las demás páginas. -->
+<body class="pagina-links pagina-video">
+
+  <div class="links-fondo" aria-hidden="true"></div>
+
+  <div class="links-envoltorio">
+
+    <header class="links-header">
+      <img class="header__logo" src="/assets/logo-lockup.webp" alt="Tactical Trading" width="42" height="40">
+    </header>
+
+    <main class="links-main">
+      <section class="links-hero">
+        <span class="badge">Programa Premium</span>
+        <h1 class="links-titulo">De Cero a <em>Tactical Investor</em></h1>
+        <p class="links-subtitulo">Los métodos de Juan Pablo Vieira, paso a paso.</p>
+      </section>
+
+      <hr class="divisor divisor--brillo">
+
+      <noscript>
+        <p class="sin-js">
+          Necesitás activar JavaScript para ver el contenido del programa.
+          Si no podés, escribinos por WhatsApp desde
+          <a href="https://www.ttrading.co">ttrading.co</a> y te lo pasamos.
+        </p>
+      </noscript>
+
+      <nav class="video-grid" id="modulos" aria-label="Módulos del programa"></nav>
+    </main>
+
+    <footer class="links-footer">
+      <p class="footer__titulo">Reconocimientos</p>
+      <div class="reconocimientos" id="reconocimientos"></div>
+      <p class="footer__meta">
+        <a href="https://www.ttrading.co" target="_blank" rel="noopener noreferrer">ttrading.co</a>
+        · <span>Tactical Assets S.A.S.</span>
+      </p>
+    </footer>
+
+  </div>
+
+  <script src="/config.js"></script>
+  <script src="/shared.js"></script>
+  <script src="/video-intro.js"></script>
+</body>
+</html>
