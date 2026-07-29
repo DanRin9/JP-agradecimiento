@@ -367,6 +367,15 @@ body {
   text-align: center;
 }
 
+/* Sin esta regla el link cae al azul por defecto del navegador (#0000EE), que
+   sobre la superficie oscura queda ilegible. Mismo tratamiento que .links-nota a:
+   un link dentro de una nota gris va en amarillo. Acá subrayado de entrada porque
+   es la única salida que le queda a alguien que no puede ver sus accesos. */
+.sin-js a {
+  color: var(--amarillo);
+  text-decoration: underline;
+}
+
 /* ============================================================================
    RESPETAR PREFERENCIAS DE MOVIMIENTO
    ============================================================================ */

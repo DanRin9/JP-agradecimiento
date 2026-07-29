@@ -1,0 +1,16 @@
+{
+  "projectId": "60e6db08-d9e3-4bae-94da-30a5c4b6f841",
+  "shape": "package",
+  "pkg": "@jptt/tactical-ds",
+  "globalName": "JPTT",
+  "buildCmd": "npm --prefix ds-src run build",
+  "cssEntry": "./dist/tactical.css",
+  "readmeHeader": ".design-sync/conventions.md",
+  "extraFonts": ["../assets/fonts/fonts.css"],
+  "guidelinesGlob": ["guias/*.md"],
+  "provider": { "component": "Tema", "props": { "estatico": true } },
+  "overrides": {
+    "HeroLinks": { "cardMode": "column" },
+    "PaginaLinks": { "cardMode": "single", "primaryStory": "Estrategia" }
+  }
+}

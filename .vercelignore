@@ -1,0 +1,13 @@
+# Vercel sirve este repo desde la raíz y sin build step: todo lo que quede acá
+# se puede pedir por HTTP. Estas carpetas son insumos del design system y viven
+# en git, pero no tienen nada que hacer en el sitio.
+
+# Paquete React que alimenta a Claude Design. No lo consume el sitio.
+ds-src/
+
+# Config, notas y previews del sync.
+.design-sync/
+
+# Salida regenerable del converter (ya gitignoreada, por las dudas).
+ds-bundle/
+.ds-sync/
