@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0A0A0A">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Cronograma del Mes 1 de De Cero a Tactical Investor: 12 sesiones en vivo, lunes, martes y miércoles de 6 a 8 pm hora Colombia. Arranca el 18 de agosto de 2026.">
+  <title>Cronograma Mes 1, De Cero a Tactical Investor</title>
+
+  <link rel="icon" href="/assets/logo-isotipo.webp" type="image/webp">
+  <link rel="preload" href="/assets/fonts/raleway.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/fonts/fonts.css">
+
+  <style>
+  /* ==========================================================================
+     CRONOGRAMA MES 1 — página autocontenida.
+
+     A diferencia del resto del sitio, esta página NO carga styles.css ni
+     links.css: vive dentro de la Zona de Miembros de Hotmart y el requisito era
+     un solo archivo. Los tokens de abajo son copia literal de styles.css:8-38.
+
+     >>> Si alguien cambia la paleta en styles.css, esta página NO se entera. <<<
+     Hay que replicar el cambio acá a mano.
+     ========================================================================== */
+  :root {
+    --negro:        #0A0A0A;
+    --superficie:   #151515;
+    --superficie-2: #1A1A1A;
+    --borde:        #262626;
+
+    --amarillo:       #FFC600;   /* Pantone 7548 C */
+    --amarillo-linea: rgba(255, 198, 0, 0.26);
+
+    --texto:        #F5F5F5;
+    --texto-2:      #9A9A9A;     /* gris cálido, no azulado */
+
+    --radio:        12px;
+    --ancho:        560px;       /* mobile-first: una columna cómoda */
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  body {
+    background: var(--negro);
+    color: var(--texto);
+    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--amarillo);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* --- Halo dorado de fondo. Único elemento decorativo, igual que en las
+         páginas de links: da profundidad sin convertirse en un fondo animado. */
+  .fondo {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(60% 45% at 50% 22%, rgba(255, 198, 0, 0.10) 0%, transparent 70%),
+      radial-gradient(45% 40% at 50% 100%, rgba(255, 198, 0, 0.05) 0%, transparent 70%);
+    animation: respirar 9s ease-in-out infinite;
+  }
+  @keyframes respirar {
+    0%, 100% { opacity: 0.75; transform: scale(1); }
+    50%      { opacity: 1;    transform: scale(1.06); }
+  }
+
+  .envoltorio {
+    position: relative;
+    z-index: 1;
+    max-width: var(--ancho);
+    margin: 0 auto;
+    padding: 28px 20px 0;
+  }
+
+  /* ==========================================================================
+     HEADER
+     ========================================================================== */
+  .header { padding-bottom: 30px; }
+  /* 40px es el piso práctico del lockup en pantalla (ver guias/marca.md):
+     más abajo el nombre tipográfico se cierra y deja de leerse. */
+  .header__logo { height: 40px; width: auto; display: block; }
+
+  /* ==========================================================================
+     HERO
+     ========================================================================== */
+  .hero { padding-bottom: 26px; }
+
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--amarillo);
+    border: 1px solid var(--amarillo-linea);
+    background: rgba(255, 198, 0, 0.07);
+    border-radius: 999px;
+    padding: 6px 15px;
+    margin-bottom: 18px;
+  }
+
+  .hero__titulo {
+    font-weight: 800;
+    font-size: clamp(30px, 8vw, 42px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin: 0 0 12px;
+  }
+  /* Un solo resalte dorado por titular: con dos, deja de tener jerarquía. */
+  .hero__titulo em {
+    font-style: normal;
+    color: var(--amarillo);
+  }
+
+  .hero__subtitulo {
+    font-size: 15.5px;
+    color: var(--texto-2);
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  /* ==========================================================================
+     FICHA: inicio y horario.
+     Es el dato que la página tiene que dejar explícito sí o sí, así que va
+     arriba de todo el cronograma y no escondido en el pie.
+     ========================================================================== */
+  .ficha {
+    display: grid;
+    gap: 14px;
+    margin: 0 0 30px;
+    padding: 18px 20px;
+    border: 1px solid var(--amarillo-linea);
+    border-radius: var(--radio);
+    background: var(--superficie);
+  }
+
+  .ficha__fila { display: grid; gap: 3px; }
+
+  .ficha__etiqueta {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--amarillo);
+    margin: 0;
+  }
+
+  .ficha__valor {
+    font-size: 15.5px;
+    font-weight: 600;
+    color: var(--texto);
+    margin: 0;
+    line-height: 1.35;
+  }
+  .ficha__valor small {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--texto-2);
+    margin-top: 2px;
+  }
+
+  .divisor {
+    height: 1px;
+    border: 0;
+    margin: 0 0 30px;
+    background: linear-gradient(90deg, transparent, var(--amarillo-linea) 50%, transparent);
+  }
+
+  /* ==========================================================================
+     SEMANAS
+     ========================================================================== */
+  .semanas {
+    display: grid;
+    gap: 34px;
+    padding-bottom: 12px;
+    margin: 0;
+  }
+
+  .semana {
+    animation: aparecer 0.6s cubic-bezier(0.2, 0.7, 0.3, 1) backwards;
+    animation-delay: calc(var(--orden) * 0.09s);
+  }
+  @keyframes aparecer {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .semana__cabecera {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 0 2px 14px;
+  }
+
+  /* El número de semana es el único dorado grande de la página: fija la
+     jerarquía semana > sesión sin necesidad de más color. */
+  .semana__numero {
+    flex: 0 0 auto;
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--amarillo);
+  }
+
+  .semana__texto { flex: 1 1 auto; min-width: 0; }
+
+  .semana__etiqueta {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--texto-2);
+    margin: 0 0 2px;
+  }
+
+  .semana__titulo {
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .semana__rango {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--texto-2);
+    margin: 3px 0 0;
+  }
+
+  /* ==========================================================================
+     SESIONES
+     Tarjetas abiertas: número, fecha, título y descripción siempre visibles.
+     Nada de acordeones — leer una semana no puede costar un tap.
+     ========================================================================== */
+  .sesiones {
+    list-style: none;
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .sesion {
+    padding: 16px 18px;
+    border: 1px solid var(--borde);
+    border-left: 2px solid var(--borde);
+    border-radius: var(--radio);
+    background: var(--superficie);
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+  }
+  .sesion:hover {
+    background: var(--superficie-2);
+    border-left-color: var(--amarillo-linea);
+    transform: translateY(-1px);
+  }
+
+  .sesion__cabecera {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+    margin-bottom: 8px;
+  }
+
+  .sesion__numero {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--texto-2);
+  }
+
+  .sesion__fecha {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--texto);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    padding: 4px 10px;
+    white-space: nowrap;
+  }
+
+  .sesion__titulo {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0 0 5px;
+    text-wrap: pretty;
+  }
+
+  .sesion__descripcion {
+    font-size: 14.5px;
+    color: var(--texto-2);
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  /* ==========================================================================
+     NOSCRIPT
+     ========================================================================== */
+  .sin-js {
+    display: block;
+    margin: 0 0 24px;
+    padding: 16px;
+    border: 1px solid var(--amarillo-linea);
+    border-radius: var(--radio);
+    background: var(--superficie);
+    color: var(--texto-2);
+    font-size: 14px;
+    text-align: center;
+  }
+  .sin-js a { color: var(--amarillo); text-decoration: underline; }
+
+  /* ==========================================================================
+     FOOTER
+     Liviano a propósito: quien llega acá ya compró, no hay nada que probarle.
+     ========================================================================== */
+  .footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--borde);
+    margin-top: 36px;
+    padding: 26px 20px 34px;
+    text-align: center;
+  }
+  .footer__logo { height: 26px; width: auto; opacity: 0.5; margin-bottom: 10px; }
+  .footer__meta { font-size: 11.5px; color: #8A8A8A; margin: 0; }
+  .footer__meta a { color: var(--texto-2); text-decoration: none; }
+  .footer__meta a:hover { color: var(--amarillo); }
+
+  /* ==========================================================================
+     DESKTOP
+     ========================================================================== */
+  @media (min-width: 900px) {
+    .envoltorio { max-width: 1000px; padding-top: 44px; }
+    .header { padding-bottom: 40px; }
+    .hero__titulo { font-size: 46px; }
+    .ficha {
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      padding: 22px 26px;
+    }
+    /* Dos semanas por fila. A este ancho cada columna queda en ~470px: las
+       tarjetas no se comprimen y la descripción sigue entrando en 2–3 líneas. */
+    .semanas { grid-template-columns: repeat(2, 1fr); gap: 40px 32px; }
+    .footer { max-width: 1000px; margin: 36px auto 0; }
+  }
+
+  /* ==========================================================================
+     RESPETAR PREFERENCIAS DE MOVIMIENTO
+     ========================================================================== */
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+    .sesion:hover { transform: none; }
+  }
+  </style>
+</head>
+
+<body>
+
+  <div class="fondo" aria-hidden="true"></div>
+
+  <div class="envoltorio">
+
+    <header class="header">
+      <img class="header__logo" src="/assets/logo-lockup.webp" alt="Tactical Trading" width="42" height="40">
+    </header>
+
+    <main>
+      <section class="hero">
+        <span class="badge" id="badge"></span>
+        <h1 class="hero__titulo">Cronograma <em>Mes 1</em></h1>
+        <p class="hero__subtitulo" id="subtitulo"></p>
+      </section>
+
+      <div class="ficha" id="ficha"></div>
+
+      <hr class="divisor">
+
+      <noscript>
+        <p class="sin-js">
+          Necesitas activar JavaScript para ver el cronograma.
+          Si no puedes, escríbenos desde
+          <a href="https://www.ttrading.co">ttrading.co</a> y te lo enviamos.
+        </p>
+      </noscript>
+
+      <div class="semanas" id="semanas"></div>
+    </main>
+
+  </div>
+
+  <footer class="footer">
+    <img class="footer__logo" src="/assets/logo-isotipo.webp" alt="" width="23" height="26" loading="lazy">
+    <p class="footer__meta">
+      <a href="https://www.ttrading.co" target="_blank" rel="noopener noreferrer">ttrading.co</a>
+      · <span>Tactical Assets S.A.S.</span>
+    </p>
+  </footer>
+
+<script>
+/* ============================================================================
+   DATOS
+   Lo único que hay que tocar para cambiar textos, títulos u horarios.
+   El layout de abajo no sabe nada del contenido: lee este objeto y lo pinta.
+
+   Las fechas van en formato YYYY-MM-DD. El rango de cada semana y la fecha de
+   inicio del encabezado se DERIVAN de acá — no hay ninguna fecha escrita dos
+   veces, así que corregir un día no deja otro lugar desfasado.
+   ============================================================================ */
+const CRONOGRAMA = {
+  programa: 'De Cero a Tactical Investor',
+  mes: 'Mes 1',
+  resumen: '12 sesiones en vivo, repartidas en 4 semanas.',
+
+  horario: {
+    dias: 'Lunes, martes y miércoles',
+    franja: '6:00 a 8:00 pm',
+    franjaCorta: '6–8 pm',
+    zona: 'hora Colombia',
+    // Para el atributo datetime de cada sesión. Colombia es GMT−5 fijo,
+    // sin horario de verano, así que el desfase no cambia en todo el programa.
+    inicio24: '18:00',
+    desfaseUTC: '-05:00',
+  },
+
+  /* PENDIENTE: link de la sala de las sesiones en vivo (Zoom u otra). Mientras
+     siga en null no se pinta ningún botón, en vez de mandar a un link roto.
+     Cuando exista, pegarlo acá. */
+  enlaceSesiones: null,
+
+  semanas: [
+    {
+      numero: 1,
+      titulo: 'Fundamentos y contexto',
+      sesiones: [
+        {
+          n: 1,
+          fecha: '2026-08-18',
+          titulo: 'El campo de juego',
+          descripcion: 'Cómo funciona el mercado, los participantes y el flujo institucional. Se abre la cuenta demo.',
+        },
+        {
+          n: 2,
+          fecha: '2026-08-19',
+          titulo: 'El contexto que mueve todo',
+          descripcion: 'Inflación, tasas y ciclos; cómo el macro se conecta con el método.',
+        },
+        {
+          n: 3,
+          fecha: '2026-08-24',
+          titulo: 'Leer la gráfica I: lo visible',
+          descripcion: 'Soportes, resistencias, tendencias y velas, sobre gráficas reales.',
+        },
+      ],
+    },
+    {
+      numero: 2,
+      titulo: 'El corazón técnico',
+      sesiones: [
+        {
+          n: 4,
+          fecha: '2026-08-25',
+          titulo: 'Leer la gráfica II: flujo institucional',
+          descripcion: 'Estructura de mercado, order blocks y zonas de oferta y demanda.',
+        },
+        {
+          n: 5,
+          fecha: '2026-08-26',
+          titulo: 'Mercados y volatilidad',
+          descripcion: 'El método en divisas, commodities, cripto y acciones. Elegir por volatilidad.',
+        },
+        {
+          n: 6,
+          fecha: '2026-08-31',
+          titulo: 'Q&A y consolidación',
+          descripcion: 'Dudas en vivo y corrección de gráficas y tareas.',
+        },
+      ],
+    },
+    {
+      numero: 3,
+      titulo: 'Construir y ejecutar',
+      sesiones: [
+        {
+          n: 7,
+          fecha: '2026-09-01',
+          titulo: 'Tu estrategia',
+          descripcion: 'Estilos de trading y la lógica táctica de JP. Armas tu estrategia y watchlist.',
+        },
+        {
+          n: 8,
+          fecha: '2026-09-02',
+          titulo: 'PsicoTrading & emotional skills',
+          descripcion: 'Sesgos, miedo y codicia. Disciplina y rutina del trader.',
+        },
+        {
+          n: 9,
+          fecha: '2026-09-07',
+          titulo: 'Práctica I: ejecución',
+          descripcion: 'Tipos de órdenes, ingreso en demo, stop, take profit y tamaño.',
+        },
+      ],
+    },
+    {
+      numero: 4,
+      titulo: 'Operar en vivo y cierre',
+      sesiones: [
+        {
+          n: 10,
+          fecha: '2026-09-08',
+          titulo: 'Práctica II: operación en vivo',
+          descripcion: 'Operación guiada con el modelo táctico y revisión de operaciones.',
+        },
+        {
+          n: 11,
+          fecha: '2026-09-09',
+          titulo: 'Impuestos para traders',
+          descripcion: 'Marco tributario, casos prácticos y cómo declarar lo que operas.',
+        },
+        {
+          n: 12,
+          fecha: '2026-09-14',
+          titulo: 'Q&A, cierre y networking',
+          descripcion: 'Dudas finales, cierre del programa y transición al mes de acompañamiento.',
+        },
+      ],
+    },
+  ],
+};
+
+/* ============================================================================
+   RENDER
+   ============================================================================ */
+(function () {
+  'use strict';
+
+  const DIA_CORTO  = ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'];
+  const DIA_LARGO  = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+  const MES_CORTO  = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+  const MES_LARGO  = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+                      'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+
+  /* Partir el string a mano y construir en UTC, en vez de `new Date('2026-08-18')`.
+     Ese constructor interpreta el string como medianoche UTC y al leerlo con los
+     getters locales en Colombia (GMT−5) devuelve el día ANTERIOR: la sesión 1
+     saldría "lunes 17 de agosto". Es el mismo idiom de fecha flotante que usa
+     shared.js para armar el .ics. */
+  function partes(iso) {
+    const trozos = iso.split('-').map(Number);
+    const f = new Date(Date.UTC(trozos[0], trozos[1] - 1, trozos[2]));
+    return {
+      anio: trozos[0],
+      mes: trozos[1],
+      dia: trozos[2],
+      diaSemana: f.getUTCDay(),
+    };
+  }
+
+  // "mar 18 ago" — el CSS lo pasa a mayúsculas, no el texto.
+  function fechaCorta(iso) {
+    const p = partes(iso);
+    return DIA_CORTO[p.diaSemana] + ' ' + p.dia + ' ' + MES_CORTO[p.mes - 1];
+  }
+
+  // "martes 18 de agosto de 2026"
+  function fechaLarga(iso) {
+    const p = partes(iso);
+    return DIA_LARGO[p.diaSemana] + ' ' + p.dia + ' de ' + MES_LARGO[p.mes - 1] + ' de ' + p.anio;
+  }
+
+  // "18 – 24 de agosto" · "31 de agosto – 7 de septiembre" si cruza de mes.
+  function rango(isoA, isoB) {
+    const a = partes(isoA);
+    const b = partes(isoB);
+    if (a.mes === b.mes) {
+      return a.dia + ' – ' + b.dia + ' de ' + MES_LARGO[a.mes - 1];
+    }
+    return a.dia + ' de ' + MES_LARGO[a.mes - 1] + ' – ' + b.dia + ' de ' + MES_LARGO[b.mes - 1];
+  }
+
+  // Valor legible por máquina: 2026-08-18T18:00:00-05:00
+  function marcaTemporal(iso) {
+    return iso + 'T' + CRONOGRAMA.horario.inicio24 + ':00' + CRONOGRAMA.horario.desfaseUTC;
+  }
+
+  function el(tag, clase, texto) {
+    const nodo = document.createElement(tag);
+    if (clase) nodo.className = clase;
+    if (texto !== undefined) nodo.textContent = texto;
+    return nodo;
+  }
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  /* --- Hero y ficha ------------------------------------------------------- */
+  const primeraSesion = CRONOGRAMA.semanas[0].sesiones[0];
+  const h = CRONOGRAMA.horario;
+
+  document.getElementById('badge').textContent = CRONOGRAMA.programa;
+  document.getElementById('subtitulo').textContent = CRONOGRAMA.resumen;
+
+  const ficha = document.getElementById('ficha');
+
+  function filaFicha(etiqueta, valor, apoyo, isoParaTime) {
+    const fila = el('div', 'ficha__fila');
+    fila.appendChild(el('p', 'ficha__etiqueta', etiqueta));
+
+    const p = el('p', 'ficha__valor');
+    if (isoParaTime) {
+      const t = el('time', null, valor);
+      t.setAttribute('datetime', marcaTemporal(isoParaTime));
+      p.appendChild(t);
+    } else {
+      p.appendChild(document.createTextNode(valor));
+    }
+    if (apoyo) p.appendChild(el('small', null, apoyo));
+
+    fila.appendChild(p);
+    return fila;
+  }
+
+  ficha.appendChild(filaFicha(
+    'Empieza',
+    fechaLarga(primeraSesion.fecha),
+    'Primera sesión: ' + primeraSesion.titulo,
+    primeraSesion.fecha
+  ));
+
+  ficha.appendChild(filaFicha(
+    'Horario',
+    h.dias,
+    h.franja + ' (' + h.zona + ')'
+  ));
+
+  /* --- Semanas ------------------------------------------------------------ */
+  const contenedor = document.getElementById('semanas');
+
+  CRONOGRAMA.semanas.forEach(function (semana, i) {
+    const sesiones = semana.sesiones;
+    const idTitulo = 'semana-' + semana.numero;
+
+    const seccion = el('section', 'semana');
+    seccion.style.setProperty('--orden', i);
+    seccion.setAttribute('aria-labelledby', idTitulo);
+
+    /* Encabezado de la semana */
+    const cabecera = el('header', 'semana__cabecera');
+
+    // El número es decoración: la etiqueta "Semana N" de al lado ya lo dice.
+    const numero = el('span', 'semana__numero', pad(semana.numero));
+    numero.setAttribute('aria-hidden', 'true');
+    cabecera.appendChild(numero);
+
+    const texto = el('div', 'semana__texto');
+    texto.appendChild(el('p', 'semana__etiqueta', 'Semana ' + semana.numero));
+
+    const titulo = el('h2', 'semana__titulo', semana.titulo);
+    titulo.id = idTitulo;
+    texto.appendChild(titulo);
+
+    texto.appendChild(el(
+      'p',
+      'semana__rango',
+      rango(sesiones[0].fecha, sesiones[sesiones.length - 1].fecha)
+    ));
+
+    cabecera.appendChild(texto);
+    seccion.appendChild(cabecera);
+
+    /* Las tres sesiones */
+    const lista = el('ol', 'sesiones');
+    lista.setAttribute('start', sesiones[0].n);
+
+    sesiones.forEach(function (s) {
+      const item = el('li', 'sesion');
+
+      const enc = el('div', 'sesion__cabecera');
+      enc.appendChild(el('span', 'sesion__numero', 'Sesión ' + pad(s.n)));
+
+      const fecha = el('time', 'sesion__fecha', fechaCorta(s.fecha) + ' · ' + h.franjaCorta);
+      fecha.setAttribute('datetime', marcaTemporal(s.fecha));
+      enc.appendChild(fecha);
+
+      item.appendChild(enc);
+      item.appendChild(el('h3', 'sesion__titulo', s.titulo));
+      item.appendChild(el('p', 'sesion__descripcion', s.descripcion));
+
+      lista.appendChild(item);
+    });
+
+    seccion.appendChild(lista);
+    contenedor.appendChild(seccion);
+  });
+})();
+</script>
+
+</body>
+</html>
