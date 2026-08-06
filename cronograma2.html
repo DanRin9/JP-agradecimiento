@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0A0A0A">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Mes 2 de De Cero a Tactical Investor: la fase de acompañamiento. No son clases nuevas, es aplicar el método del Mes 1 operando con el equipo cerca.">
+  <title>Mes 2, Acompañamiento, De Cero a Tactical Investor</title>
+
+  <link rel="icon" href="/assets/logo-isotipo.webp" type="image/webp">
+  <link rel="preload" href="/assets/fonts/raleway.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/fonts/fonts.css">
+
+  <style>
+  /* ==========================================================================
+     MES 2 — ACOMPAÑAMIENTO. Página autocontenida.
+
+     A diferencia de cronograma1.html, esta NO lleva una línea de JavaScript: son
+     cuatro tarjetas sin repetición ni valores derivados, así que el contenido vive
+     directo en el HTML. Se ve igual con JS desactivado y editar una tarjeta es
+     editar el texto que se lee más abajo.
+
+     Los tokens son copia literal de styles.css:8-38.
+     >>> Si alguien cambia la paleta en styles.css, esta página NO se entera. <<<
+     ========================================================================== */
+  :root {
+    --negro:        #0A0A0A;
+    --superficie:   #151515;
+    --superficie-2: #1A1A1A;
+    --borde:        #262626;
+
+    --amarillo:       #FFC600;   /* Pantone 7548 C */
+    --amarillo-linea: rgba(255, 198, 0, 0.26);
+
+    --texto:        #F5F5F5;
+    --texto-2:      #9A9A9A;     /* gris cálido, no azulado */
+
+    --radio:        12px;
+    --ancho:        560px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  body {
+    background: var(--negro);
+    color: var(--texto);
+    font-family: 'Raleway', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--amarillo);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Halo dorado de fondo: el único elemento decorativo, igual que en el resto
+     de las páginas de links del sitio. */
+  .fondo {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(60% 45% at 50% 20%, rgba(255, 198, 0, 0.10) 0%, transparent 70%),
+      radial-gradient(45% 40% at 50% 100%, rgba(255, 198, 0, 0.05) 0%, transparent 70%);
+    animation: respirar 9s ease-in-out infinite;
+  }
+  @keyframes respirar {
+    0%, 100% { opacity: 0.75; transform: scale(1); }
+    50%      { opacity: 1;    transform: scale(1.06); }
+  }
+
+  @keyframes aparecer {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .envoltorio {
+    position: relative;
+    z-index: 1;
+    max-width: var(--ancho);
+    margin: 0 auto;
+    padding: 28px 20px 0;
+  }
+
+  /* ==========================================================================
+     HEADER
+     ========================================================================== */
+  .header { padding-bottom: 30px; }
+  /* 40px es el piso práctico del lockup en pantalla (ver guias/marca.md). */
+  .header__logo { height: 40px; width: auto; display: block; }
+
+  /* ==========================================================================
+     HERO
+     ========================================================================== */
+  .hero { padding-bottom: 24px; }
+
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--amarillo);
+    border: 1px solid var(--amarillo-linea);
+    background: rgba(255, 198, 0, 0.07);
+    border-radius: 999px;
+    padding: 6px 15px;
+    margin-bottom: 18px;
+  }
+
+  .hero__titulo {
+    font-weight: 800;
+    font-size: clamp(30px, 8vw, 42px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin: 0 0 12px;
+  }
+  /* Un solo resalte dorado por titular. */
+  .hero__titulo em { font-style: normal; color: var(--amarillo); }
+
+  .hero__subtitulo {
+    font-size: 15.5px;
+    color: var(--texto-2);
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  /* ==========================================================================
+     QUÉ ES ESTE MES
+     El punto de comprensión de la página: quien llega acá viene de un mes de
+     clases y espera más clases. Va antes que cualquier otra cosa.
+     ========================================================================== */
+  .nota {
+    margin: 0 0 26px;
+    padding: 16px 18px;
+    border-left: 3px solid var(--amarillo);
+    border-radius: 0 var(--radio) var(--radio) 0;
+    background: var(--superficie);
+  }
+
+  .nota__titulo {
+    font-size: 16.5px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0 0 6px;
+    text-wrap: pretty;
+  }
+
+  .nota__texto {
+    font-size: 14.5px;
+    color: var(--texto-2);
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  /* ==========================================================================
+     PENDIENTES
+     Placeholders honestos. Lo que todavía no está definido se dice, no se llena.
+     ========================================================================== */
+  .pendientes {
+    display: grid;
+    gap: 14px;
+    margin: 0 0 30px;
+    padding: 18px 20px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    background: var(--superficie);
+  }
+
+  .pendientes__fila { display: grid; gap: 3px; }
+
+  .pendientes__etiqueta {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--texto-2);
+    margin: 0;
+  }
+
+  .pendientes__valor {
+    font-size: 15.5px;
+    font-weight: 600;
+    color: var(--amarillo);
+    margin: 0;
+  }
+
+  /* ==========================================================================
+     LOS 4 COMPONENTES
+     ========================================================================== */
+  .seccion__titulo {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--texto-2);
+    margin: 0 0 14px;
+  }
+
+  .componentes {
+    list-style: none;
+    display: grid;
+    gap: 12px;
+    margin: 0 0 26px;
+    padding: 0;
+  }
+
+  .componente {
+    padding: 18px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    background: var(--superficie);
+    animation: aparecer 0.6s cubic-bezier(0.2, 0.7, 0.3, 1) backwards;
+    animation-delay: calc(var(--orden) * 0.09s);
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  }
+  .componente:hover {
+    background: var(--superficie-2);
+    border-color: var(--amarillo-linea);
+    transform: translateY(-1px);
+  }
+
+  /* Gris y no dorado: el foco dorado de la página es la banda premium. */
+  .componente__numero {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--texto-2);
+    margin-bottom: 8px;
+  }
+
+  .componente__titulo {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0 0 5px;
+    text-wrap: pretty;
+  }
+
+  .componente__texto {
+    font-size: 14.5px;
+    color: var(--texto-2);
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  /* La aclaración de que las office hours son grupales no puede diluirse dentro
+     del párrafo gris: va en línea aparte y en el color de texto principal. */
+  .componente__aclaracion {
+    display: block;
+    margin-top: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--texto);
+  }
+
+  /* ==========================================================================
+     BANDA PREMIUM
+     El único bloque con fondo teñido: es el foco dorado de la página.
+     ========================================================================== */
+  .premium {
+    margin: 0 0 8px;
+    padding: 20px;
+    border: 1px solid var(--amarillo-linea);
+    border-radius: var(--radio);
+    background: rgba(255, 198, 0, 0.06);
+  }
+
+  .premium__etiqueta {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--amarillo);
+    margin: 0 0 5px;
+  }
+
+  .premium__titulo {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin: 0 0 5px;
+  }
+
+  .premium__texto {
+    font-size: 14.5px;
+    color: var(--texto-2);
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  /* ==========================================================================
+     FOOTER
+     ========================================================================== */
+  .footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--borde);
+    margin-top: 34px;
+    padding: 26px 20px 34px;
+    text-align: center;
+  }
+
+  /* block + width fit-content, no inline-block: en desktop el link se sentaba en
+     la misma línea que el isotipo. Así ocupa su propia fila pero el área de toque
+     sigue acotada al texto. */
+  .footer__volver {
+    display: block;
+    width: fit-content;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--texto-2);
+    text-decoration: none;
+    margin: 0 auto 20px;
+    padding: 8px 4px;   /* área de toque cómoda en celular */
+  }
+  .footer__volver:hover { color: var(--amarillo); }
+
+  .footer__logo { height: 26px; width: auto; opacity: 0.5; margin-bottom: 10px; }
+  .footer__meta { font-size: 11.5px; color: #8A8A8A; margin: 0; }
+  .footer__meta a { color: var(--texto-2); text-decoration: none; }
+  .footer__meta a:hover { color: var(--amarillo); }
+
+  /* ==========================================================================
+     DESKTOP: es una página corta, no necesita el ancho del cronograma del Mes 1
+     ========================================================================== */
+  @media (min-width: 760px) {
+    .envoltorio { max-width: 880px; padding-top: 44px; }
+    .header { padding-bottom: 40px; }
+    .hero__titulo { font-size: 46px; }
+    .pendientes { grid-template-columns: 1fr 1fr; gap: 24px; padding: 22px 26px; }
+    .componentes { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .footer { max-width: 880px; margin: 34px auto 0; }
+  }
+
+  /* ==========================================================================
+     RESPETAR PREFERENCIAS DE MOVIMIENTO
+     ========================================================================== */
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+    .componente:hover { transform: none; }
+  }
+  </style>
+</head>
+
+<body>
+
+  <div class="fondo" aria-hidden="true"></div>
+
+  <div class="envoltorio">
+
+    <header class="header">
+      <img class="header__logo" src="/assets/logo-lockup.webp" alt="Tactical Trading" width="42" height="40">
+    </header>
+
+    <main>
+
+      <!-- ================================================================
+           HERO
+           ================================================================ -->
+      <section class="hero">
+        <span class="badge">De Cero a Tactical Investor</span>
+        <!-- Dos líneas fijas: con un separador en medio, a ancho de celular el
+             "·" quedaba colgado solo al final de la primera línea. -->
+        <h1 class="hero__titulo">Mes 2<br><em>Acompañamiento</em></h1>
+        <p class="hero__subtitulo">
+          La fase donde pones a operar lo que aprendiste, con el equipo cerca.
+        </p>
+      </section>
+
+      <!-- ================================================================
+           QUÉ ES ESTE MES
+           ================================================================ -->
+      <div class="nota">
+        <p class="nota__titulo">Este mes no son clases nuevas.</p>
+        <p class="nota__texto">
+          El Mes 1 te dio el método. El Mes 2 es aplicarlo: sigues operando y el
+          equipo te acompaña mientras lo haces.
+        </p>
+      </div>
+
+      <!-- ================================================================
+           PENDIENTES — placeholders honestos, no se inventa nada
+           ================================================================ -->
+      <div class="pendientes">
+        <div class="pendientes__fila">
+          <p class="pendientes__etiqueta">Fechas y horarios</p>
+          <p class="pendientes__valor">Por confirmar</p>
+        </div>
+        <div class="pendientes__fila">
+          <p class="pendientes__etiqueta">Plataforma de las sesiones</p>
+          <p class="pendientes__valor">Por confirmar</p>
+        </div>
+      </div>
+
+      <!-- ================================================================
+           LOS 4 COMPONENTES
+           Para editar una tarjeta, editar el texto directamente acá abajo.
+           ================================================================ -->
+      <section aria-labelledby="componentes-titulo">
+        <h2 class="seccion__titulo" id="componentes-titulo">Lo que incluye el mes</h2>
+
+        <ul class="componentes">
+
+          <li class="componente" style="--orden: 0">
+            <span class="componente__numero" aria-hidden="true">01</span>
+            <h3 class="componente__titulo">Office hours grupales</h3>
+            <p class="componente__texto">
+              4 encuentros en grupo con el equipo durante el mes.
+              <strong class="componente__aclaracion">No son sesiones individuales.</strong>
+            </p>
+          </li>
+
+          <li class="componente" style="--orden: 1">
+            <span class="componente__numero" aria-hidden="true">02</span>
+            <h3 class="componente__titulo">Operación en vivo</h3>
+            <p class="componente__texto">
+              Operas en tiempo real aplicando el método del Mes 1.
+            </p>
+          </li>
+
+          <li class="componente" style="--orden: 2">
+            <span class="componente__numero" aria-hidden="true">03</span>
+            <h3 class="componente__titulo">Resolución de dudas</h3>
+            <p class="componente__texto">
+              Espacio para resolver lo que aparezca mientras operas.
+            </p>
+          </li>
+
+          <li class="componente" style="--orden: 3">
+            <span class="componente__numero" aria-hidden="true">04</span>
+            <h3 class="componente__titulo">Sigues operando acompañado</h3>
+            <p class="componente__texto">
+              No hay clases nuevas: es aplicar lo aprendido con el equipo cerca.
+            </p>
+          </li>
+
+        </ul>
+      </section>
+
+      <!-- ================================================================
+           BANDA PREMIUM
+           ================================================================ -->
+      <section class="premium" aria-labelledby="premium-titulo">
+        <p class="premium__etiqueta">Incluido este mes</p>
+        <h2 class="premium__titulo" id="premium-titulo">Membresía Premium</h2>
+        <p class="premium__texto">
+          Durante el Mes 2 tienes la Membresía Premium incluida.
+        </p>
+      </section>
+
+    </main>
+
+  </div>
+
+  <footer class="footer">
+    <a class="footer__volver" href="/cronograma1">← Ver el cronograma del Mes 1</a>
+    <img class="footer__logo" src="/assets/logo-isotipo.webp" alt="" width="23" height="26" loading="lazy">
+    <p class="footer__meta">
+      <a href="https://www.ttrading.co" target="_blank" rel="noopener noreferrer">ttrading.co</a>
+      · <span>Tactical Assets S.A.S.</span>
+    </p>
+  </footer>
+
+</body>
+</html>
