@@ -76,7 +76,7 @@ const CONFIG = {
           {
             titulo: 'Título por confirmar',
             fecha: null,
-            youtubeId: null,   // TODO: primer link de YouTube de la Semana 1
+            youtubeId: 'xyrlx0iFmaw',
             descripcion: '',
           },
           { titulo: null, fecha: null, youtubeId: null, descripcion: null },
