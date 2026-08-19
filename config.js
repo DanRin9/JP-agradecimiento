@@ -74,8 +74,8 @@ const CONFIG = {
         disponible: true,
         grabaciones: [
           {
-            titulo: 'Título por confirmar',
-            fecha: null,
+            titulo: null,   // se arma solo como "Sesión 1 - Semana 1" (ver grabaciones.js)
+            fecha: '18 de agosto',
             youtubeId: 'xyrlx0iFmaw',
             descripcion: '',
           },

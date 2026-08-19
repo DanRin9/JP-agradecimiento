@@ -22,6 +22,12 @@
     return semana.grabaciones.filter(function (g) { return !esSesionPendiente(g); }).length;
   }
 
+  // Convención fija: si una grabación no trae título propio en config.js, se
+  // arma como "Sesión N - Semana M" en vez de dejarlo en blanco.
+  function tituloSesion(semana, sesion, indice) {
+    return sesion.titulo || ('Sesión ' + (indice + 1) + ' - Semana ' + semana.numero);
+  }
+
   function crearTarjetaSemana(semana) {
     const total = semana.grabaciones.length || 3;
     const disponibles = semana.disponible ? contarDisponibles(semana) : 0;
@@ -106,7 +112,7 @@
 
     const titulo = document.createElement('span');
     titulo.className = 'sesion-card__titulo';
-    titulo.textContent = pendiente ? 'Por grabar' : sesion.titulo;
+    titulo.textContent = pendiente ? 'Por grabar' : tituloSesion(semana, sesion, indice);
     el.appendChild(titulo);
 
     if (pendiente) {
@@ -146,7 +152,7 @@
     } else {
       const iframe = document.createElement('iframe');
       iframe.src = embedURL(sesion.youtubeId);
-      iframe.title = sesion.titulo;
+      iframe.title = tituloSesion(semana, sesion, indiceActivo);
       iframe.loading = 'lazy';
       iframe.allowFullscreen = true;
       iframe.setAttribute('allow', 'encrypted-media; picture-in-picture');
@@ -158,7 +164,7 @@
     info.className = 'reproductor__info';
     const titulo = document.createElement('h2');
     titulo.className = 'reproductor__titulo';
-    titulo.textContent = pendiente ? 'Sesión ' + (indiceActivo + 1) + ', por grabar' : sesion.titulo;
+    titulo.textContent = pendiente ? 'Sesión ' + (indiceActivo + 1) + ', por grabar' : tituloSesion(semana, sesion, indiceActivo);
     info.appendChild(titulo);
 
     if (!pendiente && sesion.fecha) {
