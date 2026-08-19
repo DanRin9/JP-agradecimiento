@@ -18,6 +18,10 @@
     return 'https://www.youtube.com/embed/' + youtubeId;
   }
 
+  function miniaturaURL(youtubeId) {
+    return 'https://i.ytimg.com/vi/' + youtubeId + '/mqdefault.jpg';
+  }
+
   function contarDisponibles(semana) {
     return semana.grabaciones.filter(function (g) { return !esSesionPendiente(g); }).length;
   }
@@ -105,28 +109,44 @@
       el.addEventListener('click', function () { onSelect(indice); });
     }
 
+    const miniatura = document.createElement('span');
+    miniatura.className = 'sesion-card__miniatura';
+    if (!pendiente) {
+      const img = document.createElement('img');
+      img.src = miniaturaURL(sesion.youtubeId);
+      img.alt = '';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      miniatura.appendChild(img);
+    } else {
+      const chip = document.createElement('span');
+      chip.className = 'btn__proximamente';
+      chip.textContent = 'Próximamente';
+      miniatura.appendChild(chip);
+    }
+    el.appendChild(miniatura);
+
+    const texto = document.createElement('span');
+    texto.className = 'sesion-card__texto';
+
     const numero = document.createElement('span');
     numero.className = 'sesion-card__numero';
     numero.textContent = 'Sesión ' + (indice + 1);
-    el.appendChild(numero);
+    texto.appendChild(numero);
 
     const titulo = document.createElement('span');
     titulo.className = 'sesion-card__titulo';
     titulo.textContent = pendiente ? 'Por grabar' : tituloSesion(semana, sesion, indice);
-    el.appendChild(titulo);
+    texto.appendChild(titulo);
 
-    if (pendiente) {
-      const chip = document.createElement('span');
-      chip.className = 'btn__proximamente';
-      chip.textContent = 'Próximamente';
-      el.appendChild(chip);
-    } else if (sesion.fecha) {
+    if (!pendiente && sesion.fecha) {
       const fecha = document.createElement('span');
       fecha.className = 'sesion-card__fecha';
       fecha.textContent = sesion.fecha;
-      el.appendChild(fecha);
+      texto.appendChild(fecha);
     }
 
+    el.appendChild(texto);
     return el;
   }
 
@@ -228,19 +248,27 @@
     let indiceActivo = semana.grabaciones.findIndex(function (g) { return !esSesionPendiente(g); });
     if (indiceActivo === -1) indiceActivo = 0;
 
-    renderReproductor(cont, semana, indiceActivo);
+    const detalle = document.createElement('div');
+    detalle.className = 'semana-detalle';
+    cont.appendChild(detalle);
 
-    const selector = document.createElement('div');
-    selector.className = 'selector-sesiones';
-    cont.appendChild(selector);
+    const colVideo = document.createElement('div');
+    colVideo.className = 'semana-detalle__video';
+    detalle.appendChild(colVideo);
+
+    const colSesiones = document.createElement('div');
+    colSesiones.className = 'semana-detalle__sesiones';
+    detalle.appendChild(colSesiones);
+
+    renderReproductor(colVideo, semana, indiceActivo);
 
     function pintarSelector() {
-      selector.innerHTML = '';
+      colSesiones.innerHTML = '';
       semana.grabaciones.forEach(function (sesion, indice) {
-        selector.appendChild(
+        colSesiones.appendChild(
           crearTarjetaSesion(semana, sesion, indice, indice === indiceActivo, function (i) {
             indiceActivo = i;
-            renderReproductor(cont, semana, indiceActivo);
+            renderReproductor(colVideo, semana, indiceActivo);
             pintarSelector();
           })
         );

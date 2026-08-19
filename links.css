@@ -484,11 +484,14 @@
    el diseño, no como adaptación de mobile. Ancho mayor que el resto de
    .pagina-links y más densidad de información por tarjeta.
    ============================================================================ */
-.pagina-grabaciones .links-envoltorio { max-width: 1180px; }
+.pagina-grabaciones .links-envoltorio { max-width: 1680px; }
 .pagina-grabaciones .links-main { justify-content: flex-start; }
 
 .pagina-grabaciones .links-hero { padding-bottom: 32px; }
 .pagina-grabaciones .links-titulo { max-width: none; }
+
+/* Vista de semana: título compacto, no el mismo aire que la portada. */
+.links-hero--semana { padding-bottom: 14px; }
 
 /* --- Grilla de 4 semanas -------------------------------------------------- */
 .semanas-grid {
@@ -534,7 +537,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 22px;
+  padding-bottom: 14px;
   font-size: 13.5px;
 }
 .semana-nav__volver { color: var(--texto-2); text-decoration: none; }
@@ -545,16 +548,21 @@
 .semana-nav__flecha:hover { color: var(--amarillo); }
 .semana-nav__flecha--inactiva { opacity: 0.35; pointer-events: none; }
 
-.links-hero--semana { text-align: left; padding-bottom: 24px; }
-.links-hero--semana .links-titulo { font-size: clamp(24px, 2.6vw, 32px); }
+.links-hero--semana { text-align: left; }
+.links-hero--semana .links-titulo { font-size: clamp(22px, 2.2vw, 28px); margin-bottom: 0; }
 
-/* Reproductor grande, centrado, con más aire que el de /video-intro-tactical
-   porque acá hay espacio real de escritorio para darle. */
-.reproductor {
-  max-width: 960px;
-  margin: 0 auto 28px;
+/* Dos columnas: el video manda (~68%), las 3 sesiones a la derecha (~32%).
+   minmax(0, ...) en vez de fr puro: sin eso una miniatura ancha puede forzar
+   la columna a crecer más allá de su fracción del grid. */
+.semana-detalle {
+  display: grid;
+  grid-template-columns: minmax(0, 2.1fr) minmax(0, 1fr);
+  gap: 26px;
+  align-items: start;
 }
 
+/* Reproductor: ocupa todo el ancho de su columna, la relación 16:9 la fija el
+   propio ancho de esa columna, no un max-width fijo como en /video-intro. */
 .reproductor__embed {
   position: relative;
   width: 100%;
@@ -585,40 +593,38 @@
   font-size: 14px;
 }
 
-.reproductor__info { padding: 18px 4px 0; }
+.reproductor__info { padding: 14px 2px 0; }
 .reproductor__titulo {
   font-family: 'Raleway', sans-serif;
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 700;
-  margin: 0 0 6px;
+  margin: 0 0 4px;
 }
 .reproductor__fecha {
   font-size: 13px;
   color: var(--amarillo);
-  margin: 0 0 8px;
+  margin: 0 0 6px;
 }
 .reproductor__descripcion {
-  font-size: 14.5px;
+  font-size: 14px;
   color: var(--texto-2);
   margin: 0;
   max-width: 68ch;
 }
 
-/* --- Selector de 3 sesiones: fila horizontal, no columna lateral ----------- */
-.selector-sesiones {
+/* --- Columna de 3 sesiones: apiladas, tarjetas amplias con miniatura ------- */
+.semana-detalle__sesiones {
   display: flex;
-  gap: 16px;
-  max-width: 960px;
-  margin: 0 auto;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .sesion-card {
-  flex: 1 1 0;
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  gap: 12px;
+  align-items: stretch;
   text-align: left;
-  padding: 16px 18px;
+  padding: 10px;
   border: 1px solid var(--borde);
   border-radius: var(--radio);
   background: var(--superficie);
@@ -636,8 +642,36 @@
 }
 .sesion-card--activa:hover { transform: none; }
 
+/* Ancho fijo, alto por aspect-ratio: la tarjeta pendiente (sin <img>) mantiene
+   exactamente la misma altura que una con miniatura real, así la columna no
+   se ve despareja según cuántas sesiones estén disponibles. */
+.sesion-card__miniatura {
+  flex: 0 0 128px;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--superficie-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sesion-card__miniatura img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sesion-card__texto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  min-width: 0;
+}
+
 .sesion-card__numero {
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -646,9 +680,14 @@
 .sesion-card--activa .sesion-card__numero { color: var(--amarillo); }
 
 .sesion-card__titulo {
-  font-size: 14.5px;
+  font-size: 14px;
   font-weight: 600;
   line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .sesion-card__fecha { font-size: 12px; color: var(--texto-2); }
@@ -659,10 +698,16 @@
   .semanas-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
+@media (max-width: 900px) {
+  .semana-detalle { grid-template-columns: 1fr; }
+  .semana-detalle__sesiones { flex-direction: row; flex-wrap: wrap; }
+  .sesion-card { flex: 1 1 260px; }
+}
+
 @media (max-width: 720px) {
   .pagina-grabaciones .links-envoltorio { padding: 24px 18px 24px; }
   .semanas-grid { grid-template-columns: 1fr; gap: 14px; }
   .btn--semana { min-height: 110px; }
-  .selector-sesiones { flex-direction: column; }
+  .semana-detalle__sesiones { flex-direction: column; }
   .semana-nav { flex-direction: column; align-items: flex-start; gap: 10px; }
 }
