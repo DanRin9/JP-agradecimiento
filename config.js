@@ -60,6 +60,36 @@ const CONFIG = {
   },
 
   /* --------------------------------------------------------------------------
+     GRABACIONES 2026 (/grabaciones-2026)
+     Archivo de las 12 sesiones en vivo del programa "De Cero a Tactical
+     Investor" (4 semanas x 3 sesiones). Cada `youtubeId: null` es una sesión
+     todavía sin grabar/subir: se muestra como "Próximamente" en vez de
+     ocultarse, para que el alumno vea que faltan y cuántas.
+     -------------------------------------------------------------------------- */
+  grabaciones: {
+    semanas: [
+      {
+        numero: 1,
+        tema: 'Fundamentos y contexto',
+        disponible: true,
+        grabaciones: [
+          {
+            titulo: 'Título por confirmar',
+            fecha: null,
+            youtubeId: null,   // TODO: primer link de YouTube de la Semana 1
+            descripcion: '',
+          },
+          { titulo: null, fecha: null, youtubeId: null, descripcion: null },
+          { titulo: null, fecha: null, youtubeId: null, descripcion: null },
+        ],
+      },
+      { numero: 2, tema: 'El corazón técnico', disponible: false, grabaciones: [] },
+      { numero: 3, tema: 'Construir y ejecutar', disponible: false, grabaciones: [] },
+      { numero: 4, tema: 'Operar en vivo y cierre', disponible: false, grabaciones: [] },
+    ],
+  },
+
+  /* --------------------------------------------------------------------------
      SESIÓN DE ONBOARDING
      El botón genera un archivo .ics (calendario universal) con estos datos.
      -------------------------------------------------------------------------- */

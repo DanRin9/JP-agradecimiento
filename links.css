@@ -478,3 +478,191 @@
   .video-grid { gap: 20px; }
   .video-modulo__titulo { font-size: 15.5px; }
 }
+
+/* ============================================================================
+   /grabaciones-2026: la única página del sitio pensada para computador desde
+   el diseño, no como adaptación de mobile. Ancho mayor que el resto de
+   .pagina-links y más densidad de información por tarjeta.
+   ============================================================================ */
+.pagina-grabaciones .links-envoltorio { max-width: 1180px; }
+.pagina-grabaciones .links-main { justify-content: flex-start; }
+
+.pagina-grabaciones .links-hero { padding-bottom: 32px; }
+.pagina-grabaciones .links-titulo { max-width: none; }
+
+/* --- Grilla de 4 semanas -------------------------------------------------- */
+.semanas-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding-bottom: 8px;
+}
+
+.btn--semana {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 8px;
+  min-height: 150px;
+  padding: 22px 22px 20px;
+}
+
+.semana__numero {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--amarillo);
+}
+.btn--semana.esta-deshabilitado .semana__numero { color: var(--texto-2); }
+
+.semana__tema {
+  font-family: 'Raleway', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.semana__pie {
+  margin-top: auto;
+  font-size: 13px;
+  color: var(--texto-2);
+}
+
+/* --- Detalle de semana ----------------------------------------------------- */
+.semana-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 22px;
+  font-size: 13.5px;
+}
+.semana-nav__volver { color: var(--texto-2); text-decoration: none; }
+.semana-nav__volver:hover { color: var(--amarillo); }
+
+.semana-nav__paginacion { display: flex; gap: 18px; }
+.semana-nav__flecha { color: var(--texto-2); text-decoration: none; }
+.semana-nav__flecha:hover { color: var(--amarillo); }
+.semana-nav__flecha--inactiva { opacity: 0.35; pointer-events: none; }
+
+.links-hero--semana { text-align: left; padding-bottom: 24px; }
+.links-hero--semana .links-titulo { font-size: clamp(24px, 2.6vw, 32px); }
+
+/* Reproductor grande, centrado, con más aire que el de /video-intro-tactical
+   porque acá hay espacio real de escritorio para darle. */
+.reproductor {
+  max-width: 960px;
+  margin: 0 auto 28px;
+}
+
+.reproductor__embed {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  border-radius: var(--radio);
+  overflow: hidden;
+  background: var(--superficie);
+  border: 1px solid rgba(255, 198, 0, 0.18);
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.5);
+}
+.reproductor__embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.reproductor__vacio {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0 24px;
+  text-align: center;
+  color: var(--texto-2);
+  font-size: 14px;
+}
+
+.reproductor__info { padding: 18px 4px 0; }
+.reproductor__titulo {
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+.reproductor__fecha {
+  font-size: 13px;
+  color: var(--amarillo);
+  margin: 0 0 8px;
+}
+.reproductor__descripcion {
+  font-size: 14.5px;
+  color: var(--texto-2);
+  margin: 0;
+  max-width: 68ch;
+}
+
+/* --- Selector de 3 sesiones: fila horizontal, no columna lateral ----------- */
+.selector-sesiones {
+  display: flex;
+  gap: 16px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.sesion-card {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+  padding: 16px 18px;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: var(--superficie);
+  color: var(--texto);
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+}
+.sesion-card:hover { transform: translateY(-2px); border-color: var(--amarillo-linea); }
+
+.sesion-card--activa {
+  border-color: var(--amarillo);
+  background: var(--superficie-2);
+  box-shadow: 0 0 0 1px var(--amarillo-linea);
+}
+.sesion-card--activa:hover { transform: none; }
+
+.sesion-card__numero {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--texto-2);
+}
+.sesion-card--activa .sesion-card__numero { color: var(--amarillo); }
+
+.sesion-card__titulo {
+  font-size: 14.5px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.sesion-card__fecha { font-size: 12px; color: var(--texto-2); }
+
+.sesion-card.esta-deshabilitado:hover { transform: none; border-color: var(--borde); }
+
+@media (max-width: 980px) {
+  .semanas-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 720px) {
+  .pagina-grabaciones .links-envoltorio { padding: 24px 18px 24px; }
+  .semanas-grid { grid-template-columns: 1fr; gap: 14px; }
+  .btn--semana { min-height: 110px; }
+  .selector-sesiones { flex-direction: column; }
+  .semana-nav { flex-direction: column; align-items: flex-start; gap: 10px; }
+}

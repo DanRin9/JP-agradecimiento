@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0A0A0A">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Grabaciones de las sesiones en vivo de De Cero a Tactical Investor, organizadas por semana.">
+  <title>Grabaciones 2026, De Cero a Tactical Investor</title>
+
+  <link rel="icon" href="/assets/logo-isotipo.webp" type="image/webp">
+  <link rel="preload" href="/assets/fonts/raleway.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/fonts/fonts.css">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/links.css">
+</head>
+
+<!-- pagina-links trae el layout base (halo, envoltorio, header, footer);
+     pagina-grabaciones ajusta el ancho y agrega la grilla de semanas +
+     el detalle de semana, todo montado por grabaciones.js sobre #vista. -->
+<body class="pagina-links pagina-grabaciones">
+
+  <div class="links-fondo" aria-hidden="true"></div>
+
+  <div class="links-envoltorio">
+
+    <header class="links-header">
+      <img class="header__logo" src="/assets/logo-lockup.webp" alt="Tactical Trading" width="42" height="40">
+    </header>
+
+    <noscript>
+      <p class="sin-js">
+        Necesitás activar JavaScript para ver las grabaciones.
+        Si no podés, escribinos por WhatsApp desde
+        <a href="https://www.ttrading.co">ttrading.co</a> y te las pasamos.
+      </p>
+    </noscript>
+
+    <main class="links-main" id="vista"></main>
+
+    <footer class="links-footer">
+      <p class="footer__titulo">Reconocimientos</p>
+      <div class="reconocimientos" id="reconocimientos"></div>
+      <p class="footer__meta">
+        <a href="https://www.ttrading.co" target="_blank" rel="noopener noreferrer">ttrading.co</a>
+        · <span>Tactical Assets S.A.S.</span>
+      </p>
+    </footer>
+
+  </div>
+
+  <script src="/config.js"></script>
+  <script src="/shared.js"></script>
+  <script src="/grabaciones.js"></script>
+</body>
+</html>
