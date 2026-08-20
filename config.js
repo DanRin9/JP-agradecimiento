@@ -79,7 +79,12 @@ const CONFIG = {
             youtubeId: 'xyrlx0iFmaw',
             descripcion: '',
           },
-          { titulo: null, fecha: null, youtubeId: null, descripcion: null },
+          {
+            titulo: null,
+            fecha: '19 de agosto',
+            youtubeId: 'lOsZZCEWouU',
+            descripcion: '',
+          },
           { titulo: null, fecha: null, youtubeId: null, descripcion: null },
         ],
       },
