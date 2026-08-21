@@ -85,7 +85,12 @@ const CONFIG = {
             youtubeId: 'lOsZZCEWouU',
             descripcion: '',
           },
-          { titulo: null, fecha: null, youtubeId: null, descripcion: null },
+          {
+            titulo: null,
+            fecha: '20 de agosto',
+            youtubeId: 'NHBOA2R2o6o',
+            descripcion: '',
+          },
         ],
       },
       { numero: 2, tema: 'El corazón técnico', disponible: false, grabaciones: [] },
