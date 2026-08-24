@@ -1,13 +1,13 @@
 /* ============================================================================
    VIDEO-INTRO: render de /video-intro-tactical.
    Programa "De Cero a Tactical Investor". A diferencia de estrategia.js, acá no
-   hay nada pendiente por completar: el PDF y los 4 videos ya existen, así que no
+   hay nada pendiente por completar: los 4 videos ya existen, así que no
    se usa estaPendiente().
    ============================================================================ */
 (function () {
   'use strict';
 
-  const { ICONOS, crearBoton, pintarReconocimientos, seguirCursor } = window.TT;
+  const { pintarReconocimientos } = window.TT;
 
   function embedURL(youtubeId) {
     return 'https://www.youtube.com/embed/' + youtubeId;
@@ -44,20 +44,8 @@
     const cont = document.getElementById('modulos');
     cont.innerHTML = '';
 
-    const botonPdf = crearBoton({
-      clases: 'btn--hotmart video-pdf',
-      icono: ICONOS.documento,
-      texto: v.pdfTexto,
-      href: v.pdfUrl,
-    });
-    botonPdf.classList.add('btn--links');
-    botonPdf.setAttribute('download', '');   // fuerza la descarga en vez de abrir el PDF en la pestaña
-    botonPdf.style.setProperty('--orden', 0);
-    seguirCursor(botonPdf);
-    cont.appendChild(botonPdf);
-
     v.modulos.forEach(function (modulo, i) {
-      cont.appendChild(crearModuloVideo(modulo, i + 1));
+      cont.appendChild(crearModuloVideo(modulo, i));
     });
 
     pintarReconocimientos(cfg, document.getElementById('reconocimientos'));
