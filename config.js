@@ -93,7 +93,21 @@ const CONFIG = {
           },
         ],
       },
-      { numero: 2, tema: 'El corazón técnico', disponible: false, grabaciones: [] },
+      {
+        numero: 2,
+        tema: 'El corazón técnico',
+        disponible: true,
+        grabaciones: [
+          {
+            titulo: null,
+            fecha: '25 de agosto',
+            youtubeId: 'Vwq7YYCpl_Q',
+            descripcion: '',
+          },
+          { titulo: null, fecha: null, youtubeId: null, descripcion: null },
+          { titulo: null, fecha: null, youtubeId: null, descripcion: null },
+        ],
+      },
       { numero: 3, tema: 'Construir y ejecutar', disponible: false, grabaciones: [] },
       { numero: 4, tema: 'Operar en vivo y cierre', disponible: false, grabaciones: [] },
     ],
