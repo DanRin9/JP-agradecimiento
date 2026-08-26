@@ -75,6 +75,31 @@
     return el;
   }
 
+  function crearTarjetaExtra(extra) {
+    const el = document.createElement('a');
+    el.className = 'btn btn--links btn--extra';
+    el.href = '#extra';
+
+    const etiqueta = document.createElement('span');
+    etiqueta.className = 'extra__etiqueta';
+    etiqueta.textContent = 'Sesiones extra';
+    el.appendChild(etiqueta);
+
+    const tema = document.createElement('span');
+    tema.className = 'extra__tema';
+    tema.textContent = extra.tema;
+    el.appendChild(tema);
+
+    const flecha = document.createElement('span');
+    flecha.className = 'extra__flecha';
+    flecha.setAttribute('aria-hidden', 'true');
+    flecha.textContent = '→';
+    el.appendChild(flecha);
+
+    seguirCursor(el);
+    return el;
+  }
+
   function renderLista(cfg, cont) {
     cont.innerHTML = '';
 
@@ -92,6 +117,10 @@
       grid.appendChild(crearTarjetaSemana(semana));
     });
     cont.appendChild(grid);
+
+    if (cfg.grabaciones.extra) {
+      cont.appendChild(crearTarjetaExtra(cfg.grabaciones.extra));
+    }
   }
 
   function crearTarjetaSesion(semana, sesion, indice, activa, onSelect) {
@@ -277,13 +306,75 @@
     pintarSelector();
   }
 
+  function renderExtra(cfg, cont) {
+    const extra = cfg.grabaciones.extra;
+    if (!extra) {
+      location.hash = '';
+      return;
+    }
+
+    cont.innerHTML = '';
+
+    const nav = document.createElement('div');
+    nav.className = 'semana-nav';
+    const volver = document.createElement('a');
+    volver.className = 'semana-nav__volver';
+    volver.href = '#';
+    volver.textContent = '← Todas las semanas';
+    nav.appendChild(volver);
+    cont.appendChild(nav);
+
+    const hero = document.createElement('section');
+    hero.className = 'links-hero links-hero--semana';
+    hero.innerHTML = '<h1 class="links-titulo">' + extra.titulo + '</h1>';
+    cont.appendChild(hero);
+
+    const detalle = document.createElement('div');
+    detalle.className = 'extra-detalle';
+    cont.appendChild(detalle);
+
+    const embed = document.createElement('div');
+    embed.className = 'reproductor__embed';
+    const iframe = document.createElement('iframe');
+    iframe.src = embedURL(extra.youtubeId);
+    iframe.title = extra.titulo;
+    iframe.loading = 'lazy';
+    iframe.allowFullscreen = true;
+    iframe.setAttribute('allow', 'encrypted-media; picture-in-picture');
+    embed.appendChild(iframe);
+    detalle.appendChild(embed);
+
+    const info = document.createElement('div');
+    info.className = 'reproductor__info';
+    const titulo = document.createElement('h2');
+    titulo.className = 'reproductor__titulo';
+    titulo.textContent = extra.titulo;
+    info.appendChild(titulo);
+
+    if (extra.fecha) {
+      const fecha = document.createElement('p');
+      fecha.className = 'reproductor__fecha';
+      fecha.textContent = extra.fecha;
+      info.appendChild(fecha);
+    }
+    if (extra.descripcion) {
+      const desc = document.createElement('p');
+      desc.className = 'reproductor__descripcion';
+      desc.textContent = extra.descripcion;
+      info.appendChild(desc);
+    }
+    detalle.appendChild(info);
+  }
+
   function render() {
     const cfg = window.CONFIG || CONFIG;
     const cont = document.getElementById('vista');
     const hash = location.hash.replace('#', '');
     const match = hash.match(/^semana-(\d+)$/);
 
-    if (match) {
+    if (hash === 'extra') {
+      renderExtra(cfg, cont);
+    } else if (match) {
       renderSemana(cfg, cont, Number(match[1]));
     } else {
       renderLista(cfg, cont);

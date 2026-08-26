@@ -111,6 +111,17 @@ const CONFIG = {
       { numero: 3, tema: 'Construir y ejecutar', disponible: false, grabaciones: [] },
       { numero: 4, tema: 'Operar en vivo y cierre', disponible: false, grabaciones: [] },
     ],
+
+    // Video de apoyo, no ligado a una semana puntual. Vive como su propio
+    // componente en la vista principal ("Sesiones extra"), no dentro de
+    // ninguna semana. Si algún día hay más de uno, esto pasa a array.
+    extra: {
+      tema: 'Ayuda e introducción a conceptos',
+      titulo: 'Sesión extra de apoyo',
+      fecha: null,
+      youtubeId: 'xcnv3aU1P24',
+      descripcion: 'Sesión extra, dictada por el equipo especializado técnico de JP para aclarar todas tus dudas, conceptos financieros y más.',
+    },
   },
 
   /* --------------------------------------------------------------------------
