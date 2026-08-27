@@ -120,7 +120,7 @@ const CONFIG = {
       titulo: 'Sesión extra de apoyo',
       fecha: null,
       youtubeId: 'xcnv3aU1P24',
-      descripcion: 'Sesión extra, dictada por el equipo especializado técnico de JP para aclarar todas tus dudas, conceptos financieros y más.',
+      descripcion: 'Un tutorial completo de configuración de tu cuenta en Exness, más un repaso de conceptos financieros clave y las dudas más comunes del programa, resuelto por el equipo técnico de JP.',
     },
   },
 
