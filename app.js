@@ -6,7 +6,7 @@
 (function () {
   'use strict';
 
-  const { ICONOS, estaPendiente, crearBoton, waLink, descargarICS, pintarReconocimientos } = window.TT;
+  const { ICONOS, estaPendiente, crearBoton, waLink, pintarReconocimientos } = window.TT;
 
   function render() {
     const cfg = window.CONFIG || CONFIG;
@@ -81,16 +81,16 @@
       }));
     }
 
-    // 5. Onboarding: descarga el .ics generado desde config
-    const zoomPend = estaPendiente(cfg.onboarding.zoomLink);
-    if (zoomPend) pendientes.push('zoomLink');
+    // 5. Onboarding: link directo al registro de Zoom
+    const registroPend = estaPendiente(cfg.onboarding.registroUrl);
+    if (registroPend) pendientes.push('registroUrl');
     cont.appendChild(crearBoton({
       clases: 'btn--sistema',
       icono: ICONOS.video,
       texto: c.agenda,
-      pendiente: zoomPend,
+      href: cfg.onboarding.registroUrl,
+      pendiente: registroPend,
       etiquetaPendiente: cfg.hotmart.labelSoon,
-      onClick: function () { descargarICS(cfg); },
     }));
 
     /* --- Footer --- */

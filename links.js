@@ -8,7 +8,7 @@
 (function () {
   'use strict';
 
-  const { ICONOS, estaPendiente, crearBoton, waLink, descargarICS,
+  const { ICONOS, estaPendiente, crearBoton, waLink,
           pintarReconocimientos, seguirCursor } = window.TT;
 
   function render() {
@@ -58,16 +58,16 @@
       });
     }
 
-    // 3. Onboarding: descarga el .ics generado desde config
-    const zoomPend = estaPendiente(cfg.onboarding.zoomLink);
-    if (zoomPend) pendientes.push('zoomLink');
+    // 3. Onboarding: link directo al registro de Zoom
+    const registroPend = estaPendiente(cfg.onboarding.registroUrl);
+    if (registroPend) pendientes.push('registroUrl');
     definiciones.push({
       clases: 'btn--sistema',
       icono: ICONOS.video,
       texto: 'Agenda tu sesión de Onboarding',
-      pendiente: zoomPend,
+      href: cfg.onboarding.registroUrl,
+      pendiente: registroPend,
       etiquetaPendiente: cfg.hotmart.labelSoon,
-      onClick: function () { descargarICS(cfg); },
     });
 
     // 4. WhatsApp: soporte. Último a propósito, es el canal de menor peso.

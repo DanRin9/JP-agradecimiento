@@ -1,6 +1,6 @@
 /* ============================================================================
    ESTRATEGIA: render de /estrategia-tactical.
-   Dos accesos: la sesión en vivo (Zoom) y la bitácora de operaciones.
+   Tres accesos: la bitácora de operaciones, el canal de Pre-Mercado y Exness.
    ============================================================================ */
 (function () {
   'use strict';
@@ -15,9 +15,6 @@
     const cont = document.getElementById('botones');
     cont.innerHTML = '';
 
-    const zoomPend = estaPendiente(e.zoom);
-    if (zoomPend) pendientes.push('estrategia.zoom');
-
     const bitPend = estaPendiente(e.bitacora);
     if (bitPend) pendientes.push('estrategia.bitacora');
 
@@ -28,14 +25,6 @@
     if (exnessPend) pendientes.push('estrategia.exness');
 
     const definiciones = [
-      {
-        clases: 'btn--zoom',
-        icono: ICONOS.video,
-        texto: 'Entra al portafolio en vivo',
-        href: e.zoom,
-        pendiente: zoomPend,
-        etiquetaPendiente: cfg.hotmart.labelSoon,
-      },
       // Dorado: es el estilo de CTA principal del sistema y acá no hay Hotmart,
       // así que no compite con nada. La bitácora es lo que la página vende.
       {

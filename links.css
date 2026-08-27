@@ -343,8 +343,9 @@
    contenido, ignorando el max-width. */
 .pagina-estrategia .links-grid {
   width: 100%;
-  max-width: 880px;
+  max-width: 1020px;
   align-self: center;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 /* Acá el titular es el protagonista: no compite con cuatro botones. */
@@ -358,23 +359,6 @@
    Acá el resaltado son cinco y en mobile se sale de la pantalla: tiene que partir. */
 .pagina-estrategia .links-titulo em { white-space: normal; }
 
-/* --- Zoom: outline azul, no relleno ---------------------------------------
-   El dorado tiene que ganar la página (es la bitácora, lo que se vende). Dos
-   rellenos brillantes lado a lado se anulan entre sí, así que Zoom va en outline
-   sobre superficie: se lee como su marca sin pelearle al amarillo. */
-.btn--zoom {
-  background: var(--superficie);
-  border-color: rgba(45, 140, 255, 0.42);
-  color: #6BB0FF;              /* el #2D8CFF de marca no llega a AA sobre #151515 */
-  font-weight: 600;
-}
-.btn--zoom:hover {
-  background: rgba(45, 140, 255, 0.09);
-  border-color: #2D8CFF;
-}
-.btn--zoom .btn__icono svg { fill: currentColor; }
-.btn--links.btn--zoom:hover { box-shadow: 0 14px 40px rgba(45, 140, 255, 0.16); }
-
 /* El dorado de la bitácora reusa .btn--hotmart tal cual (mismo degradé y glow):
    en esta página no existe el botón de Hotmart, así que no hay conflicto. */
 .pagina-estrategia .btn--hotmart .btn__icono svg { fill: currentColor; }
@@ -382,6 +366,13 @@
 /* --- Exness: el ícono es el wordmark completo, no un glifo cuadrado -------- */
 .btn--exness .btn__icono { width: 90px; height: auto; }
 .btn--exness .btn__icono img { width: 100%; height: auto; display: block; }
+
+/* El override de 3 columnas de arriba gana por especificidad sobre el reset a
+   1fr del .links-grid base en mobile, así que hay que repetirlo acá para que
+   /estrategia-tactical también apile en una sola columna en pantallas chicas. */
+@media (max-width: 720px) {
+  .pagina-estrategia .links-grid { grid-template-columns: 1fr; }
+}
 
 /* ============================================================================
    /video-intro-tactical: PDF + módulos de video en una sola columna. Los

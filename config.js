@@ -29,11 +29,10 @@ const CONFIG = {
 
   /* --------------------------------------------------------------------------
      ESTRATEGIA TACTICAL (/estrategia-tactical)
-     Los cuatro botones de esa página. A diferencia del resto, acá los links ya son
+     Los tres botones de esa página. A diferencia del resto, acá los links ya son
      reales, así que los botones salen activos (salvo los que siguen marcados TODO).
      -------------------------------------------------------------------------- */
   estrategia: {
-    zoom: 'https://www.youtube.com',   // TODO: reemplazar por el link real de Zoom del portafolio en vivo
     bitacora: 'https://bitacora.ttrading.shop',
     canalPremercado: 'https://whatsapp.com/channel/0029VaNf7Pq23n3Xfc3Rpt3D',
     exness: 'EXNESS_LIVE_URL',         // TODO: reemplazar cuando exista el live recurrente en Exness
@@ -126,11 +125,12 @@ const CONFIG = {
 
   /* --------------------------------------------------------------------------
      SESIÓN DE ONBOARDING
-     El botón genera un archivo .ics (calendario universal) con estos datos.
+     El botón lleva directo a este link de registro de Zoom.
      -------------------------------------------------------------------------- */
   onboarding: {
     titulo: 'Sesión de Onboarding, Tactical Trading',
     descripcion: 'Sesión de bienvenida y onboarding de tu membresía de Tactical Trading con el equipo.',
+    registroUrl: 'https://us06web.zoom.us/meeting/register/lUi4uR6sQ6KOlTVmP6gnvg',
     zoomLink: 'https://us06web.zoom.us/j/83942944549?pwd=ikYh0CRObhc9dst3u98ycw3ahzpZRg.1',
 
     // Fecha de la PRIMERA sesión, en formato YYYY-MM-DD. Tiene que caer viernes.
