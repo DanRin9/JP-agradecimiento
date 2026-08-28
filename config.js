@@ -106,13 +106,13 @@ const CONFIG = {
           {
             titulo: null,
             fecha: '26 de agosto',
-            youtubeId: 'iTv1x6V-kQQ',
+            youtubeId: null,
             descripcion: '',
           },
           {
             titulo: null,
             fecha: '27 de agosto',
-            youtubeId: 'D91f9wWkBMY',
+            youtubeId: null,
             descripcion: '',
           },
         ],
