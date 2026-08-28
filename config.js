@@ -109,7 +109,12 @@ const CONFIG = {
             youtubeId: 'iTv1x6V-kQQ',
             descripcion: '',
           },
-          { titulo: null, fecha: null, youtubeId: null, descripcion: null },
+          {
+            titulo: null,
+            fecha: '27 de agosto',
+            youtubeId: 'D91f9wWkBMY',
+            descripcion: '',
+          },
         ],
       },
       { numero: 3, tema: 'Construir y ejecutar', disponible: false, grabaciones: [] },
