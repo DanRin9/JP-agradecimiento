@@ -721,16 +721,6 @@
 }
 .btn--extra:hover .extra__flecha { transform: translateX(3px); color: var(--amarillo); }
 
-/* --- Vista de detalle de "Sesiones extra": un solo video, sin la columna de
-   sesiones (no hay entre qué elegir). Reproductor centrado, más grande que el
-   de una semana porque acá no comparte ancho con ninguna columna. */
-.extra-detalle {
-  max-width: 1180px;
-  margin: 0 auto;
-}
-.extra-detalle .reproductor__info { text-align: center; }
-.extra-detalle .reproductor__descripcion { max-width: 68ch; margin: 0 auto; }
-
 @media (max-width: 980px) {
   .semanas-grid { grid-template-columns: repeat(2, 1fr); }
 }

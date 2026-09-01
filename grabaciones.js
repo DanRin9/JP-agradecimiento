@@ -27,9 +27,11 @@
   }
 
   // Convención fija: si una grabación no trae título propio en config.js, se
-  // arma como "Sesión N - Semana M" en vez de dejarlo en blanco.
-  function tituloSesion(semana, sesion, indice) {
-    return sesion.titulo || ('Sesión ' + (indice + 1) + ' - Semana ' + semana.numero);
+  // arma como "Sesión N" (+ " - " + contexto si lo hay) en vez de dejarlo en
+  // blanco. `contexto` es 'Semana M' para sesiones de semana, o null para
+  // las de "Sesiones extra" (ahí no hay semana que nombrar).
+  function tituloSesion(sesion, indice, contexto) {
+    return sesion.titulo || ('Sesión ' + (indice + 1) + (contexto ? ' - ' + contexto : ''));
   }
 
   function crearTarjetaSemana(semana) {
@@ -123,7 +125,7 @@
     }
   }
 
-  function crearTarjetaSesion(semana, sesion, indice, activa, onSelect) {
+  function crearTarjetaSesion(sesion, indice, activa, onSelect, contexto) {
     const pendiente = esSesionPendiente(sesion);
 
     const el = document.createElement('button');
@@ -165,7 +167,7 @@
 
     const titulo = document.createElement('span');
     titulo.className = 'sesion-card__titulo';
-    titulo.textContent = pendiente ? 'Por grabar' : tituloSesion(semana, sesion, indice);
+    titulo.textContent = pendiente ? 'Por grabar' : tituloSesion(sesion, indice, contexto);
     texto.appendChild(titulo);
 
     if (!pendiente && sesion.fecha) {
@@ -179,7 +181,7 @@
     return el;
   }
 
-  function renderReproductor(cont, semana, indiceActivo) {
+  function renderReproductor(cont, sesiones, indiceActivo, contexto) {
     let bloque = cont.querySelector('.reproductor');
     if (!bloque) {
       bloque = document.createElement('div');
@@ -188,7 +190,7 @@
     }
     bloque.innerHTML = '';
 
-    const sesion = semana.grabaciones[indiceActivo];
+    const sesion = sesiones[indiceActivo];
     const pendiente = esSesionPendiente(sesion);
 
     const embed = document.createElement('div');
@@ -201,7 +203,7 @@
     } else {
       const iframe = document.createElement('iframe');
       iframe.src = embedURL(sesion.youtubeId);
-      iframe.title = tituloSesion(semana, sesion, indiceActivo);
+      iframe.title = tituloSesion(sesion, indiceActivo, contexto);
       iframe.loading = 'lazy';
       iframe.allowFullscreen = true;
       iframe.setAttribute('allow', 'encrypted-media; picture-in-picture');
@@ -213,7 +215,7 @@
     info.className = 'reproductor__info';
     const titulo = document.createElement('h2');
     titulo.className = 'reproductor__titulo';
-    titulo.textContent = pendiente ? 'Sesión ' + (indiceActivo + 1) + ', por grabar' : tituloSesion(semana, sesion, indiceActivo);
+    titulo.textContent = pendiente ? 'Sesión ' + (indiceActivo + 1) + ', por grabar' : tituloSesion(sesion, indiceActivo, contexto);
     info.appendChild(titulo);
 
     if (!pendiente && sesion.fecha) {
@@ -289,17 +291,18 @@
     colSesiones.className = 'semana-detalle__sesiones';
     detalle.appendChild(colSesiones);
 
-    renderReproductor(colVideo, semana, indiceActivo);
+    const contexto = 'Semana ' + semana.numero;
+    renderReproductor(colVideo, semana.grabaciones, indiceActivo, contexto);
 
     function pintarSelector() {
       colSesiones.innerHTML = '';
       semana.grabaciones.forEach(function (sesion, indice) {
         colSesiones.appendChild(
-          crearTarjetaSesion(semana, sesion, indice, indice === indiceActivo, function (i) {
+          crearTarjetaSesion(sesion, indice, indice === indiceActivo, function (i) {
             indiceActivo = i;
-            renderReproductor(colVideo, semana, indiceActivo);
+            renderReproductor(colVideo, semana.grabaciones, indiceActivo, contexto);
             pintarSelector();
-          })
+          }, contexto)
         );
       });
     }
@@ -326,44 +329,40 @@
 
     const hero = document.createElement('section');
     hero.className = 'links-hero links-hero--semana';
-    hero.innerHTML = '<h1 class="links-titulo">' + extra.titulo + '</h1>';
+    hero.innerHTML =
+      '<h1 class="links-titulo">Sesiones extra: <em>' + extra.tema + '</em></h1>';
     cont.appendChild(hero);
 
+    let indiceActivo = extra.grabaciones.findIndex(function (g) { return !esSesionPendiente(g); });
+    if (indiceActivo === -1) indiceActivo = 0;
+
     const detalle = document.createElement('div');
-    detalle.className = 'extra-detalle';
+    detalle.className = 'semana-detalle';
     cont.appendChild(detalle);
 
-    const embed = document.createElement('div');
-    embed.className = 'reproductor__embed';
-    const iframe = document.createElement('iframe');
-    iframe.src = embedURL(extra.youtubeId);
-    iframe.title = extra.titulo;
-    iframe.loading = 'lazy';
-    iframe.allowFullscreen = true;
-    iframe.setAttribute('allow', 'encrypted-media; picture-in-picture');
-    embed.appendChild(iframe);
-    detalle.appendChild(embed);
+    const colVideo = document.createElement('div');
+    colVideo.className = 'semana-detalle__video';
+    detalle.appendChild(colVideo);
 
-    const info = document.createElement('div');
-    info.className = 'reproductor__info';
-    const titulo = document.createElement('h2');
-    titulo.className = 'reproductor__titulo';
-    titulo.textContent = extra.titulo;
-    info.appendChild(titulo);
+    const colSesiones = document.createElement('div');
+    colSesiones.className = 'semana-detalle__sesiones';
+    detalle.appendChild(colSesiones);
 
-    if (extra.fecha) {
-      const fecha = document.createElement('p');
-      fecha.className = 'reproductor__fecha';
-      fecha.textContent = extra.fecha;
-      info.appendChild(fecha);
+    renderReproductor(colVideo, extra.grabaciones, indiceActivo, null);
+
+    function pintarSelector() {
+      colSesiones.innerHTML = '';
+      extra.grabaciones.forEach(function (sesion, indice) {
+        colSesiones.appendChild(
+          crearTarjetaSesion(sesion, indice, indice === indiceActivo, function (i) {
+            indiceActivo = i;
+            renderReproductor(colVideo, extra.grabaciones, indiceActivo, null);
+            pintarSelector();
+          }, null)
+        );
+      });
     }
-    if (extra.descripcion) {
-      const desc = document.createElement('p');
-      desc.className = 'reproductor__descripcion';
-      desc.textContent = extra.descripcion;
-      info.appendChild(desc);
-    }
-    detalle.appendChild(info);
+    pintarSelector();
   }
 
   function render() {

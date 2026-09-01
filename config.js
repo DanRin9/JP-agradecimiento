@@ -61,9 +61,11 @@ const CONFIG = {
   /* --------------------------------------------------------------------------
      GRABACIONES 2026 (/grabaciones-2026)
      Archivo de las 12 sesiones en vivo del programa "De Cero a Tactical
-     Investor" (4 semanas x 3 sesiones). Cada `youtubeId: null` es una sesión
-     todavía sin grabar/subir: se muestra como "Próximamente" en vez de
-     ocultarse, para que el alumno vea que faltan y cuántas.
+     Investor" (4 semanas x 3 sesiones), más el bloque `extra` de sesiones de
+     apoyo (no ligadas a ninguna semana, mismo shape que `semana.grabaciones`).
+     Cada `youtubeId: null` es una sesión todavía sin grabar/subir: se muestra
+     como "Próximamente" en vez de ocultarse, para que el alumno vea que
+     faltan y cuántas.
      -------------------------------------------------------------------------- */
   grabaciones: {
     semanas: [
@@ -121,15 +123,25 @@ const CONFIG = {
       { numero: 4, tema: 'Operar en vivo y cierre', disponible: false, grabaciones: [] },
     ],
 
-    // Video de apoyo, no ligado a una semana puntual. Vive como su propio
+    // Videos de apoyo, no ligados a una semana puntual. Viven como un solo
     // componente en la vista principal ("Sesiones extra"), no dentro de
-    // ninguna semana. Si algún día hay más de uno, esto pasa a array.
+    // ninguna semana; adentro puede haber más de uno.
     extra: {
       tema: 'Ayuda e introducción a conceptos',
-      titulo: 'Sesión extra de apoyo',
-      fecha: null,
-      youtubeId: 'xcnv3aU1P24',
-      descripcion: 'Un tutorial completo de configuración de tu cuenta en Exness, más un repaso de conceptos financieros clave y las dudas más comunes del programa, resuelto por el equipo técnico de JP.',
+      grabaciones: [
+        {
+          titulo: 'Sesión extra de apoyo',
+          fecha: null,
+          youtubeId: 'xcnv3aU1P24',
+          descripcion: 'Un tutorial completo de configuración de tu cuenta en Exness, más un repaso de conceptos financieros clave y las dudas más comunes del programa, resuelto por el equipo técnico de JP.',
+        },
+        {
+          titulo: null,
+          fecha: null,
+          youtubeId: 'o6gmJaXZJXA',
+          descripcion: '',
+        },
+      ],
     },
   },
 
