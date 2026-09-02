@@ -119,7 +119,31 @@ const CONFIG = {
           },
         ],
       },
-      { numero: 3, tema: 'Construir y ejecutar', disponible: false, grabaciones: [] },
+      {
+        numero: 3,
+        tema: 'Construir y ejecutar',
+        disponible: true,
+        grabaciones: [
+          {
+            titulo: null,
+            fecha: '1 de septiembre',
+            youtubeId: 'zSstwMSLoEQ',
+            descripcion: '',
+          },
+          {
+            titulo: null,
+            fecha: null,
+            youtubeId: null,
+            descripcion: '',
+          },
+          {
+            titulo: null,
+            fecha: null,
+            youtubeId: null,
+            descripcion: '',
+          },
+        ],
+      },
       { numero: 4, tema: 'Operar en vivo y cierre', disponible: false, grabaciones: [] },
     ],
 
