@@ -127,7 +127,7 @@ const CONFIG = {
           {
             titulo: null,
             fecha: '1 de septiembre',
-            youtubeId: 'zSstwMSLoEQ',
+            youtubeId: '1X7JJNpUm6s',
             descripcion: '',
           },
           {
