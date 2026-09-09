@@ -144,7 +144,31 @@ const CONFIG = {
           },
         ],
       },
-      { numero: 4, tema: 'Operar en vivo y cierre', disponible: false, grabaciones: [] },
+      {
+        numero: 4,
+        tema: 'Operar en vivo y cierre',
+        disponible: true,
+        grabaciones: [
+          {
+            titulo: null,
+            fecha: '8 de septiembre',
+            youtubeId: '2RqYwA8J3Ho',
+            descripcion: '',
+          },
+          {
+            titulo: null,
+            fecha: null,
+            youtubeId: null,
+            descripcion: '',
+          },
+          {
+            titulo: null,
+            fecha: null,
+            youtubeId: null,
+            descripcion: '',
+          },
+        ],
+      },
     ],
 
     // Videos de apoyo, no ligados a una semana puntual. Viven como un solo
