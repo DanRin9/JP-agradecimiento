@@ -61,8 +61,9 @@ const CONFIG = {
   /* --------------------------------------------------------------------------
      GRABACIONES 2026 (/grabaciones-2026)
      Archivo de las 12 sesiones en vivo del programa "De Cero a Tactical
-     Investor" (4 semanas x 3 sesiones), más el bloque `extra` de sesiones de
-     apoyo (no ligadas a ninguna semana, mismo shape que `semana.grabaciones`).
+     Investor" (4 semanas x 3 sesiones), más el array `categorias` (sesiones
+     de apoyo, operación en vivo del mercado, etc: no ligadas a ninguna
+     semana, mismo shape que `semana.grabaciones`).
      Cada `youtubeId: null` es una sesión todavía sin grabar/subir: se muestra
      como "Próximamente" en vez de ocultarse, para que el alumno vea que
      faltan y cuántas.
@@ -171,32 +172,52 @@ const CONFIG = {
       },
     ],
 
-    // Videos de apoyo, no ligados a una semana puntual. Viven como un solo
-    // componente en la vista principal ("Sesiones extra"), no dentro de
-    // ninguna semana; adentro puede haber más de uno.
-    extra: {
-      tema: 'Ayuda e introducción a conceptos',
-      grabaciones: [
-        {
-          titulo: 'Sesión extra de apoyo',
-          fecha: null,
-          youtubeId: 'xcnv3aU1P24',
-          descripcion: 'Un tutorial completo de configuración de tu cuenta en Exness, más un repaso de conceptos financieros clave y las dudas más comunes del programa, resuelto por el equipo técnico de JP.',
-        },
-        {
-          titulo: null,
-          fecha: null,
-          youtubeId: 'o6gmJaXZJXA',
-          descripcion: '',
-        },
-        {
-          titulo: null,
-          fecha: null,
-          youtubeId: 'SkkhNj9--0s',
-          descripcion: '',
-        },
-      ],
-    },
+    // Categorías de sesiones que no pertenecen a una semana puntual del
+    // programa (apoyo, operación en vivo del mercado, etc). Mismo shape que
+    // semana.grabaciones. Cada una es una tarjeta más en la vista principal,
+    // al mismo nivel que Semana 1-4, y su detalle reusa el layout de dos
+    // columnas. `clave` arma el hash de su URL (#<clave>); `etiqueta` es el
+    // texto fijo de la tarjeta y del detalle; `tema` es el subtítulo.
+    categorias: [
+      {
+        clave: 'extra',
+        etiqueta: 'Sesiones extra',
+        tema: 'Ayuda e introducción a conceptos',
+        grabaciones: [
+          {
+            titulo: 'Sesión extra de apoyo',
+            fecha: null,
+            youtubeId: 'xcnv3aU1P24',
+            descripcion: 'Un tutorial completo de configuración de tu cuenta en Exness, más un repaso de conceptos financieros clave y las dudas más comunes del programa, resuelto por el equipo técnico de JP.',
+          },
+          {
+            titulo: null,
+            fecha: null,
+            youtubeId: 'o6gmJaXZJXA',
+            descripcion: '',
+          },
+          {
+            titulo: null,
+            fecha: null,
+            youtubeId: 'SkkhNj9--0s',
+            descripcion: '',
+          },
+        ],
+      },
+      {
+        clave: 'operacion-vivo',
+        etiqueta: 'Sesiones de Operación en Vivo',
+        tema: 'Operación de la estrategia en tiempo real',
+        grabaciones: [
+          {
+            titulo: null,
+            fecha: '11 de septiembre, 7:00 a. m.',
+            youtubeId: 'sYg31YPAOIk',
+            descripcion: '',
+          },
+        ],
+      },
+    ],
   },
 
   /* --------------------------------------------------------------------------

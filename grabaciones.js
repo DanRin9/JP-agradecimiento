@@ -77,19 +77,19 @@
     return el;
   }
 
-  function crearTarjetaExtra(extra) {
+  function crearTarjetaCategoria(categoria) {
     const el = document.createElement('a');
     el.className = 'btn btn--links btn--extra';
-    el.href = '#extra';
+    el.href = '#' + categoria.clave;
 
     const etiqueta = document.createElement('span');
     etiqueta.className = 'extra__etiqueta';
-    etiqueta.textContent = 'Sesiones extra';
+    etiqueta.textContent = categoria.etiqueta;
     el.appendChild(etiqueta);
 
     const tema = document.createElement('span');
     tema.className = 'extra__tema';
-    tema.textContent = extra.tema;
+    tema.textContent = categoria.tema;
     el.appendChild(tema);
 
     const flecha = document.createElement('span');
@@ -120,9 +120,9 @@
     });
     cont.appendChild(grid);
 
-    if (cfg.grabaciones.extra) {
-      cont.appendChild(crearTarjetaExtra(cfg.grabaciones.extra));
-    }
+    cfg.grabaciones.categorias.forEach(function (categoria) {
+      cont.appendChild(crearTarjetaCategoria(categoria));
+    });
   }
 
   function crearTarjetaSesion(sesion, indice, activa, onSelect, contexto) {
@@ -309,9 +309,9 @@
     pintarSelector();
   }
 
-  function renderExtra(cfg, cont) {
-    const extra = cfg.grabaciones.extra;
-    if (!extra) {
+  function renderCategoria(cfg, cont, clave) {
+    const categoria = cfg.grabaciones.categorias.find(function (c) { return c.clave === clave; });
+    if (!categoria) {
       location.hash = '';
       return;
     }
@@ -330,10 +330,10 @@
     const hero = document.createElement('section');
     hero.className = 'links-hero links-hero--semana';
     hero.innerHTML =
-      '<h1 class="links-titulo">Sesiones extra: <em>' + extra.tema + '</em></h1>';
+      '<h1 class="links-titulo">' + categoria.etiqueta + ': <em>' + categoria.tema + '</em></h1>';
     cont.appendChild(hero);
 
-    let indiceActivo = extra.grabaciones.findIndex(function (g) { return !esSesionPendiente(g); });
+    let indiceActivo = categoria.grabaciones.findIndex(function (g) { return !esSesionPendiente(g); });
     if (indiceActivo === -1) indiceActivo = 0;
 
     const detalle = document.createElement('div');
@@ -348,15 +348,15 @@
     colSesiones.className = 'semana-detalle__sesiones';
     detalle.appendChild(colSesiones);
 
-    renderReproductor(colVideo, extra.grabaciones, indiceActivo, null);
+    renderReproductor(colVideo, categoria.grabaciones, indiceActivo, null);
 
     function pintarSelector() {
       colSesiones.innerHTML = '';
-      extra.grabaciones.forEach(function (sesion, indice) {
+      categoria.grabaciones.forEach(function (sesion, indice) {
         colSesiones.appendChild(
           crearTarjetaSesion(sesion, indice, indice === indiceActivo, function (i) {
             indiceActivo = i;
-            renderReproductor(colVideo, extra.grabaciones, indiceActivo, null);
+            renderReproductor(colVideo, categoria.grabaciones, indiceActivo, null);
             pintarSelector();
           }, null)
         );
@@ -370,9 +370,10 @@
     const cont = document.getElementById('vista');
     const hash = location.hash.replace('#', '');
     const match = hash.match(/^semana-(\d+)$/);
+    const categoria = cfg.grabaciones.categorias.find(function (c) { return c.clave === hash; });
 
-    if (hash === 'extra') {
-      renderExtra(cfg, cont);
+    if (categoria) {
+      renderCategoria(cfg, cont, hash);
     } else if (match) {
       renderSemana(cfg, cont, Number(match[1]));
     } else {
