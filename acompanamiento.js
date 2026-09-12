@@ -325,15 +325,20 @@
   /* --- Membresía: mayor peso visual de la página -------------------------- */
   function crearBloqueMembresia(bloque, cfg) {
     const cont = el('section', 'acomp-membresia');
-    cont.appendChild(el('h2', 'acomp-membresia__titulo', bloque.titulo));
-    cont.appendChild(el('p', 'acomp-membresia__descripcion', bloque.descripcion));
+
+    const texto = el('div', 'acomp-membresia__texto');
+    texto.appendChild(el('h2', 'acomp-membresia__titulo', bloque.titulo));
+    texto.appendChild(el('p', 'acomp-membresia__descripcion', bloque.descripcion));
+    cont.appendChild(texto);
+
+    const accion = el('div', 'acomp-membresia__accion');
 
     const hotmart = cfg.hotmart;
     let href = cfg.mesAcompanamiento.links.membresia;
     if (!href && hotmart.enabled) href = hotmart.url;
     const pendiente = !hotmart.enabled || estaPendiente(href);
 
-    cont.appendChild(crearBoton({
+    accion.appendChild(crearBoton({
       clases: 'btn--hotmart',
       icono: ICONOS.hotmart,
       texto: bloque.textoBoton,
@@ -347,7 +352,9 @@
     const strong = document.createElement('strong');
     strong.textContent = bloque.notaPagoDestacada;
     aviso.appendChild(strong);
-    cont.appendChild(aviso);
+    accion.appendChild(aviso);
+
+    cont.appendChild(accion);
 
     return cont;
   }

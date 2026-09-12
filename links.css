@@ -1052,6 +1052,24 @@
   text-align: left;
 }
 
+/* Escritorio: en vez de todo apilado y centrado en el medio de una franja
+   ancha, el texto queda a la izquierda y la acción (botón + nota) a la
+   derecha, usando el ancho completo de la sección. */
+@media (min-width: 900px) {
+  .acomp-membresia {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    text-align: left;
+    padding: 32px 40px;
+  }
+  .acomp-membresia__texto { flex: 1 1 auto; }
+  .acomp-membresia__descripcion { margin: 0; max-width: 42ch; }
+  .acomp-membresia__accion { flex: 0 0 380px; }
+  .acomp-membresia .btn { max-width: none; width: 100%; margin: 0; }
+  .acomp-membresia__aviso { max-width: none; margin: 14px 0 0; }
+}
+
 @media (min-width: 640px) {
   .acomp-office__fila { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
   .acomp-office__fila + .acomp-office__fila { margin-top: 12px; padding-top: 12px; }
