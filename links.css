@@ -747,11 +747,12 @@
    contacto directo y la membresía), así que a propósito NO comparten borde,
    radio ni sombra entre sí.
 
-   MOBILE-FIRST DE VERDAD: al revés que el resto de .pagina-links (que es
-   desktop-first, el tráfico llega por WhatsApp al celular. Las reglas base
-   son mobile; `min-width` agranda para desktop, no al revés.
+   Responsive de verdad en ambas direcciones: las reglas base son mobile
+   (`min-width` agranda para desktop), pero a diferencia de la primera versión
+   el contenedor y los bloques secundarios SÍ aprovechan el ancho de escritorio
+   en vez de quedarse en una columna angosta estirada.
    ============================================================================ */
-.pagina-acompanamiento .links-envoltorio { max-width: 720px; }
+.pagina-acompanamiento .links-envoltorio { max-width: 1040px; }
 
 /* --- Nota de huso horario: se dice una sola vez acá, no en cada tarjeta --- */
 .acomp-nota-zona {
@@ -771,39 +772,51 @@
 }
 .acomp-proxima-global strong { color: var(--amarillo); font-weight: 700; }
 
-/* --- Resumen "¿Qué pasa esta semana?": caja de acento izquierdo, no una
-   tarjeta perimetral, para no competir visualmente con las tarjetas de sesión
-   de más abajo. */
-.acomp-resumen {
+/* --- Cronograma del mes: imagen ya diseñada aparte, descargable. Apilado en
+   mobile (texto arriba, miniatura abajo), lado a lado en desktop. */
+.acomp-cronograma {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   margin-bottom: 22px;
-  padding: 16px 18px;
-  border-left: 3px solid var(--amarillo);
-  border-radius: 0 var(--radio) var(--radio) 0;
+  padding: 20px;
+  border: 1px solid var(--amarillo-linea);
+  border-radius: var(--radio);
   background: var(--superficie);
 }
-.acomp-resumen__titulo {
-  margin: 0 0 8px;
-  font-size: 11px;
+.acomp-cronograma__titulo {
+  font-family: 'Raleway', sans-serif;
+  font-size: 19px;
   font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--texto-2);
+  margin: 0 0 6px;
 }
-.acomp-resumen__lista { margin: 0; padding: 0; list-style: none; }
-.acomp-resumen__item {
-  display: flex;
-  gap: 8px;
+.acomp-cronograma__descripcion {
   font-size: 14px;
-  padding: 4px 0;
+  color: var(--texto-2);
+  margin: 0 0 14px;
 }
-.acomp-resumen__item + .acomp-resumen__item { border-top: 1px solid var(--borde); }
-.acomp-resumen__item time { color: var(--amarillo); font-weight: 600; flex: 0 0 auto; }
-.acomp-resumen__vacio { margin: 0; font-size: 14px; color: var(--texto-2); }
+.acomp-cronograma__boton {
+  border-color: var(--amarillo-linea);
+  color: var(--amarillo);
+  max-width: 260px;
+}
+.acomp-cronograma__boton:hover {
+  background: rgba(255, 198, 0, 0.08);
+  border-color: var(--amarillo);
+}
+.acomp-cronograma__miniatura {
+  display: block;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--borde);
+  line-height: 0;
+}
+.acomp-cronograma__miniatura img { width: 100%; height: auto; display: block; transition: opacity 0.2s ease; }
+.acomp-cronograma__miniatura:hover img { opacity: 0.85; }
 
-/* --- Caja de aviso genérica: acento izquierdo, reusada por la nota de BitGet
-   dentro de Operación en Vivo y por la nota "de parte de Juan Pablo" de
-   Andrés. Misma estructura que .acomp-resumen pero sin lista, para un solo
-   párrafo. */
+/* --- Caja de aviso genérica: acento izquierdo, un solo párrafo. Reusada por
+   la nota de BitGet dentro de Operación en Vivo y por la nota "de parte de
+   Juan Pablo" de Andrés. */
 .acomp-aviso {
   margin-top: 12px;
   padding: 10px 14px;
@@ -959,12 +972,24 @@
 }
 .acomp-office__horario { font-size: 13px; color: var(--texto-2); margin: 0 0 10px; }
 
+/* --- IB y Andrés: dos bloques secundarios, uno debajo del otro en mobile,
+   lado a lado (misma altura) en desktop, en vez de dos franjas de ancho
+   completo con poco contenido cada una. */
+.acomp-fila-secundaria {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+@media (min-width: 800px) {
+  .acomp-fila-secundaria { grid-template-columns: 1fr 1fr; }
+}
+
 /* --- Sesión única (Órdenes IB): borde punteado y radio más anguloso, para
    que se lea de entrada como algo que no se repite. Sin lista de fechas (es
    una sola) y sin marcador de "próxima" (no aplica a una sesión única). */
 .acomp-card--unica {
   position: relative;
-  margin-bottom: 16px;
   padding: 20px;
   border: 1px dashed var(--borde);
   border-radius: 6px;
@@ -989,7 +1014,6 @@
 /* --- Andrés: contacto directo, no una sesión. Deliberadamente sin acento
    amarillo, para que se lea de inmediato como algo distinto. */
 .acomp-contacto {
-  margin-bottom: 16px;
   padding: 20px;
   border-radius: var(--radio);
   background: var(--superficie-2);
@@ -1036,4 +1060,28 @@
   .acomp-office__info { flex: 1 1 auto; }
   .acomp-office__con, .acomp-office__horario { margin-bottom: 2px; }
   .btn--compacto { flex: 0 0 auto; }
+}
+
+/* --- Escritorio: el contenedor ya es más ancho (1040px), así que las
+   tarjetas respiran más y Office Hours pasa de dos filas apiladas a dos
+   columnas lado a lado (Felipe | Esteban), con un divisor vertical en vez del
+   borde superior que usa en mobile/tablet. */
+@media (min-width: 900px) {
+  .acomp-grid { gap: 24px; }
+  .acomp-card { padding: 26px 28px; }
+
+  .acomp-cronograma { flex-direction: row; align-items: center; gap: 28px; padding: 22px 26px; }
+  .acomp-cronograma__texto { flex: 1 1 auto; }
+  .acomp-cronograma__miniatura { flex: 0 0 320px; }
+
+  .acomp-office { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 32px; }
+  .acomp-office__titulo { grid-column: 1 / -1; }
+  .acomp-office__fila { display: block; }
+  .acomp-office__fila + .acomp-office__fila {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+    border-left: 1px solid var(--borde);
+    padding-left: 28px;
+  }
 }

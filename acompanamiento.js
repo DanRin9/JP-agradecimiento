@@ -116,22 +116,6 @@
     return proxima;
   }
 
-  // Ventana móvil de 7 días desde el instante actual, no semana calendario
-  // lunes-domingo: así responde "qué viene" sin importar qué día se abra el
-  // link, en vez de mostrar casi nada si alguien entra un sábado.
-  function calcularResumenSemana(ocurrencias, ahora) {
-    const limite = new Date(ahora.getTime() + 7 * 24 * 60 * 60 * 1000);
-    const resultado = [];
-    ocurrencias.forEach(function (o) {
-      const instante = fechaHoraUTC(o.fecha, o.horaInicio);
-      if (instante >= ahora && instante <= limite) {
-        resultado.push({ etiqueta: o.etiqueta, fecha: o.fecha, horaInicio: o.horaInicio, instante: instante });
-      }
-    });
-    resultado.sort(function (a, b) { return a.instante - b.instante; });
-    return resultado;
-  }
-
   // Estado de cada fecha dentro de una lista ordenada: la primera que todavía
   // no termina se marca "proxima", las que ya terminaron se marcan "pasada".
   function estadosDeFechas(fechas, horaInicio, duracionMinutos, ahora) {
@@ -374,28 +358,44 @@
     return cont;
   }
 
-  /* --- Resumen "¿Qué pasa esta semana?" ----------------------------------- */
-  function crearResumenSemana(resumen) {
-    const cont = el('section', 'acomp-resumen');
-    cont.appendChild(el('h2', 'acomp-resumen__titulo', '¿Qué pasa esta semana?'));
+  /* --- Cronograma del mes: imagen ya diseñada aparte, descargable --------- */
+  function crearBloqueCronograma() {
+    const cont = el('section', 'acomp-cronograma');
 
-    if (!resumen.length) {
-      cont.appendChild(el('p', 'acomp-resumen__vacio', 'No hay sesiones programadas en los próximos 7 días.'));
-      return cont;
-    }
+    const texto = el('div', 'acomp-cronograma__texto');
+    texto.appendChild(el('h2', 'acomp-cronograma__titulo', 'Cronograma del mes'));
+    texto.appendChild(el('p', 'acomp-cronograma__descripcion',
+      'Tu semana tipo y todas las fechas del mes, en una sola imagen.'));
 
-    const lista = el('ul', 'acomp-resumen__lista');
-    resumen.forEach(function (o) {
-      const item = document.createElement('li');
-      item.className = 'acomp-resumen__item';
-      const time = document.createElement('time');
-      time.textContent = fechaCorta(o.fecha) + ', ' + horaLegible(o.horaInicio);
-      time.setAttribute('datetime', o.fecha);
-      item.appendChild(time);
-      item.appendChild(document.createTextNode(o.etiqueta));
-      lista.appendChild(item);
-    });
-    cont.appendChild(lista);
+    const boton = document.createElement('a');
+    boton.className = 'btn btn--compacto acomp-cronograma__boton';
+    boton.href = '/assets/cronograma-mes-acompanamiento.png';
+    boton.download = 'cronograma-mes-acompanamiento.png';
+    const ico = document.createElement('span');
+    ico.className = 'btn__icono';
+    ico.innerHTML = ICONOS.descarga;
+    boton.appendChild(ico);
+    const txt = document.createElement('span');
+    txt.className = 'btn__texto';
+    txt.textContent = 'Descargar cronograma';
+    boton.appendChild(txt);
+    texto.appendChild(boton);
+
+    cont.appendChild(texto);
+
+    const miniatura = document.createElement('a');
+    miniatura.className = 'acomp-cronograma__miniatura';
+    miniatura.href = '/assets/cronograma-mes-acompanamiento.png';
+    miniatura.target = '_blank';
+    miniatura.rel = 'noopener noreferrer';
+    const img = document.createElement('img');
+    img.src = '/assets/cronograma-mes-acompanamiento.png';
+    img.alt = 'Cronograma del mes de acompañamiento';
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    miniatura.appendChild(img);
+    cont.appendChild(miniatura);
+
     return cont;
   }
 
@@ -408,7 +408,6 @@
     const ahora = new Date();
     const ocurrencias = generarOcurrencias(cfg);
     const proximaGlobal = calcularProximaGlobal(ocurrencias, ahora);
-    const resumenSemana = calcularResumenSemana(ocurrencias, ahora);
 
     /* --- Hero --- */
     const hero = el('section', 'links-hero');
@@ -445,8 +444,8 @@
     cont.appendChild(hero);
     cont.appendChild(el('hr', 'divisor divisor--brillo'));
 
-    /* --- Resumen semanal --- */
-    cont.appendChild(crearResumenSemana(resumenSemana));
+    /* --- Cronograma descargable --- */
+    cont.appendChild(crearBloqueCronograma());
 
     /* --- Sesiones del mes --- */
     cont.appendChild(el('h2', 'acomp-eyebrow', 'Sesiones del mes'));
@@ -457,10 +456,14 @@
     cont.appendChild(grid);
 
     cont.appendChild(crearBloqueOfficeHours(ma.bloques.officeHours, cfg, ahora));
-    cont.appendChild(crearTarjetaUnica(ma.bloques.ordenesIB, cfg));
 
-    /* --- Andrés y Membresía --- */
-    cont.appendChild(crearBloqueContacto(ma.asesoriaTributaria, cfg));
+    /* --- IB y Andrés: bloques secundarios, lado a lado en desktop --------- */
+    const filaSecundaria = el('div', 'acomp-fila-secundaria');
+    filaSecundaria.appendChild(crearTarjetaUnica(ma.bloques.ordenesIB, cfg));
+    filaSecundaria.appendChild(crearBloqueContacto(ma.asesoriaTributaria, cfg));
+    cont.appendChild(filaSecundaria);
+
+    /* --- Membresía --- */
     cont.appendChild(crearBloqueMembresia(ma.membresia, cfg));
 
     pintarReconocimientos(cfg, document.getElementById('reconocimientos'));
