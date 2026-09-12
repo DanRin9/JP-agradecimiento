@@ -38,19 +38,65 @@
       text-decoration: none;
     }
     a:hover { border-color: #FFC600; color: #FFC600; }
+    #gate-form:not([hidden]) {
+      display: flex;
+      gap: 8px;
+    }
+    #gate-clave {
+      padding: 20px 16px;
+      border: 1px solid #333;
+      border-radius: 12px;
+      background: #151515;
+      color: #F5F5F5;
+      font-size: 18px;
+    }
+    #gate-clave:focus { outline: none; border-color: #FFC600; }
+    #gate-form button {
+      padding: 20px 24px;
+      border: 1px solid #333;
+      border-radius: 12px;
+      background: #151515;
+      color: #F5F5F5;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    #gate-form button:hover { border-color: #FFC600; color: #FFC600; }
+    #gate-error { color: #E5484D; font-size: 14px; margin: 0; }
   </style>
 </head>
 <body>
   <p>Índice de prueba</p>
-  <a href="/basica">Básica</a>
-  <a href="/premium">Premium</a>
-  <a href="/links-comunidad">Links comunidad PC (selector)</a>
-  <a href="/links-comunidad/basica">↳ Links Básica</a>
-  <a href="/links-comunidad/premium">↳ Links Premium</a>
-  <a href="/estrategia-tactical">Estrategia Tactical</a>
-  <a href="/video-intro-tactical">De Cero a Tactical Investor (videos)</a>
-  <a href="/grabaciones-2026">Grabaciones 2026 (sesiones en vivo)</a>
-  <a href="/cronograma1">Calendario Mes 1</a>
-  <a href="/cronograma2">Mes 2 — Acompañamiento</a>
+  <form id="gate-form">
+    <input type="password" id="gate-clave" placeholder="Clave" autocomplete="off">
+    <button type="submit">Entrar</button>
+  </form>
+  <p id="gate-error" hidden>Clave incorrecta</p>
+  <div id="gate-botones" hidden>
+    <a href="/basica">Básica</a>
+    <a href="/premium">Premium</a>
+    <a href="/links-comunidad">Links comunidad PC (selector)</a>
+    <a href="/links-comunidad/basica">↳ Links Básica</a>
+    <a href="/links-comunidad/premium">↳ Links Premium</a>
+    <a href="/estrategia-tactical">Estrategia Tactical</a>
+    <a href="/video-intro-tactical">De Cero a Tactical Investor (videos)</a>
+    <a href="/grabaciones-2026">Grabaciones 2026 (sesiones en vivo)</a>
+    <a href="/cronograma1">Calendario Mes 1</a>
+    <a href="/cronograma2">Mes 2, Acompañamiento</a>
+  </div>
+  <script>
+    const CLAVE = 'JP2026';
+    document.getElementById('gate-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const valor = document.getElementById('gate-clave').value;
+      if (valor === CLAVE) {
+        document.getElementById('gate-form').hidden = true;
+        document.getElementById('gate-error').hidden = true;
+        document.getElementById('gate-botones').hidden = false;
+      } else {
+        document.getElementById('gate-error').hidden = false;
+      }
+    });
+  </script>
 </body>
 </html>
