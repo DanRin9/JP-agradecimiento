@@ -233,12 +233,12 @@ const CONFIG = {
   mesAcompanamiento: {
     // >>> ACTUALIZAR ACÁ cuando lleguen los links <<<
     links: {
-      operacionVivo: '',
-      recuentoSemanal: '',
-      officeHoursFelipe: '',
-      officeHoursEsteban: '',
-      ordenesIB: '',
-      membresia: '',              // si es distinto del acceso de Hotmart, poner el link acá
+      operacionVivo: 'https://us06web.zoom.us/j/89901146503?pwd=rXRHf8kd1IwqfWTIV8k7OHOaEk2jeD.1',
+      recuentoSemanal: 'https://www.youtube.com/@JPTacticalTrading',
+      officeHoursFelipe: 'https://meet.google.com/tfn-trsu-pvs?authuser=1&hs=122',
+      officeHoursEsteban: 'https://meet.google.com/nyn-czmi-ttw?authuser=1&hs=122',
+      ordenesIB: 'https://us06web.zoom.us/j/83891369495?pwd=sZqHllwrvale2sCN1I3hdblwUMHVey.1',
+      membresia: 'https://pay.hotmart.com/S106746711K?off=2a9f79ae',
       andresCorreo: '',           // dirección pelada, sin "mailto:"
       andresInstagram: '',
       andresWhatsapp: '',         // solo dígitos con indicativo, ej. 573001234567

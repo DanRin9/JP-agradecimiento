@@ -165,12 +165,14 @@
     return p;
   }
 
-  function crearBotonUnirme(cfg, linkKey) {
+  // recuentoSemanal se ve en un canal de YouTube, no en una videollamada: el
+  // botón dice "Ver en vivo" ahí en vez de "Unirme".
+  function crearBotonUnirme(cfg, linkKey, texto) {
     const href = cfg.mesAcompanamiento.links[linkKey];
     return crearBoton({
       clases: 'btn--sistema btn--compacto',
       icono: ICONOS.video,
-      texto: 'Unirme',
+      texto: texto || 'Unirme',
       href: href,
       pendiente: estaPendiente(href),
       etiquetaPendiente: 'Disponible pronto',
@@ -213,7 +215,7 @@
     }
 
     const acciones = el('div', 'acomp-card__acciones');
-    acciones.appendChild(crearBotonUnirme(cfg, bloque.linkKey));
+    acciones.appendChild(crearBotonUnirme(cfg, bloque.linkKey, clave === 'recuento' ? 'Ver en vivo' : null));
     acciones.appendChild(crearBotonCalendario({
       uidBase: 'acomp-' + clave,
       titulo: bloque.titulo,
