@@ -329,7 +329,7 @@ const CONFIG = {
     membresia: {
       titulo: 'Acceso a la Membresía por un Mes',
       descripcion: 'Tu acceso a la membresía premium queda incluido durante todo el mes de acompañamiento.',
-      textoBoton: 'Ingresar a la Zona de Miembros',
+      textoBoton: 'Obtén tu mes gratis de membresía',
     },
   },
 
