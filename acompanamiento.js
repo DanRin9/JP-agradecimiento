@@ -105,17 +105,6 @@
     return ocurrencias;
   }
 
-  function calcularProximaGlobal(ocurrencias, ahora) {
-    let proxima = null;
-    ocurrencias.forEach(function (o) {
-      const instante = fechaHoraUTC(o.fecha, o.horaInicio);
-      if (instante > ahora && (!proxima || instante < proxima.instante)) {
-        proxima = { etiqueta: o.etiqueta, fecha: o.fecha, horaInicio: o.horaInicio, instante: instante };
-      }
-    });
-    return proxima;
-  }
-
   // Estado de cada fecha dentro de una lista: las que ya terminaron se marcan
   // "pasada", el resto se ve exactamente igual (ninguna fecha se resalta como
   // "próxima": eso ya lo dice el badge de texto del hero, no hace falta que
@@ -405,7 +394,6 @@
 
     const ahora = new Date();
     const ocurrencias = generarOcurrencias(cfg);
-    const proximaGlobal = calcularProximaGlobal(ocurrencias, ahora);
 
     /* --- Hero --- */
     const hero = el('section', 'links-hero');
@@ -429,15 +417,6 @@
     ));
 
     hero.appendChild(el('p', 'acomp-nota-zona', 'Todos los horarios están en hora Colombia (UTC-5).'));
-
-    if (proximaGlobal) {
-      const p = el('p', 'acomp-proxima-global');
-      p.appendChild(document.createTextNode('Tu próxima sesión: '));
-      const strong = document.createElement('strong');
-      strong.textContent = fechaLarga(proximaGlobal.fecha) + ', ' + horaLegible(proximaGlobal.horaInicio) + ', ' + proximaGlobal.etiqueta;
-      p.appendChild(strong);
-      hero.appendChild(p);
-    }
 
     cont.appendChild(hero);
     cont.appendChild(el('hr', 'divisor divisor--brillo'));
