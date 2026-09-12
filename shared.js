@@ -25,6 +25,12 @@
 
     // Hoja con esquina doblada: el PDF de introducción del programa.
     documento: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6H6Zm0 2h7v5a1 1 0 0 0 1 1h5v11H6V4Zm9 1.41L17.59 8H15V5.41Z"/></svg>',
+
+    // Sobre: contacto por correo.
+    correo: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm0 2v.01L12 12l8-5.99V6H4Zm16 2.24-7.4 5.55a1 1 0 0 1-1.2 0L4 8.24V18h16V8.24Z"/></svg>',
+
+    // Cámara: contacto por Instagram (glifo simplificado, no el logo con marca).
+    instagram: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2h8a6 6 0 0 1 6 6v8a6 6 0 0 1-6 6H8a6 6 0 0 1-6-6V8a6 6 0 0 1 6-6Zm0 2a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V8a4 4 0 0 0-4-4H8Zm4 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11Zm0 2a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7ZM17.75 6.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Z"/></svg>',
   };
 
   /* --- Detección de placeholders sin resolver -----------------------------
@@ -201,6 +207,65 @@
     setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
   }
 
+  /* ==========================================================================
+     GENERADOR DE .ICS GENÉRICO: un VEVENT por cada fecha concreta de `fechas`,
+     en vez de un RRULE abierto. Pensado para series con una lista de fechas ya
+     dada (no "para siempre"), donde esa misma lista ya es la fuente de verdad
+     que usa la UI para pintar chips y calcular la próxima sesión.
+     ========================================================================== */
+  function construirICSEvento(opts) {
+    const { uidBase, titulo, descripcion, ubicacion, fechas, horaInicio, duracionMinutos } = opts;
+    const ahora = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+
+    const lineas = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Tactical Trading//Mes de Acompañamiento//ES',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH',
+      'BEGIN:VTIMEZONE',
+      'TZID:America/Bogota',
+      'BEGIN:STANDARD',
+      'DTSTART:19700101T000000',
+      'TZOFFSETFROM:-0500',
+      'TZOFFSETTO:-0500',
+      'TZNAME:-05',
+      'END:STANDARD',
+      'END:VTIMEZONE',
+    ];
+
+    fechas.forEach(function (fechaISO) {
+      const inicio = fechaISO.replace(/-/g, '') + 'T' + horaInicio.replace(':', '') + '00';
+      const fin = sumarMinutos(fechaISO, horaInicio, duracionMinutos);
+      lineas.push(
+        'BEGIN:VEVENT',
+        'UID:' + uidBase + '-' + fechaISO + '@tacticaltrading',
+        'DTSTAMP:' + ahora,
+        'DTSTART;TZID=America/Bogota:' + inicio,
+        'DTEND;TZID=America/Bogota:' + fin,
+        'SUMMARY:' + escapar(titulo),
+        'DESCRIPTION:' + escapar(descripcion),
+        'LOCATION:' + escapar(ubicacion),
+        'END:VEVENT'
+      );
+    });
+
+    lineas.push('END:VCALENDAR');
+    return lineas.map(plegar).join('\r\n') + '\r\n';
+  }
+
+  function descargarICSEvento(opts, nombreArchivo) {
+    const blob = new Blob([construirICSEvento(opts)], { type: 'text/calendar;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = nombreArchivo;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
   /* --- Luz que sigue al cursor -------------------------------------------
      Se guarda como % sobre el propio botón, así el radial-gradient del ::before
      no necesita saber ni su tamaño ni su posición. */
@@ -233,6 +298,8 @@
     waLink: waLink,
     construirICS: construirICS,
     descargarICS: descargarICS,
+    construirICSEvento: construirICSEvento,
+    descargarICSEvento: descargarICSEvento,
     pintarReconocimientos: pintarReconocimientos,
     seguirCursor: seguirCursor,
   };

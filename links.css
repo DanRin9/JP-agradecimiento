@@ -740,3 +740,300 @@
   .btn--extra { flex-direction: column; align-items: flex-start; gap: 8px; }
   .extra__flecha { display: none; }
 }
+
+/* ============================================================================
+   /mes-de-acompanamiento: seis bloques de naturaleza distinta (dos tipos de
+   sesión recurrente, una franja de dos personas, una sesión única, un
+   contacto directo y la membresía), así que a propósito NO comparten borde,
+   radio ni sombra entre sí.
+
+   MOBILE-FIRST DE VERDAD: al revés que el resto de .pagina-links (que es
+   desktop-first, el tráfico llega por WhatsApp al celular. Las reglas base
+   son mobile; `min-width` agranda para desktop, no al revés.
+   ============================================================================ */
+.pagina-acompanamiento .links-envoltorio { max-width: 720px; }
+
+/* --- Nota de huso horario: se dice una sola vez acá, no en cada tarjeta --- */
+.acomp-nota-zona {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  color: var(--texto-2);
+}
+
+/* --- Badge de "próxima sesión", en el hero --------------------------------- */
+.acomp-proxima-global {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--texto-2);
+}
+.acomp-proxima-global strong { color: var(--amarillo); font-weight: 700; }
+
+/* --- Resumen "¿Qué pasa esta semana?": caja de acento izquierdo, no una
+   tarjeta perimetral, para no competir visualmente con las tarjetas de sesión
+   de más abajo. */
+.acomp-resumen {
+  margin-bottom: 22px;
+  padding: 16px 18px;
+  border-left: 3px solid var(--amarillo);
+  border-radius: 0 var(--radio) var(--radio) 0;
+  background: var(--superficie);
+}
+.acomp-resumen__titulo {
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--texto-2);
+}
+.acomp-resumen__lista { margin: 0; padding: 0; list-style: none; }
+.acomp-resumen__item {
+  display: flex;
+  gap: 8px;
+  font-size: 14px;
+  padding: 4px 0;
+}
+.acomp-resumen__item + .acomp-resumen__item { border-top: 1px solid var(--borde); }
+.acomp-resumen__item time { color: var(--amarillo); font-weight: 600; flex: 0 0 auto; }
+.acomp-resumen__vacio { margin: 0; font-size: 14px; color: var(--texto-2); }
+
+/* --- Caja de aviso genérica: acento izquierdo, reusada por la nota de BitGet
+   dentro de Operación en Vivo y por la nota "de parte de Juan Pablo" de
+   Andrés. Misma estructura que .acomp-resumen pero sin lista, para un solo
+   párrafo. */
+.acomp-aviso {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-left: 3px solid var(--amarillo);
+  border-radius: 0 8px 8px 0;
+  background: var(--superficie-2);
+  font-size: 13px;
+  color: var(--texto-2);
+}
+.acomp-aviso strong { color: var(--texto); font-weight: 600; }
+
+/* --- Eyebrow de sección: visible, no oculto, para dar jerarquía real sin
+   gritar (h2 de cada bloque mayor: "Sesiones del mes", etc). */
+.acomp-eyebrow {
+  margin: 0 0 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--texto-2);
+}
+
+/* --- Grilla de las dos tarjetas de sesión recurrente principal ------------- */
+.acomp-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+@media (min-width: 640px) {
+  .acomp-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.acomp-card {
+  padding: 20px;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: var(--superficie);
+}
+
+/* Operación en Vivo: la de mayor cadencia del mes, la única con acento y
+   sombra propia. */
+.acomp-card--vivo {
+  border-color: var(--amarillo-linea);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.acomp-card__con {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--amarillo);
+}
+.acomp-card--recuento .acomp-card__con { color: var(--texto-2); }
+
+.acomp-card__titulo {
+  font-family: 'Raleway', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+
+.acomp-card__horario {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: var(--texto);
+}
+.acomp-card__horario svg { width: 16px; height: 16px; flex: 0 0 auto; color: var(--texto-2); }
+
+.acomp-card__fechas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.acomp-fecha-chip {
+  padding: 4px 9px;
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  background: var(--superficie-2);
+  font-size: 12px;
+  color: var(--texto);
+  white-space: nowrap;
+}
+.acomp-fecha-chip--proxima {
+  border-color: var(--amarillo);
+  background: rgba(255, 198, 0, 0.08);
+  font-weight: 700;
+  color: var(--amarillo);
+}
+/* La atenuación va en borde/fondo (decorativos), nunca en el color del texto:
+   bajarle opacidad al texto rompería el contraste ya verificado del sitio. */
+.acomp-fecha-chip--pasada {
+  border-color: transparent;
+  background: transparent;
+  color: var(--texto-2);
+  text-decoration: line-through;
+}
+
+.acomp-card__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Botones de acción dentro de una tarjeta: más chicos que los btn estándar
+   del sitio (56px), pero sin bajar del piso táctil razonable. */
+.btn--compacto {
+  min-height: 44px;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  flex: 1 1 auto;
+  width: auto;
+}
+.btn--compacto .btn__icono { width: 17px; height: 17px; }
+
+/* --- Office Hours: franja de ancho completo con dos filas (Felipe/Esteban),
+   a propósito con una estructura distinta a .acomp-card (no es una tarjeta
+   de grid, es un bloque horizontal con dos entradas adentro). */
+.acomp-office {
+  margin-bottom: 16px;
+  padding: 18px 20px;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: var(--superficie);
+}
+.acomp-office__titulo {
+  font-family: 'Raleway', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  margin: 0 0 14px;
+}
+.acomp-office__fila + .acomp-office__fila {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--borde);
+}
+.acomp-office__con {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--texto);
+}
+.acomp-office__horario { font-size: 13px; color: var(--texto-2); margin: 0 0 10px; }
+
+/* --- Sesión única (Órdenes IB): borde punteado y radio más anguloso, para
+   que se lea de entrada como algo que no se repite. Sin lista de fechas (es
+   una sola) y sin marcador de "próxima" (no aplica a una sesión única). */
+.acomp-card--unica {
+  position: relative;
+  margin-bottom: 16px;
+  padding: 20px;
+  border: 1px dashed var(--borde);
+  border-radius: 6px;
+  background: var(--superficie);
+}
+.acomp-chip-unica {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--texto-2);
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  padding: 3px 9px;
+}
+.acomp-card--unica .acomp-card__titulo { max-width: 85%; }
+.acomp-card--unica .acomp-card__descripcion { font-size: 14px; color: var(--texto-2); margin: 0 0 16px; }
+
+/* --- Andrés: contacto directo, no una sesión. Deliberadamente sin acento
+   amarillo, para que se lea de inmediato como algo distinto. */
+.acomp-contacto {
+  margin-bottom: 16px;
+  padding: 20px;
+  border-radius: var(--radio);
+  background: var(--superficie-2);
+}
+.acomp-contacto__titulo {
+  font-family: 'Raleway', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+.acomp-contacto__descripcion { font-size: 14px; color: var(--texto-2); margin: 0 0 14px; }
+.acomp-contacto__acciones { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+
+/* --- Membresía: el bloque de mayor peso visual de la página. Reusa el
+   glow/degradé de .btn--hotmart en el CTA porque es, conceptualmente, la
+   misma acción (entrar a la Zona de Miembros). */
+.acomp-membresia {
+  margin-bottom: 8px;
+  padding: 26px 24px;
+  border: 1px solid var(--amarillo-linea);
+  border-radius: var(--radio);
+  background: rgba(255, 198, 0, 0.06);
+  box-shadow: var(--glow);
+  text-align: center;
+}
+.acomp-membresia__titulo {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: clamp(20px, 5vw, 26px);
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+.acomp-membresia__descripcion {
+  font-size: 14.5px;
+  color: var(--texto-2);
+  max-width: 46ch;
+  margin: 0 auto 20px;
+}
+.acomp-membresia .btn { max-width: 360px; margin: 0 auto; }
+
+@media (min-width: 640px) {
+  .acomp-office__fila { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .acomp-office__fila + .acomp-office__fila { margin-top: 12px; padding-top: 12px; }
+  .acomp-office__info { flex: 1 1 auto; }
+  .acomp-office__con, .acomp-office__horario { margin-bottom: 2px; }
+  .btn--compacto { flex: 0 0 auto; }
+}

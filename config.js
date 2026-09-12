@@ -221,6 +221,116 @@ const CONFIG = {
   },
 
   /* --------------------------------------------------------------------------
+     MES DE ACOMPAÑAMIENTO (/mes-de-acompanamiento)
+     Hub para el público general del programa: qué sesiones en vivo hay, cuándo
+     son y por dónde entrar, más el contacto de asesoría tributaria y el acceso
+     a la membresía incluido ese mes. Ningún link existe todavía: `links` es el
+     ÚNICO objeto que hay que tocar cuando lleguen. Mientras un valor siga en
+     '', la tarjeta/botón correspondiente sale como "Disponible pronto" y se
+     activa sola al llenarlo (mismo mecanismo de TT.estaPendiente que el resto
+     del sitio: '' cuenta como pendiente).
+     -------------------------------------------------------------------------- */
+  mesAcompanamiento: {
+    // >>> ACTUALIZAR ACÁ cuando lleguen los links <<<
+    links: {
+      operacionVivo: '',
+      recuentoSemanal: '',
+      officeHoursFelipe: '',
+      officeHoursEsteban: '',
+      ordenesIB: '',
+      membresia: '',              // si es distinto del acceso de Hotmart, poner el link acá
+      andresCorreo: '',           // dirección pelada, sin "mailto:"
+      andresInstagram: '',
+      andresWhatsapp: '',         // solo dígitos con indicativo, ej. 573001234567
+    },
+
+    bloques: {
+      operacionVivo: {
+        titulo: 'Operación en Vivo',
+        con: 'Juan Pablo',
+        tipo: 'recurrente',
+        diasTexto: 'Jueves y viernes',
+        horaInicio: '08:00',
+        horaFin: '09:00',
+        duracionMinutos: 60,
+        fechas: [
+          '2026-09-17', '2026-09-18',
+          '2026-09-24', '2026-09-25',
+          '2026-10-01', '2026-10-02',
+          '2026-10-08', '2026-10-09',
+        ],
+        notaDestacada: 'La primera sesión (jueves 17) abre con el paso a paso para crear tu cuenta en el nuevo bróker BitGet.',
+        linkKey: 'operacionVivo',
+      },
+      recuentoSemanal: {
+        titulo: 'Recuento Semanal',
+        con: 'Juan Pablo',
+        tipo: 'recurrente',
+        diasTexto: 'Todos los martes',
+        horaInicio: '11:00',
+        horaFin: null,              // no se especificó, se muestra solo la hora de inicio
+        duracionMinutos: 60,        // asumido para el .ics, igual que el resto del mes: confirmar
+        fechas: ['2026-09-15', '2026-09-22', '2026-09-29', '2026-10-06'],
+        linkKey: 'recuentoSemanal',
+      },
+      officeHours: {
+        titulo: 'Office Hours',
+        tipo: 'recurrente-doble',
+        subBloques: [
+          {
+            clave: 'felipe',
+            con: 'Felipe',
+            diaTexto: 'Lunes',
+            horaInicio: '18:00',
+            horaFin: '19:00',
+            duracionMinutos: 60,
+            fechas: ['2026-09-14', '2026-09-21', '2026-09-28', '2026-10-05'],
+            linkKey: 'officeHoursFelipe',
+          },
+          {
+            clave: 'esteban',
+            con: 'Esteban',
+            diaTexto: 'Miércoles',
+            horaInicio: '16:00',
+            horaFin: '17:00',
+            duracionMinutos: 60,
+            fechas: ['2026-09-16', '2026-09-23', '2026-09-30', '2026-10-07'],
+            linkKey: 'officeHoursEsteban',
+          },
+        ],
+      },
+      ordenesIB: {
+        titulo: 'Tipos de Órdenes en Interactive Brokers',
+        con: 'Esteban y Felipe',
+        tipo: 'unica',
+        fecha: '2026-09-16',
+        horaInicio: '08:00',
+        horaFin: null,
+        duracionMinutos: 60,        // no se especificó, asumido igual que el resto: confirmar
+        descripcion: 'Es cómo poner órdenes y cuáles son los tipos de órdenes en IB.',
+        linkKey: 'ordenesIB',
+      },
+    },
+
+    asesoriaTributaria: {
+      titulo: 'Asesoría Tributaria con Andrés',
+      descripcion: 'No es una sesión programada: es contacto directo para casos tributarios puntuales.',
+      notaMencion: 'Al escribirle, mencioná que vas de parte de Juan Pablo.',
+      contactos: [
+        { tipo: 'correo', linkKey: 'andresCorreo', etiqueta: 'Escribir por correo' },
+        { tipo: 'instagram', linkKey: 'andresInstagram', etiqueta: 'Escribir por Instagram' },
+        { tipo: 'whatsapp', linkKey: 'andresWhatsapp', etiqueta: 'Escribir por WhatsApp' },
+      ],
+    },
+
+    membresia: {
+      titulo: 'Acceso a la Membresía por un Mes',
+      descripcion: 'Tu acceso a la membresía premium queda incluido durante todo el mes de acompañamiento.',
+      textoBoton: 'Ingresar a la Zona de Miembros',
+    },
+  },
+
+  /* --------------------------------------------------------------------------
      SESIÓN DE ONBOARDING
      El botón lleva directo a este link de registro de Zoom.
      -------------------------------------------------------------------------- */
