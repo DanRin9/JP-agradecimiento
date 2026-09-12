@@ -116,20 +116,14 @@
     return proxima;
   }
 
-  // Estado de cada fecha dentro de una lista ordenada: la primera que todavía
-  // no termina se marca "proxima", las que ya terminaron se marcan "pasada".
+  // Estado de cada fecha dentro de una lista: las que ya terminaron se marcan
+  // "pasada", el resto se ve exactamente igual (ninguna fecha se resalta como
+  // "próxima": eso ya lo dice el badge de texto del hero, no hace falta que
+  // el chip también parezca clickeable).
   function estadosDeFechas(fechas, horaInicio, duracionMinutos, ahora) {
-    let yaMarcoProxima = false;
     return fechas.map(function (fecha) {
       const pasada = sesionYaTermino(fecha, horaInicio, duracionMinutos, ahora);
-      let estado = 'normal';
-      if (pasada) {
-        estado = 'pasada';
-      } else if (!yaMarcoProxima) {
-        estado = 'proxima';
-        yaMarcoProxima = true;
-      }
-      return { fecha: fecha, estado: estado };
+      return { fecha: fecha, estado: pasada ? 'pasada' : 'normal' };
     });
   }
 
@@ -201,12 +195,13 @@
     });
   }
 
-  /* --- Tarjeta de sesión recurrente (Operación en Vivo, Recuento Semanal) - */
+  /* --- Tarjeta de sesión recurrente (Operación en Vivo, Recuento de Estrategia Semanal) - */
   function crearTarjetaCard(clave, bloque, cfg, ahora) {
     const card = el('div', 'acomp-card acomp-card--' + clave);
 
     card.appendChild(el('span', 'acomp-card__con', 'Con ' + bloque.con));
     card.appendChild(el('h3', 'acomp-card__titulo', bloque.titulo));
+    card.appendChild(el('p', 'acomp-card__descripcion', bloque.descripcion));
     card.appendChild(crearHorario(bloque.diasTexto, bloque.horaInicio, bloque.horaFin));
     card.appendChild(crearListaFechas(bloque.fechas, bloque.horaInicio, bloque.duracionMinutos, ahora));
 
@@ -262,6 +257,7 @@
   function crearBloqueOfficeHours(bloque, cfg, ahora) {
     const cont = el('section', 'acomp-office');
     cont.appendChild(el('h3', 'acomp-office__titulo', bloque.titulo));
+    cont.appendChild(el('p', 'acomp-office__descripcion', bloque.descripcion));
     bloque.subBloques.forEach(function (sub) {
       cont.appendChild(crearFilaOfficeHours(sub, cfg, ahora));
     });

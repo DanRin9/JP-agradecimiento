@@ -249,6 +249,7 @@ const CONFIG = {
         titulo: 'Operación en Vivo',
         con: 'Juan Pablo',
         tipo: 'recurrente',
+        descripcion: 'Ver a Juan Pablo operar en vivo: trading y activos en tiempo real.',
         diasTexto: 'Jueves y viernes',
         horaInicio: '08:00',
         horaFin: '09:00',
@@ -263,9 +264,10 @@ const CONFIG = {
         linkKey: 'operacionVivo',
       },
       recuentoSemanal: {
-        titulo: 'Recuento Semanal',
+        titulo: 'Recuento de Estrategia Semanal',
         con: 'Juan Pablo',
         tipo: 'recurrente',
+        descripcion: 'Juan Pablo analiza su estrategia sobre ciertos activos de su portafolio (no la totalidad) y responde preguntas.',
         diasTexto: 'Todos los martes',
         horaInicio: '11:00',
         horaFin: null,              // no se especificó, se muestra solo la hora de inicio
@@ -276,6 +278,7 @@ const CONFIG = {
       officeHours: {
         titulo: 'Office Hours',
         tipo: 'recurrente-doble',
+        descripcion: 'Sesiones de preguntas, apoyo y acompañamiento con el equipo técnico.',
         subBloques: [
           {
             clave: 'felipe',
