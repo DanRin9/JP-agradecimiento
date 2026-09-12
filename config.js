@@ -330,6 +330,8 @@ const CONFIG = {
       titulo: 'Acceso a la Membresía por un Mes',
       descripcion: 'Tu acceso a la membresía premium queda incluido durante todo el mes de acompañamiento.',
       textoBoton: 'Obtén tu mes gratis de membresía',
+      notaPago: 'Vas a ver una pasarela de pago que te pide los datos de tu tarjeta: es normal, así se activa tu período de prueba de 30 días.',
+      notaPagoDestacada: 'No se hace ningún cobro durante esos 30 días. El primer cobro de la membresía se hace hasta el día 31.',
     },
   },
 

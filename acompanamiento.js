@@ -342,6 +342,13 @@
       etiquetaPendiente: hotmart.labelSoon,
     }));
 
+    const aviso = el('p', 'acomp-aviso acomp-membresia__aviso');
+    aviso.appendChild(document.createTextNode(bloque.notaPago + ' '));
+    const strong = document.createElement('strong');
+    strong.textContent = bloque.notaPagoDestacada;
+    aviso.appendChild(strong);
+    cont.appendChild(aviso);
+
     return cont;
   }
 

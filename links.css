@@ -1046,6 +1046,11 @@
   margin: 0 auto 20px;
 }
 .acomp-membresia .btn { max-width: 360px; margin: 0 auto; }
+.acomp-membresia__aviso {
+  max-width: 46ch;
+  margin: 18px auto 0;
+  text-align: left;
+}
 
 @media (min-width: 640px) {
   .acomp-office__fila { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
