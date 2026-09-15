@@ -235,8 +235,8 @@ const CONFIG = {
     links: {
       operacionVivo: 'https://us06web.zoom.us/j/89901146503?pwd=rXRHf8kd1IwqfWTIV8k7OHOaEk2jeD.1',
       recuentoSemanal: 'https://us06web.zoom.us/j/82096162405?pwd=QLHVw5pb4YVJzxDu6iWgymSrnNENg6.1',
-      officeHoursFelipe: 'https://meet.google.com/tfn-trsu-pvs?authuser=1&hs=122',
-      officeHoursEsteban: 'https://meet.google.com/nyn-czmi-ttw?authuser=1&hs=122',
+      officeHoursFelipe: 'https://us06web.zoom.us/j/87596208918?pwd=ie8mWilTCsl05LTyK4TQfsZ4XSOtmN.1',
+      officeHoursEsteban: 'https://us06web.zoom.us/j/84301272282?pwd=r6gKwcjvNhcO5ibGtRsc7YmnLFZVva.1',
       ordenesIB: 'https://us06web.zoom.us/j/83891369495?pwd=sZqHllwrvale2sCN1I3hdblwUMHVey.1',
       membresia: 'https://pay.hotmart.com/S106746711K?off=2a9f79ae',
       andresCorreo: 'Contacto@duranwealth.com',   // dirección pelada, sin "mailto:"
