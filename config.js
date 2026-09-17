@@ -202,6 +202,12 @@ const CONFIG = {
             youtubeId: 'SkkhNj9--0s',
             descripcion: '',
           },
+          {
+            titulo: 'Sesión de Interactive Brokers',
+            fecha: '16 de septiembre',
+            youtubeId: 'sundFljaggU',
+            descripcion: '',
+          },
         ],
       },
       {
