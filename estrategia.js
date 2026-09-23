@@ -1,6 +1,7 @@
 /* ============================================================================
    ESTRATEGIA: render de /estrategia-tactical.
-   Tres accesos: la bitácora de operaciones, el canal de Pre-Mercado y Exness.
+   Tres accesos: la estrategia en vivo (Telegram), la bitácora de operaciones y el
+   canal de Pre-Mercado.
    ============================================================================ */
 (function () {
   'use strict';
@@ -21,10 +22,19 @@
     const premercadoPend = estaPendiente(e.canalPremercado);
     if (premercadoPend) pendientes.push('estrategia.canalPremercado');
 
-    const exnessPend = estaPendiente(e.exness);
-    if (exnessPend) pendientes.push('estrategia.exness');
+    const vivoPend = estaPendiente(e.enVivo);
+    if (vivoPend) pendientes.push('estrategia.enVivo');
 
     const definiciones = [
+      // Protagonista: ocupa todo el ancho del grid arriba de los otros dos.
+      {
+        clases: 'btn--telegram btn--en-vivo',
+        icono: ICONOS.telegram,
+        texto: 'Estrategia en vivo aquí',
+        href: e.enVivo,
+        pendiente: vivoPend,
+        etiquetaPendiente: cfg.hotmart.labelSoon,
+      },
       // Dorado: es el estilo de CTA principal del sistema y acá no hay Hotmart,
       // así que no compite con nada. La bitácora es lo que la página vende.
       {
@@ -41,16 +51,6 @@
         texto: 'Canal de Pre-Mercado',
         href: e.canalPremercado,
         pendiente: premercadoPend,
-        etiquetaPendiente: cfg.hotmart.labelSoon,
-      },
-      // Todavía no hay live: sale deshabilitado por estaPendiente() hasta que
-      // se pegue el link real, igual que cualquier otro botón sin completar.
-      {
-        clases: 'btn--sistema btn--exness',
-        icono: '<img src="/assets/exness-logo.png" alt="Exness" loading="lazy">',
-        texto: '',
-        href: e.exness,
-        pendiente: exnessPend,
         etiquetaPendiente: cfg.hotmart.labelSoon,
       },
     ];

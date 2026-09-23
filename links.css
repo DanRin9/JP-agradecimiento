@@ -345,7 +345,7 @@
   width: 100%;
   max-width: 1020px;
   align-self: center;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
 }
 
 /* Acá el titular es el protagonista: no compite con cuatro botones. */
@@ -363,11 +363,18 @@
    en esta página no existe el botón de Hotmart, así que no hay conflicto. */
 .pagina-estrategia .btn--hotmart .btn__icono svg { fill: currentColor; }
 
-/* --- Exness: el ícono es el wordmark completo, no un glifo cuadrado -------- */
-.btn--exness .btn__icono { width: 90px; height: auto; }
-.btn--exness .btn__icono img { width: 100%; height: auto; display: block; }
+/* --- Estrategia en vivo: botón principal, a todo el ancho y más grande ----- */
+.pagina-estrategia .btn--en-vivo {
+  grid-column: 1 / -1;
+  min-height: 128px;
+  padding: 28px 34px;
+  font-size: 22px;
+  font-weight: 700;
+}
+.pagina-estrategia .btn--en-vivo .btn__icono { width: 36px; height: 36px; }
+.pagina-estrategia .btn--en-vivo .btn__flecha { font-size: 26px; }
 
-/* El override de 3 columnas de arriba gana por especificidad sobre el reset a
+/* El override de 2 columnas de arriba gana por especificidad sobre el reset a
    1fr del .links-grid base en mobile, así que hay que repetirlo acá para que
    /estrategia-tactical también apile en una sola columna en pantallas chicas. */
 @media (max-width: 720px) {

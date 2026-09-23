@@ -35,7 +35,7 @@ const CONFIG = {
   estrategia: {
     bitacora: 'https://bitacora.ttrading.shop',
     canalPremercado: 'https://whatsapp.com/channel/0029VaNf7Pq23n3Xfc3Rpt3D',
-    exness: 'EXNESS_LIVE_URL',         // TODO: reemplazar cuando exista el live recurrente en Exness
+    enVivo: 'https://t.me/TacticalJP_bot',
   },
 
   /* --------------------------------------------------------------------------
