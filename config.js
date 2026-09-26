@@ -233,6 +233,18 @@ const CONFIG = {
   },
 
   /* --------------------------------------------------------------------------
+     RECUENTOS SEMANALES (/recuentos-semanales)
+     Solo las grabaciones del Recuento de Estrategia Semanal (martes con Juan
+     Pablo). Agregar cada recuento nuevo al FINAL del array: la página los
+     muestra del más nuevo al más viejo. `titulo: null` → "Recuento de estrategia".
+     -------------------------------------------------------------------------- */
+  recuentos: {
+    grabaciones: [
+      // { titulo: null, fecha: '15 de septiembre', youtubeId: 'ID', descripcion: '' },
+    ],
+  },
+
+  /* --------------------------------------------------------------------------
      MES DE ACOMPAÑAMIENTO (/mes-de-acompanamiento)
      Hub para el público general del programa: qué sesiones en vivo hay, cuándo
      son y por dónde entrar, más el contacto de asesoría tributaria y el acceso

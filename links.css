@@ -749,6 +749,131 @@
 }
 
 /* ============================================================================
+   /recuentos-semanales: reproductor arriba (reusa .reproductor__* de
+   /grabaciones-2026) + grilla de tarjetas. auto-fill hace que la grilla pase
+   sola de 3 columnas en escritorio a 1 en celular.
+   ============================================================================ */
+.pagina-recuentos .links-envoltorio { max-width: 1200px; }
+.pagina-recuentos .links-main { justify-content: flex-start; }
+.pagina-recuentos .links-hero { padding-bottom: 32px; }
+.pagina-recuentos .links-subtitulo { max-width: 52ch; margin: 0 auto; }
+
+.recuentos-reproductor {
+  width: 100%;
+  max-width: 920px;
+  align-self: center;
+  scroll-margin-top: 20px;
+}
+
+.recuentos-lista__titulo {
+  font-family: 'Raleway', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--texto-2);
+  margin: 40px 0 16px;
+}
+
+.recuentos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.recuento-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 14px 16px;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: var(--superficie);
+  transition: border-color 0.2s ease, transform 0.15s ease;
+}
+.recuento-card:hover { border-color: var(--amarillo-linea); transform: translateY(-2px); }
+
+.recuento-card--activa {
+  border-color: var(--amarillo);
+  background: var(--superficie-2);
+  box-shadow: 0 0 0 1px var(--amarillo-linea);
+}
+.recuento-card--activa:hover { transform: none; }
+
+.recuento-card__miniatura {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--superficie-2);
+  cursor: pointer;
+}
+.recuento-card__miniatura img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.recuento-card__titulo {
+  font-family: 'Raleway', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--texto);
+  margin: 0;
+}
+
+.recuento-card__fecha {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--amarillo);
+  margin: 0 0 10px;
+}
+
+/* Mismo dorado que el CTA principal del sistema (.btn--hotmart). */
+.recuento-card__btn {
+  margin-top: auto;
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--amarillo-grad);
+  color: #1F1600;
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, filter 0.2s ease;
+}
+.recuento-card__btn:hover { box-shadow: 0 10px 30px rgba(255, 198, 0, 0.32); }
+.recuento-card--activa .recuento-card__btn {
+  background: transparent;
+  color: var(--amarillo);
+  box-shadow: inset 0 0 0 1px var(--amarillo-linea);
+}
+
+.recuentos-vacio {
+  margin: 12px auto 0;
+  padding: 28px 24px;
+  max-width: 520px;
+  text-align: center;
+  color: var(--texto-2);
+  border: 1px dashed var(--borde);
+  border-radius: var(--radio);
+}
+
+@media (max-width: 720px) {
+  .pagina-recuentos .links-envoltorio { padding: 24px 18px 24px; }
+  .recuentos-grid { gap: 14px; }
+  .recuentos-lista__titulo { margin-top: 32px; }
+}
+
+/* ============================================================================
    /mes-de-acompanamiento: seis bloques de naturaleza distinta (dos tipos de
    sesión recurrente, una franja de dos personas, una sesión única, un
    contacto directo y la membresía), así que a propósito NO comparten borde,
