@@ -227,6 +227,31 @@ const CONFIG = {
             youtubeId: '4s8Ztnb--FQ',
             descripcion: '',
           },
+          {
+            titulo: null,
+            fecha: '24 de septiembre',
+            youtubeId: 'A94Rqg4fC5k',
+            descripcion: '',
+          },
+          {
+            titulo: null,
+            fecha: '25 de septiembre',
+            youtubeId: '4zUoSrIQCjo',
+            descripcion: '',
+          },
+        ],
+      },
+      {
+        clave: 'office-hours',
+        etiqueta: 'Office Hours',
+        tema: 'Preguntas y acompañamiento con el equipo técnico',
+        grabaciones: [
+          {
+            titulo: 'Office Hours con Esteban',
+            fecha: '23 de septiembre',
+            youtubeId: 'uxcmJtPb4Q8',
+            descripcion: '',
+          },
         ],
       },
     ],
@@ -240,7 +265,7 @@ const CONFIG = {
      -------------------------------------------------------------------------- */
   recuentos: {
     grabaciones: [
-      // { titulo: null, fecha: '15 de septiembre', youtubeId: 'ID', descripcion: '' },
+      { titulo: null, fecha: '22 de septiembre', youtubeId: 'uzqbjn3jN5Y', descripcion: '' },
     ],
   },
 
