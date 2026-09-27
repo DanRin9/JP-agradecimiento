@@ -208,6 +208,12 @@ const CONFIG = {
             youtubeId: 'sundFljaggU',
             descripcion: '',
           },
+          {
+            titulo: 'Office Hours con Esteban',
+            fecha: '23 de septiembre',
+            youtubeId: 'uxcmJtPb4Q8',
+            descripcion: '',
+          },
         ],
       },
       {
@@ -237,19 +243,6 @@ const CONFIG = {
             titulo: null,
             fecha: '25 de septiembre',
             youtubeId: '4zUoSrIQCjo',
-            descripcion: '',
-          },
-        ],
-      },
-      {
-        clave: 'office-hours',
-        etiqueta: 'Office Hours',
-        tema: 'Preguntas y acompañamiento con el equipo técnico',
-        grabaciones: [
-          {
-            titulo: 'Office Hours con Esteban',
-            fecha: '23 de septiembre',
-            youtubeId: 'uxcmJtPb4Q8',
             descripcion: '',
           },
         ],
