@@ -259,6 +259,7 @@ const CONFIG = {
   recuentos: {
     grabaciones: [
       { titulo: null, fecha: '22 de septiembre', youtubeId: 'uzqbjn3jN5Y', descripcion: '' },
+      { titulo: null, fecha: '29 de septiembre', youtubeId: 'FKsdZS1DWqA', descripcion: '' },
     ],
   },
 
