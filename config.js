@@ -214,6 +214,12 @@ const CONFIG = {
             youtubeId: 'uxcmJtPb4Q8',
             descripcion: '',
           },
+          {
+            titulo: 'Sesión extraordinaria de nivelación con Felipe y Juan Pablo',
+            fecha: null,
+            youtubeId: 'Te5M9MKfGOw',
+            descripcion: '',
+          },
         ],
       },
       {
@@ -243,6 +249,18 @@ const CONFIG = {
             titulo: null,
             fecha: '25 de septiembre',
             youtubeId: '4zUoSrIQCjo',
+            descripcion: '',
+          },
+          {
+            titulo: null,
+            fecha: '1 de octubre',
+            youtubeId: 'Pyak50nSdl4',
+            descripcion: '',
+          },
+          {
+            titulo: null,
+            fecha: '2 de octubre',
+            youtubeId: 'AfLAjgXqO2s',
             descripcion: '',
           },
         ],
