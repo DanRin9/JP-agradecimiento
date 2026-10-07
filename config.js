@@ -278,6 +278,7 @@ const CONFIG = {
     grabaciones: [
       { titulo: null, fecha: '22 de septiembre', youtubeId: 'uzqbjn3jN5Y', descripcion: '' },
       { titulo: null, fecha: '29 de septiembre', youtubeId: 'FKsdZS1DWqA', descripcion: '' },
+      { titulo: null, fecha: '6 de octubre', youtubeId: 'T6MAS0Tt8Lw', descripcion: '' },
     ],
   },
 
