@@ -263,6 +263,18 @@ const CONFIG = {
             youtubeId: 'AfLAjgXqO2s',
             descripcion: '',
           },
+          {
+            titulo: null,
+            fecha: '8 de octubre',
+            youtubeId: 'zzKCadiVBlA',
+            descripcion: '',
+          },
+          {
+            titulo: null,
+            fecha: '9 de octubre',
+            youtubeId: '7qapt1jwWYA',
+            descripcion: '',
+          },
         ],
       },
     ],
