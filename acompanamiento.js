@@ -1,8 +1,9 @@
 /* ============================================================================
-   ACOMPAÑAMIENTO: render de /mes-de-acompanamiento. Vista única (sin
-   location.hash): hero con la vigencia y la próxima sesión calculadas, resumen
-   de la semana, tarjetas de sesión recurrente, franja de office hours, sesión
-   única de IB, contacto de Andrés y bloque de membresía. Todo sale de
+   ACOMPAÑAMIENTO: render de /mes-extra (antes /mes-de-acompanamiento). Vista
+   única (sin location.hash): hero con la vigencia calculada, horario resumido,
+   botón a /grabaciones-extra, tarjetas de sesión recurrente, franja de office
+   hours, recuento del miércoles 14 (sesión única, se oculta al pasar),
+   contacto de Andrés y bloque de membresía. Todo sale de
    CONFIG.mesAcompanamiento; nada se escribe a mano en el marcado.
    ============================================================================ */
 (function () {
@@ -96,10 +97,10 @@
     });
 
     ocurrencias.push({
-      etiqueta: b.ordenesIB.titulo,
-      fecha: b.ordenesIB.fecha,
-      horaInicio: b.ordenesIB.horaInicio,
-      duracionMinutos: b.ordenesIB.duracionMinutos,
+      etiqueta: b.recuentoMiercoles14.titulo,
+      fecha: b.recuentoMiercoles14.fecha,
+      horaInicio: b.recuentoMiercoles14.horaInicio,
+      duracionMinutos: b.recuentoMiercoles14.duracionMinutos,
     });
 
     return ocurrencias;
@@ -251,7 +252,7 @@
     return cont;
   }
 
-  /* --- Sesión única: Órdenes IB. Sin lista de fechas (es una sola) y sin
+  /* --- Sesión única (recuento del miércoles 14). Sin lista de fechas (es una sola) y sin
      marcador de "próxima": no aplica a una sesión que no se repite. -------- */
   function crearTarjetaUnica(bloque, cfg) {
     const card = el('section', 'acomp-card--unica');
@@ -264,14 +265,14 @@
     const acciones = el('div', 'acomp-card__acciones');
     acciones.appendChild(crearBotonUnirme(cfg, bloque.linkKey));
     acciones.appendChild(crearBotonCalendario({
-      uidBase: 'acomp-ib',
+      uidBase: 'acomp-' + bloque.linkKey,
       titulo: bloque.titulo,
       descripcion: bloque.descripcion,
       href: cfg.mesAcompanamiento.links[bloque.linkKey],
       fechas: [bloque.fecha],
       horaInicio: bloque.horaInicio,
       duracionMinutos: bloque.duracionMinutos,
-      nombreArchivo: 'ordenes-ib-tactical-trading.ics',
+      nombreArchivo: bloque.linkKey + '-tactical-trading.ics',
     }));
     card.appendChild(acciones);
 
@@ -357,44 +358,55 @@
     return cont;
   }
 
-  /* --- Cronograma del mes: imagen ya diseñada aparte, descargable --------- */
-  function crearBloqueCronograma() {
-    const cont = el('section', 'acomp-cronograma');
+  /* --- Horario resumido del mes extra: reemplaza la imagen del cronograma.
+     Se arma desde los mismos bloques de config, así no hay que escribirlo dos
+     veces. Reusa la franja de .acomp-cronograma. ------------------------- */
+  function crearBloqueHorario(ma) {
+    const b = ma.bloques;
+    const cont = el('section', 'acomp-cronograma acomp-horario');
+    cont.appendChild(el('h2', 'acomp-cronograma__titulo', 'Horario del mes extra'));
 
+    const office = b.officeHours.subBloques.map(function (sub) {
+      return sub.diaTexto.toLowerCase() + ' ' + horaLegible(sub.horaInicio) + ' con ' + sub.con;
+    }).join(' y ');
+    const u = b.recuentoMiercoles14;
+    const filas = [
+      ['Office Hours', office.charAt(0).toUpperCase() + office.slice(1)],
+      ['Recuento semanal', b.recuentoSemanal.diasTexto + ', ' + horaLegible(b.recuentoSemanal.horaInicio) +
+        ' (excepto la semana del 12 de octubre: ' + DIA_LARGO[partes(u.fecha).diaSemana] + ' ' + partes(u.fecha).dia +
+        ', ' + horaLegible(u.horaInicio) + ')'],
+      ['Operación en Vivo', b.operacionVivo.diasTexto + ', ' + horaLegible(b.operacionVivo.horaInicio)],
+    ];
+
+    const lista = el('dl', 'acomp-horario__lista');
+    filas.forEach(function (f) {
+      const fila = el('div', 'acomp-horario__fila');
+      fila.appendChild(el('dt', 'acomp-horario__nombre', f[0]));
+      fila.appendChild(el('dd', 'acomp-horario__cuando', f[1]));
+      lista.appendChild(fila);
+    });
+    cont.appendChild(lista);
+    cont.appendChild(el('p', 'acomp-nota-zona', 'Todos los horarios están en hora Colombia (UTC-5).'));
+    return cont;
+  }
+
+  /* --- Botón a /grabaciones-extra (misma pestaña: es parte del mismo sitio) */
+  function crearBloqueGrabaciones(bloque) {
+    const cont = el('section', 'acomp-cronograma acomp-grabaciones');
     const texto = el('div', 'acomp-cronograma__texto');
-    texto.appendChild(el('h2', 'acomp-cronograma__titulo', 'Cronograma del mes'));
-    texto.appendChild(el('p', 'acomp-cronograma__descripcion',
-      'Tu semana tipo y todas las fechas del mes, en una sola imagen.'));
-
-    const boton = document.createElement('a');
-    boton.className = 'btn btn--compacto acomp-cronograma__boton';
-    boton.href = '/assets/cronograma-mes-acompanamiento.png';
-    boton.download = 'cronograma-mes-acompanamiento.png';
-    const ico = document.createElement('span');
-    ico.className = 'btn__icono';
-    ico.innerHTML = ICONOS.descarga;
-    boton.appendChild(ico);
-    const txt = document.createElement('span');
-    txt.className = 'btn__texto';
-    txt.textContent = 'Descargar cronograma';
-    boton.appendChild(txt);
-    texto.appendChild(boton);
-
+    texto.appendChild(el('h2', 'acomp-cronograma__titulo', bloque.titulo));
+    texto.appendChild(el('p', 'acomp-cronograma__descripcion', bloque.descripcion));
     cont.appendChild(texto);
 
-    const miniatura = document.createElement('a');
-    miniatura.className = 'acomp-cronograma__miniatura';
-    miniatura.href = '/assets/cronograma-mes-acompanamiento.png';
-    miniatura.target = '_blank';
-    miniatura.rel = 'noopener noreferrer';
-    const img = document.createElement('img');
-    img.src = '/assets/cronograma-mes-acompanamiento.png';
-    img.alt = 'Cronograma del mes de acompañamiento';
-    img.loading = 'lazy';
-    img.decoding = 'async';
-    miniatura.appendChild(img);
-    cont.appendChild(miniatura);
-
+    const btn = crearBoton({
+      clases: 'btn--hotmart btn--compacto acomp-grabaciones__boton',
+      icono: ICONOS.video,
+      texto: bloque.textoBoton,
+      href: bloque.href,
+    });
+    btn.removeAttribute('target');
+    btn.removeAttribute('rel');
+    cont.appendChild(btn);
     return cont;
   }
 
@@ -409,11 +421,11 @@
 
     /* --- Hero --- */
     const hero = el('section', 'links-hero');
-    hero.appendChild(el('span', 'badge', 'Mes de Acompañamiento'));
+    hero.appendChild(el('span', 'badge', 'Mes Extra'));
 
     const titulo = document.createElement('h1');
     titulo.className = 'links-titulo';
-    titulo.innerHTML = 'Tu mes de <em>acompañamiento</em>';
+    titulo.innerHTML = 'Tu <em>mes extra</em> de acompañamiento';
     hero.appendChild(titulo);
 
     // Vigencia: se calcula sola desde las fechas de config.js, no se escribe a mano.
@@ -423,18 +435,17 @@
     hero.appendChild(el(
       'p',
       'links-subtitulo',
-      'Todo lo que necesitás para acompañar tu operación este mes: cuándo son las sesiones en vivo, ' +
-      'por dónde entrar, y cómo resolver dudas puntuales. Va del ' + fechaLarga(primeraFecha) +
+      'Un mes más de sesiones en vivo con Juan Pablo y el equipo: recuentos de estrategia, ' +
+      'operación en vivo y office hours para resolver tus dudas. Va del ' + fechaLarga(primeraFecha) +
       ' al ' + fechaLarga(ultimaFecha) + '.'
     ));
-
-    hero.appendChild(el('p', 'acomp-nota-zona', 'Todos los horarios están en hora Colombia (UTC-5).'));
 
     cont.appendChild(hero);
     cont.appendChild(el('hr', 'divisor divisor--brillo'));
 
-    /* --- Cronograma descargable --- */
-    cont.appendChild(crearBloqueCronograma());
+    /* --- Horario resumido + botón a las grabaciones --- */
+    cont.appendChild(crearBloqueHorario(ma));
+    cont.appendChild(crearBloqueGrabaciones(ma.grabaciones));
 
     /* --- Sesiones del mes --- */
     cont.appendChild(el('h2', 'acomp-eyebrow', 'Sesiones del mes'));
@@ -446,9 +457,13 @@
 
     cont.appendChild(crearBloqueOfficeHours(ma.bloques.officeHours, cfg, ahora));
 
-    /* --- IB y Andrés: bloques secundarios, lado a lado en desktop --------- */
+    /* --- Recuento del 14 (mientras no haya pasado) y Andrés, lado a lado en
+       desktop. Cuando el 14 ya terminó, Andrés queda solo a todo el ancho. -- */
     const filaSecundaria = el('div', 'acomp-fila-secundaria');
-    filaSecundaria.appendChild(crearTarjetaUnica(ma.bloques.ordenesIB, cfg));
+    const u = ma.bloques.recuentoMiercoles14;
+    if (!sesionYaTermino(u.fecha, u.horaInicio, u.duracionMinutos, ahora)) {
+      filaSecundaria.appendChild(crearTarjetaUnica(u, cfg));
+    }
     filaSecundaria.appendChild(crearBloqueContacto(ma.asesoriaTributaria, cfg));
     cont.appendChild(filaSecundaria);
 

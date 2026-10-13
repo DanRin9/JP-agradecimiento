@@ -327,23 +327,57 @@ const CONFIG = {
   },
 
   /* --------------------------------------------------------------------------
-     MES DE ACOMPAÑAMIENTO (/mes-de-acompanamiento)
-     Hub para el público general del programa: qué sesiones en vivo hay, cuándo
-     son y por dónde entrar, más el contacto de asesoría tributaria y el acceso
-     a la membresía incluido ese mes. Ningún link existe todavía: `links` es el
-     ÚNICO objeto que hay que tocar cuando lleguen. Mientras un valor siga en
-     '', la tarjeta/botón correspondiente sale como "Disponible pronto" y se
-     activa sola al llenarlo (mismo mecanismo de TT.estaPendiente que el resto
-     del sitio: '' cuenta como pendiente).
+     GRABACIONES DEL MES EXTRA (/grabaciones-extra)
+     Misma página y mismo grabaciones.js que /grabaciones-2026 (la página elige
+     esta fuente con data-grabaciones en el <body>). Sin semanas: solo las tres
+     categorías. Desde el 14 de octubre de 2026 los recuentos, la operación en
+     vivo y las office hours nuevas van AQUÍ, al final de cada array.
+     -------------------------------------------------------------------------- */
+  grabacionesExtra: {
+    hero: {
+      titulo: 'Grabaciones del <em>mes extra</em>',
+      subtitulo: 'Recuentos, operación en vivo y office hours, del 14 de octubre al 12 de noviembre.',
+    },
+    textoVolver: '← Todas las grabaciones',
+    semanas: [],
+    categorias: [
+      {
+        clave: 'recuentos',
+        etiqueta: 'Recuentos de Estrategia',
+        tema: 'El repaso semanal de Juan Pablo',
+        grabaciones: [],
+      },
+      {
+        clave: 'operacion-vivo',
+        etiqueta: 'Operación en Vivo',
+        tema: 'Operación de la estrategia en tiempo real',
+        grabaciones: [],
+      },
+      {
+        clave: 'office-hours',
+        etiqueta: 'Office Hours',
+        tema: 'Preguntas y acompañamiento con Felipe y Esteban',
+        grabaciones: [],
+      },
+    ],
+  },
+
+  /* --------------------------------------------------------------------------
+     MES EXTRA (/mes-extra, antes /mes-de-acompanamiento)
+     Hub del mes extra (14 oct al 12 nov de 2026): qué sesiones en vivo hay,
+     cuándo son y por dónde entrar, el botón a /grabaciones-extra, el contacto
+     de asesoría tributaria y el acceso a la membresía. La clave sigue siendo
+     `mesAcompanamiento` por compatibilidad con acompanamiento.js. Un link en
+     '' sale como "Disponible pronto" (TT.estaPendiente).
      -------------------------------------------------------------------------- */
   mesAcompanamiento: {
     // >>> ACTUALIZAR ACÁ cuando lleguen los links <<<
     links: {
-      operacionVivo: 'https://us06web.zoom.us/j/89901146503?pwd=rXRHf8kd1IwqfWTIV8k7OHOaEk2jeD.1',
-      recuentoSemanal: 'https://us06web.zoom.us/j/82096162405?pwd=QLHVw5pb4YVJzxDu6iWgymSrnNENg6.1',
+      operacionVivo: 'https://us06web.zoom.us/j/81011036363?pwd=NOiR0CAiqsgzNxbPFhjQBeGH2qN2hb.1',
+      recuentoSemanal: 'https://us06web.zoom.us/j/84882620322?pwd=YbXQwcaKBsJllbObR2cZuOzRmr0DbO.1',
+      recuentoMiercoles14: 'https://us06web.zoom.us/j/88257240638?pwd=Ue6axcYcVhkMVbOqiSsLvWJLaay6zs.1',
       officeHoursFelipe: 'https://us06web.zoom.us/j/87596208918?pwd=ie8mWilTCsl05LTyK4TQfsZ4XSOtmN.1',
       officeHoursEsteban: 'https://us06web.zoom.us/j/84301272282?pwd=r6gKwcjvNhcO5ibGtRsc7YmnLFZVva.1',
-      ordenesIB: 'https://us06web.zoom.us/j/83891369495?pwd=sZqHllwrvale2sCN1I3hdblwUMHVey.1',
       membresia: 'https://pay.hotmart.com/S106746711K?off=2a9f79ae',
       andresCorreo: 'Contacto@duranwealth.com',   // dirección pelada, sin "mailto:"
       andresInstagram: 'https://instagram.com/duranwealth',
@@ -356,17 +390,11 @@ const CONFIG = {
         con: 'Juan Pablo',
         tipo: 'recurrente',
         descripcion: 'Ver a Juan Pablo operar en vivo: trading y activos en tiempo real.',
-        diasTexto: 'Jueves y viernes',
+        diasTexto: 'Todos los jueves',
         horaInicio: '08:00',
         horaFin: '09:00',
         duracionMinutos: 60,
-        fechas: [
-          '2026-09-17', '2026-09-18',
-          '2026-09-24', '2026-09-25',
-          '2026-10-01', '2026-10-02',
-          '2026-10-08', '2026-10-09',
-        ],
-        notaDestacada: 'La primera sesión (jueves 17) abre con el paso a paso para crear tu cuenta en el nuevo bróker BitGet.',
+        fechas: ['2026-10-15', '2026-10-22', '2026-10-29', '2026-11-05', '2026-11-12'],
         linkKey: 'operacionVivo',
       },
       recuentoSemanal: {
@@ -374,11 +402,12 @@ const CONFIG = {
         con: 'Juan Pablo',
         tipo: 'recurrente',
         descripcion: 'Juan Pablo analiza su estrategia sobre ciertos activos de su portafolio (no la totalidad) y responde preguntas.',
-        diasTexto: 'Todos los martes',
-        horaInicio: '11:00',
+        diasTexto: 'Todos los lunes',
+        horaInicio: '08:00',
         horaFin: null,              // no se especificó, se muestra solo la hora de inicio
-        duracionMinutos: 60,        // asumido para el .ics, igual que el resto del mes: confirmar
-        fechas: ['2026-09-15', '2026-09-22', '2026-09-29', '2026-10-06'],
+        duracionMinutos: 60,        // asumido para el .ics: confirmar
+        fechas: ['2026-10-19', '2026-10-26', '2026-11-02', '2026-11-09'],
+        notaDestacada: 'La semana del 12 de octubre el recuento es el miércoles 14 a las 11:00 a. m. (hora Colombia).',
         linkKey: 'recuentoSemanal',
       },
       officeHours: {
@@ -393,7 +422,7 @@ const CONFIG = {
             horaInicio: '18:00',
             horaFin: '19:00',
             duracionMinutos: 60,
-            fechas: ['2026-09-14', '2026-09-21', '2026-09-28', '2026-10-05'],
+            fechas: ['2026-10-19', '2026-10-26', '2026-11-02', '2026-11-09'],
             linkKey: 'officeHoursFelipe',
           },
           {
@@ -403,28 +432,38 @@ const CONFIG = {
             horaInicio: '16:00',
             horaFin: '17:00',
             duracionMinutos: 60,
-            fechas: ['2026-09-16', '2026-09-23', '2026-09-30', '2026-10-07'],
+            fechas: ['2026-10-14', '2026-10-21', '2026-10-28', '2026-11-04', '2026-11-11'],
             linkKey: 'officeHoursEsteban',
           },
         ],
       },
-      ordenesIB: {
-        titulo: 'Tipos de Órdenes en Interactive Brokers',
-        con: 'Esteban y Felipe',
+      // Excepción de la semana del 12 de octubre: el recuento cae miércoles.
+      // Sale como "sesión única" y desaparece sola cuando ya terminó.
+      recuentoMiercoles14: {
+        titulo: 'Recuento de Estrategia, semana del 12 de octubre',
+        con: 'Juan Pablo',
         tipo: 'unica',
-        fecha: '2026-09-16',
-        horaInicio: '08:00',
+        fecha: '2026-10-14',
+        horaInicio: '11:00',
         horaFin: null,
-        duracionMinutos: 60,        // no se especificó, asumido igual que el resto: confirmar
-        descripcion: 'Es cómo poner órdenes y cuáles son los tipos de órdenes en IB.',
-        linkKey: 'ordenesIB',
+        duracionMinutos: 60,
+        descripcion: 'Esta semana el recuento se mueve al miércoles. Desde el 19 de octubre vuelve a ser los lunes a las 8:00 a. m.',
+        linkKey: 'recuentoMiercoles14',
       },
+    },
+
+    // Mini sección con el botón a /grabaciones-extra.
+    grabaciones: {
+      titulo: 'Grabaciones extra',
+      descripcion: 'Aquí quedan las grabaciones de los recuentos, la operación en vivo y las office hours del mes extra.',
+      textoBoton: 'Ver grabaciones extra',
+      href: '/grabaciones-extra',
     },
 
     asesoriaTributaria: {
       titulo: 'Asesoría Tributaria con Andrés',
       descripcion: 'No es una sesión programada: es contacto directo para casos tributarios puntuales.',
-      notaMencion: 'Al escribirle, mencioná que vas de parte de Juan Pablo.',
+      notaMencion: 'Al escribirle, menciona que vas de parte de Juan Pablo.',
       contactos: [
         { tipo: 'correo', linkKey: 'andresCorreo', etiqueta: 'Escribir por correo' },
         { tipo: 'instagram', linkKey: 'andresInstagram', etiqueta: 'Escribir por Instagram' },
@@ -434,7 +473,7 @@ const CONFIG = {
 
     membresia: {
       titulo: 'Acceso a la Membresía por un Mes',
-      descripcion: 'Tu acceso a la membresía premium queda incluido durante todo el mes de acompañamiento.',
+      descripcion: 'Tu acceso a la membresía premium queda incluido durante todo el mes extra.',
       textoBoton: 'Obtén tu mes gratis de membresía',
       notaPago: 'Vas a ver una pasarela de pago que te pide los datos de tu tarjeta: es normal, así se activa tu período de prueba de 30 días.',
       notaPagoDestacada: 'No se hace ningún cobro durante esos 30 días. El primer cobro de la membresía se hace hasta el día 31.',

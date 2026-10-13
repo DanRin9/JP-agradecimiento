@@ -4,11 +4,29 @@
    location.hash (#semana-N), sin router y sin recargar. Dentro de una semana,
    cambiar de sesión activa tampoco recarga: solo re-pinta el bloque del
    reproductor.
+
+   La misma página sirve para /grabaciones-extra: el <body> trae
+   data-grabaciones="grabacionesExtra" y todo se lee de esa clave de CONFIG en
+   vez de CONFIG.grabaciones. Hero y texto de "volver" son opcionales en la
+   fuente; si no están, quedan los de /grabaciones-2026.
    ============================================================================ */
 (function () {
   'use strict';
 
   const { pintarReconocimientos, seguirCursor } = window.TT;
+
+  const HERO_POR_DEFECTO = {
+    titulo: 'Grabaciones de <em>Tactical Investor</em>',
+    subtitulo: 'Las 12 sesiones en vivo del programa, organizadas por semana.',
+  };
+
+  function fuenteDe(cfg) {
+    return cfg[document.body.dataset.grabaciones || 'grabaciones'];
+  }
+
+  function textoVolver(fuente) {
+    return fuente.textoVolver || '← Todas las semanas';
+  }
 
   function esSesionPendiente(sesion) {
     return !sesion || !sesion.youtubeId;
@@ -78,9 +96,17 @@
   }
 
   function crearTarjetaCategoria(categoria) {
-    const el = document.createElement('a');
+    const hayGrabaciones = categoria.grabaciones.some(function (g) { return !esSesionPendiente(g); });
+    const el = document.createElement(hayGrabaciones ? 'a' : 'button');
     el.className = 'btn btn--links btn--extra';
-    el.href = '#' + categoria.clave;
+    if (hayGrabaciones) {
+      el.href = '#' + categoria.clave;
+    } else {
+      el.type = 'button';
+      el.disabled = true;
+      el.classList.add('esta-deshabilitado');
+      el.setAttribute('aria-disabled', 'true');
+    }
 
     const etiqueta = document.createElement('span');
     etiqueta.className = 'extra__etiqueta';
@@ -92,35 +118,45 @@
     tema.textContent = categoria.tema;
     el.appendChild(tema);
 
-    const flecha = document.createElement('span');
-    flecha.className = 'extra__flecha';
-    flecha.setAttribute('aria-hidden', 'true');
-    flecha.textContent = '→';
-    el.appendChild(flecha);
-
-    seguirCursor(el);
+    if (hayGrabaciones) {
+      const flecha = document.createElement('span');
+      flecha.className = 'extra__flecha';
+      flecha.setAttribute('aria-hidden', 'true');
+      flecha.textContent = '→';
+      el.appendChild(flecha);
+      seguirCursor(el);
+    } else {
+      const chip = document.createElement('span');
+      chip.className = 'btn__proximamente';
+      chip.textContent = 'Disponible próximamente';
+      el.appendChild(chip);
+    }
     return el;
   }
 
   function renderLista(cfg, cont) {
+    const fuente = fuenteDe(cfg);
+    const textoHero = fuente.hero || HERO_POR_DEFECTO;
     cont.innerHTML = '';
 
     const hero = document.createElement('section');
     hero.className = 'links-hero';
     hero.innerHTML =
-      '<h1 class="links-titulo">Grabaciones de <em>Tactical Investor</em></h1>' +
-      '<p class="links-subtitulo">Las 12 sesiones en vivo del programa, organizadas por semana.</p>';
+      '<h1 class="links-titulo">' + textoHero.titulo + '</h1>' +
+      '<p class="links-subtitulo">' + textoHero.subtitulo + '</p>';
     cont.appendChild(hero);
 
-    const grid = document.createElement('nav');
-    grid.className = 'semanas-grid';
-    grid.setAttribute('aria-label', 'Semanas del programa');
-    cfg.grabaciones.semanas.forEach(function (semana) {
-      grid.appendChild(crearTarjetaSemana(semana));
-    });
-    cont.appendChild(grid);
+    if (fuente.semanas.length) {
+      const grid = document.createElement('nav');
+      grid.className = 'semanas-grid';
+      grid.setAttribute('aria-label', 'Semanas del programa');
+      fuente.semanas.forEach(function (semana) {
+        grid.appendChild(crearTarjetaSemana(semana));
+      });
+      cont.appendChild(grid);
+    }
 
-    cfg.grabaciones.categorias.forEach(function (categoria) {
+    fuente.categorias.forEach(function (categoria) {
       cont.appendChild(crearTarjetaCategoria(categoria));
     });
   }
@@ -234,7 +270,7 @@
   }
 
   function renderSemana(cfg, cont, numero) {
-    const semanas = cfg.grabaciones.semanas;
+    const semanas = fuenteDe(cfg).semanas;
     const semana = semanas.find(function (s) { return s.numero === numero; });
 
     if (!semana || !semana.disponible) {
@@ -310,7 +346,8 @@
   }
 
   function renderCategoria(cfg, cont, clave) {
-    const categoria = cfg.grabaciones.categorias.find(function (c) { return c.clave === clave; });
+    const fuente = fuenteDe(cfg);
+    const categoria = fuente.categorias.find(function (c) { return c.clave === clave; });
     if (!categoria) {
       location.hash = '';
       return;
@@ -323,7 +360,7 @@
     const volver = document.createElement('a');
     volver.className = 'semana-nav__volver';
     volver.href = '#';
-    volver.textContent = '← Todas las semanas';
+    volver.textContent = textoVolver(fuente);
     nav.appendChild(volver);
     cont.appendChild(nav);
 
@@ -370,7 +407,7 @@
     const cont = document.getElementById('vista');
     const hash = location.hash.replace('#', '');
     const match = hash.match(/^semana-(\d+)$/);
-    const categoria = cfg.grabaciones.categorias.find(function (c) { return c.clave === hash; });
+    const categoria = fuenteDe(cfg).categorias.find(function (c) { return c.clave === hash; });
 
     if (categoria) {
       renderCategoria(cfg, cont, hash);

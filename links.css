@@ -921,7 +921,7 @@
 }
 
 /* ============================================================================
-   /mes-de-acompanamiento: seis bloques de naturaleza distinta (dos tipos de
+   /mes-extra (antes /mes-de-acompanamiento): seis bloques de naturaleza distinta (dos tipos de
    sesión recurrente, una franja de dos personas, una sesión única, un
    contacto directo y la membresía), así que a propósito NO comparten borde,
    radio ni sombra entre sí.
@@ -981,6 +981,32 @@
 }
 .acomp-cronograma__miniatura img { width: 100%; height: auto; display: block; transition: opacity 0.2s ease; }
 .acomp-cronograma__miniatura:hover img { opacity: 0.85; }
+
+/* --- Horario resumido del mes extra (reemplaza la imagen del cronograma) -- */
+.acomp-horario { gap: 12px; }
+.acomp-horario .acomp-cronograma__titulo { margin: 0; }
+.acomp-horario__lista { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.acomp-horario__fila {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--superficie-2);
+}
+.acomp-horario__nombre {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--amarillo);
+}
+.acomp-horario__cuando { margin: 0; font-size: 15px; font-weight: 600; color: var(--texto); }
+.acomp-horario .acomp-nota-zona { margin: 0; }
+
+/* --- Botón a /grabaciones-extra ------------------------------------------ */
+.acomp-grabaciones .acomp-cronograma__descripcion { margin: 0; }
+.acomp-grabaciones__boton { min-height: 56px; }
 
 /* --- Caja de aviso genérica: acento izquierdo, un solo párrafo. Reusada por
    la nota de BitGet dentro de Operación en Vivo y por la nota "de parte de
@@ -1156,6 +1182,7 @@
 }
 @media (min-width: 800px) {
   .acomp-fila-secundaria { grid-template-columns: 1fr 1fr; }
+  .acomp-fila-secundaria > :only-child { grid-column: 1 / -1; }
 }
 
 /* --- Sesión única (Órdenes IB): borde punteado y radio más anguloso, para
@@ -1268,6 +1295,10 @@
   .acomp-cronograma { flex-direction: row; align-items: center; gap: 28px; padding: 22px 26px; }
   .acomp-cronograma__texto { flex: 1 1 auto; }
   .acomp-cronograma__miniatura { flex: 0 0 320px; }
+  .acomp-horario { flex-direction: column; align-items: stretch; }
+  .acomp-horario__fila { flex-direction: row; align-items: baseline; gap: 16px; }
+  .acomp-horario__nombre { flex: 0 0 170px; }
+  .acomp-grabaciones__boton { flex: 0 0 auto; width: auto; }
 
   .acomp-office { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 32px; }
   .acomp-office__titulo,
