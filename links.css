@@ -374,7 +374,7 @@
 .pagina-estrategia .btn--en-vivo .btn__icono { width: 36px; height: 36px; }
 .pagina-estrategia .btn--en-vivo .btn__flecha { font-size: 26px; }
 
-/* --- Recuento semanal: filas de Zoom bajo los botones ---------------------- */
+/* --- Secciones de Zoom (recuento, operación en vivo) bajo los botones ------ */
 .recuento-zoom {
   width: 100%;
   max-width: 1020px;

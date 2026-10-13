@@ -1,16 +1,17 @@
 /* ============================================================================
    ESTRATEGIA: render de /estrategia-tactical.
    Tres accesos: la estrategia en vivo (Telegram), la bitácora de operaciones y el
-   canal de Pre-Mercado. Debajo, los links de Zoom del recuento semanal.
+   canal de Pre-Mercado. Debajo, los links de Zoom del recuento semanal y
+   de la operación en vivo.
    ============================================================================ */
 (function () {
   'use strict';
 
   const { ICONOS, estaPendiente, crearBoton, pintarReconocimientos, seguirCursor } = window.TT;
 
-  // Filas de Zoom del recuento semanal. Las que tienen `hasta` y ya pasaron no
-  // se pintan; si no queda ninguna, la sección entera se oculta.
-  function pintarRecuento(recuento, cont) {
+  // Una sección de filas de Zoom (recuento, operación en vivo). Las que tienen
+  // `hasta` y ya pasaron no se pintan; si no queda ninguna, la sección se oculta.
+  function pintarBloqueZoom(recuento, cont) {
     if (!cont) return;
     cont.innerHTML = '';
     const ahora = Date.now();
@@ -108,7 +109,8 @@
       cont.appendChild(btn);
     });
 
-    pintarRecuento(e.recuento, document.getElementById('recuento'));
+    pintarBloqueZoom(e.recuento, document.getElementById('recuento'));
+    pintarBloqueZoom(e.operacionVivo, document.getElementById('operacion-vivo'));
     pintarReconocimientos(cfg, document.getElementById('reconocimientos'));
 
     if (pendientes.length) {

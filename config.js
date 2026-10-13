@@ -37,7 +37,7 @@ const CONFIG = {
     canalPremercado: 'https://whatsapp.com/channel/0029VaNf7Pq23n3Xfc3Rpt3D',
     enVivo: 'https://t.me/TacticalJP_bot',
 
-    // Bloque "Recuento semanal de estrategia" (Zoom). Cada sesión sale como
+    // Secciones de Zoom bajo los botones. Cada sesión sale como
     // fila con su botón. `hasta` (ISO con hora Colombia) la oculta sola cuando
     // ya pasó; sin `hasta` se queda siempre.
     recuento: {
@@ -53,6 +53,18 @@ const CONFIG = {
           cuando: 'Todos los lunes, desde el 19 de octubre',
           hora: '8:00 a. m.',
           link: 'https://us06web.zoom.us/j/84882620322?pwd=YbXQwcaKBsJllbObR2cZuOzRmr0DbO.1',
+        },
+      ],
+    },
+
+    // Mismo formato que `recuento`, sale como segunda sección de Zoom.
+    operacionVivo: {
+      titulo: 'Operación en Vivo y Especulación',
+      sesiones: [
+        {
+          cuando: 'Todos los jueves',
+          hora: '8:00 a. m.',
+          link: 'https://us06web.zoom.us/j/81011036363?pwd=NOiR0CAiqsgzNxbPFhjQBeGH2qN2hb.1',
         },
       ],
     },
