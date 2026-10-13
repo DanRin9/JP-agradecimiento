@@ -36,6 +36,26 @@ const CONFIG = {
     bitacora: 'https://bitacora.ttrading.shop',
     canalPremercado: 'https://whatsapp.com/channel/0029VaNf7Pq23n3Xfc3Rpt3D',
     enVivo: 'https://t.me/TacticalJP_bot',
+
+    // Bloque "Recuento semanal de estrategia" (Zoom). Cada sesión sale como
+    // fila con su botón. `hasta` (ISO con hora Colombia) la oculta sola cuando
+    // ya pasó; sin `hasta` se queda siempre.
+    recuento: {
+      titulo: 'Recuento semanal de estrategia',
+      sesiones: [
+        {
+          cuando: 'Miércoles 14 de octubre',
+          hora: '11:00 a. m.',
+          link: 'https://us06web.zoom.us/j/88257240638?pwd=Ue6axcYcVhkMVbOqiSsLvWJLaay6zs.1',
+          hasta: '2026-10-14T13:00:00-05:00',
+        },
+        {
+          cuando: 'Todos los lunes, desde el 19 de octubre',
+          hora: '8:00 a. m.',
+          link: 'https://us06web.zoom.us/j/84882620322?pwd=YbXQwcaKBsJllbObR2cZuOzRmr0DbO.1',
+        },
+      ],
+    },
   },
 
   /* --------------------------------------------------------------------------

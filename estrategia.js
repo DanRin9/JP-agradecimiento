@@ -1,12 +1,57 @@
 /* ============================================================================
    ESTRATEGIA: render de /estrategia-tactical.
    Tres accesos: la estrategia en vivo (Telegram), la bitácora de operaciones y el
-   canal de Pre-Mercado.
+   canal de Pre-Mercado. Debajo, los links de Zoom del recuento semanal.
    ============================================================================ */
 (function () {
   'use strict';
 
   const { ICONOS, estaPendiente, crearBoton, pintarReconocimientos, seguirCursor } = window.TT;
+
+  // Filas de Zoom del recuento semanal. Las que tienen `hasta` y ya pasaron no
+  // se pintan; si no queda ninguna, la sección entera se oculta.
+  function pintarRecuento(recuento, cont) {
+    if (!cont) return;
+    cont.innerHTML = '';
+    const ahora = Date.now();
+    const sesiones = ((recuento && recuento.sesiones) || []).filter(function (s) {
+      return s.link && !estaPendiente(s.link) && (!s.hasta || Date.parse(s.hasta) > ahora);
+    });
+    cont.hidden = !sesiones.length;
+    if (!sesiones.length) return;
+
+    const titulo = document.createElement('h2');
+    titulo.className = 'recuento-zoom__titulo';
+    titulo.textContent = recuento.titulo;
+    cont.appendChild(titulo);
+
+    sesiones.forEach(function (s) {
+      const fila = document.createElement('div');
+      fila.className = 'recuento-zoom__fila';
+
+      const texto = document.createElement('div');
+      texto.className = 'recuento-zoom__texto';
+      const cuando = document.createElement('span');
+      cuando.className = 'recuento-zoom__cuando';
+      cuando.textContent = s.cuando;
+      const hora = document.createElement('span');
+      hora.className = 'recuento-zoom__hora';
+      hora.textContent = s.hora + ' (hora Colombia)';
+      texto.appendChild(cuando);
+      texto.appendChild(hora);
+      fila.appendChild(texto);
+
+      const btn = crearBoton({
+        clases: 'btn--sistema recuento-zoom__btn',
+        icono: ICONOS.video,
+        texto: 'Unirse por Zoom',
+        href: s.link,
+      });
+      fila.appendChild(btn);
+
+      cont.appendChild(fila);
+    });
+  }
 
   function render() {
     const cfg = window.CONFIG || CONFIG;
@@ -63,6 +108,7 @@
       cont.appendChild(btn);
     });
 
+    pintarRecuento(e.recuento, document.getElementById('recuento'));
     pintarReconocimientos(cfg, document.getElementById('reconocimientos'));
 
     if (pendientes.length) {

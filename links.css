@@ -374,11 +374,58 @@
 .pagina-estrategia .btn--en-vivo .btn__icono { width: 36px; height: 36px; }
 .pagina-estrategia .btn--en-vivo .btn__flecha { font-size: 26px; }
 
+/* --- Recuento semanal: filas de Zoom bajo los botones ---------------------- */
+.recuento-zoom {
+  width: 100%;
+  max-width: 1020px;
+  align-self: center;
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.recuento-zoom[hidden] { display: none; }
+
+.recuento-zoom__titulo {
+  font-family: 'Raleway', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--texto-2);
+  margin: 0 0 4px;
+  text-align: center;
+}
+
+.recuento-zoom__fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 22px;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: var(--superficie);
+}
+
+.recuento-zoom__texto { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.recuento-zoom__cuando {
+  font-family: 'Raleway', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--texto);
+}
+.recuento-zoom__hora { font-size: 15px; font-weight: 600; color: var(--amarillo); }
+
+.recuento-zoom__btn { flex: 0 0 auto; width: auto; min-height: 52px; padding: 12px 20px; }
+
 /* El override de 2 columnas de arriba gana por especificidad sobre el reset a
    1fr del .links-grid base en mobile, así que hay que repetirlo acá para que
    /estrategia-tactical también apile en una sola columna en pantallas chicas. */
 @media (max-width: 720px) {
   .pagina-estrategia .links-grid { grid-template-columns: 1fr; }
+  .recuento-zoom__fila { flex-direction: column; align-items: stretch; }
+  .recuento-zoom__btn { width: 100%; }
 }
 
 /* ============================================================================
