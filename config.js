@@ -44,12 +44,6 @@ const CONFIG = {
       titulo: 'Recuento semanal de estrategia',
       sesiones: [
         {
-          cuando: 'Miércoles 14 de octubre',
-          hora: '11:00 a. m.',
-          link: 'https://us06web.zoom.us/j/88257240638?pwd=Ue6axcYcVhkMVbOqiSsLvWJLaay6zs.1',
-          hasta: '2026-10-14T13:00:00-05:00',
-        },
-        {
           cuando: 'Todos los lunes, desde el 19 de octubre',
           hora: '8:00 a. m.',
           link: 'https://us06web.zoom.us/j/84882620322?pwd=YbXQwcaKBsJllbObR2cZuOzRmr0DbO.1',
