@@ -323,6 +323,7 @@ const CONFIG = {
       { titulo: null, fecha: '22 de septiembre', youtubeId: 'uzqbjn3jN5Y', descripcion: '' },
       { titulo: null, fecha: '29 de septiembre', youtubeId: 'FKsdZS1DWqA', descripcion: '' },
       { titulo: null, fecha: '6 de octubre', youtubeId: 'T6MAS0Tt8Lw', descripcion: '' },
+      { titulo: null, fecha: '14 de octubre', youtubeId: 'ilmRXO0wQjs', descripcion: '' },
     ],
   },
 
@@ -345,13 +346,27 @@ const CONFIG = {
         clave: 'recuentos',
         etiqueta: 'Recuentos de Estrategia',
         tema: 'El repaso semanal de Juan Pablo',
-        grabaciones: [],
+        grabaciones: [
+          {
+            titulo: null,
+            fecha: '14 de octubre',
+            youtubeId: 'ilmRXO0wQjs',
+            descripcion: '',
+          },
+        ],
       },
       {
         clave: 'operacion-vivo',
         etiqueta: 'Operación en Vivo',
         tema: 'Operación de la estrategia en tiempo real',
-        grabaciones: [],
+        grabaciones: [
+          {
+            titulo: null,
+            fecha: '15 de octubre',
+            youtubeId: 't7Pz51HJim0',
+            descripcion: '',
+          },
+        ],
       },
       {
         clave: 'office-hours',
