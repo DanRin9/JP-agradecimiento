@@ -318,6 +318,7 @@ const CONFIG = {
       { titulo: null, fecha: '29 de septiembre', youtubeId: 'FKsdZS1DWqA', descripcion: '' },
       { titulo: null, fecha: '6 de octubre', youtubeId: 'T6MAS0Tt8Lw', descripcion: '' },
       { titulo: null, fecha: '14 de octubre', youtubeId: 'ilmRXO0wQjs', descripcion: '' },
+      { titulo: null, fecha: '19 de octubre', youtubeId: 'oQ6VlNYNxAs', descripcion: '' },
     ],
   },
 
@@ -345,6 +346,12 @@ const CONFIG = {
             titulo: null,
             fecha: '14 de octubre',
             youtubeId: 'ilmRXO0wQjs',
+            descripcion: '',
+          },
+          {
+            titulo: null,
+            fecha: '19 de octubre',
+            youtubeId: 'oQ6VlNYNxAs',
             descripcion: '',
           },
         ],
