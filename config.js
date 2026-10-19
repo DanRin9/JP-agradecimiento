@@ -385,8 +385,8 @@ const CONFIG = {
       operacionVivo: 'https://us06web.zoom.us/j/81011036363?pwd=NOiR0CAiqsgzNxbPFhjQBeGH2qN2hb.1',
       recuentoSemanal: 'https://us06web.zoom.us/j/84882620322?pwd=YbXQwcaKBsJllbObR2cZuOzRmr0DbO.1',
       recuentoMiercoles14: 'https://us06web.zoom.us/j/88257240638?pwd=Ue6axcYcVhkMVbOqiSsLvWJLaay6zs.1',
-      officeHoursFelipe: 'https://us06web.zoom.us/j/87596208918?pwd=ie8mWilTCsl05LTyK4TQfsZ4XSOtmN.1',
-      officeHoursEsteban: 'https://us06web.zoom.us/j/84301272282?pwd=r6gKwcjvNhcO5ibGtRsc7YmnLFZVva.1',
+      officeHoursFelipe: 'https://us06web.zoom.us/j/87387841807?pwd=G9ZgIovMKYlbjtNilrEwiYQfznd5yH.1',
+      officeHoursEsteban: 'https://us06web.zoom.us/j/87308699927?pwd=26pNhD6irftt6gK0Lg2AtryOJa8aic.1',
       membresia: 'https://pay.hotmart.com/S106746711K?off=2a9f79ae',
       andresCorreo: 'Contacto@duranwealth.com',   // dirección pelada, sin "mailto:"
       andresInstagram: 'https://instagram.com/duranwealth',
