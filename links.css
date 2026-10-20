@@ -419,6 +419,49 @@
 
 .recuento-zoom__btn { flex: 0 0 auto; width: auto; min-height: 52px; padding: 12px 20px; }
 
+/* Recuento semanal destacado en /estrategia-tactical: vive dentro del grid, a
+   todo el ancho, con borde y brillo dorado para que se lea antes que Bitácora y
+   Pre-Mercado. */
+.links-grid > .recuento-zoom {
+  grid-column: 1 / -1;
+  max-width: none;
+  margin-top: 0;
+}
+.recuento-zoom--destacado {
+  padding: 22px 24px;
+  border: 1px solid var(--amarillo);
+  border-radius: var(--radio);
+  background: var(--superficie-2);
+  box-shadow: 0 0 0 1px var(--amarillo-linea), 0 14px 44px rgba(255, 198, 0, 0.12);
+}
+.recuento-zoom--destacado .recuento-zoom__titulo {
+  font-size: 15px;
+  color: var(--amarillo);
+}
+.recuento-zoom--destacado .recuento-zoom__fila {
+  padding: 20px 24px;
+  border-color: var(--amarillo-linea);
+  background: var(--superficie);
+}
+.recuento-zoom--destacado .recuento-zoom__cuando { font-size: 22px; }
+.recuento-zoom--destacado .recuento-zoom__hora { font-size: 17px; }
+.recuento-zoom--destacado .recuento-zoom__btn { min-height: 60px; font-size: 17px; }
+
+/* Link a las grabaciones: botón dorado en contorno, debajo de la fila de Zoom. */
+.recuento-zoom__grabaciones {
+  align-self: center;
+  width: auto;
+  border-color: var(--amarillo-linea);
+  color: var(--amarillo);
+}
+.recuento-zoom__grabaciones:hover {
+  background: rgba(255, 198, 0, 0.08);
+  border-color: var(--amarillo);
+}
+
+/* /contenido-exclusivo: la sección de Zoom va suelta, sin la caja dorada. */
+.pagina-contenido .links-grid > .recuento-zoom { margin-bottom: 4px; }
+
 /* El override de 2 columnas de arriba gana por especificidad sobre el reset a
    1fr del .links-grid base en mobile, así que hay que repetirlo acá para que
    /estrategia-tactical también apile en una sola columna en pantallas chicas. */
@@ -426,6 +469,10 @@
   .pagina-estrategia .links-grid { grid-template-columns: 1fr; }
   .recuento-zoom__fila { flex-direction: column; align-items: stretch; }
   .recuento-zoom__btn { width: 100%; }
+  .recuento-zoom--destacado { padding: 18px 16px; }
+  .recuento-zoom--destacado .recuento-zoom__fila { padding: 16px; }
+  .recuento-zoom--destacado .recuento-zoom__cuando { font-size: 19px; }
+  .recuento-zoom__grabaciones { width: 100%; }
 }
 
 /* ============================================================================

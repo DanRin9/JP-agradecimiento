@@ -294,6 +294,52 @@
     });
   }
 
+  // Sección de filas de Zoom (título + una fila por sesión con su botón). Las
+  // sesiones con `hasta` (ISO con hora Colombia) que ya pasaron no se pintan; si
+  // no queda ninguna, el contenedor se oculta. Usada por /estrategia-tactical y
+  // /contenido-exclusivo.
+  function pintarFilasZoom(bloque, cont) {
+    if (!cont) return;
+    cont.innerHTML = '';
+    const ahora = Date.now();
+    const sesiones = ((bloque && bloque.sesiones) || []).filter(function (s) {
+      return s.link && !estaPendiente(s.link) && (!s.hasta || Date.parse(s.hasta) > ahora);
+    });
+    cont.hidden = !sesiones.length;
+    if (!sesiones.length) return;
+
+    const titulo = document.createElement('h2');
+    titulo.className = 'recuento-zoom__titulo';
+    titulo.textContent = bloque.titulo;
+    cont.appendChild(titulo);
+
+    sesiones.forEach(function (s) {
+      const fila = document.createElement('div');
+      fila.className = 'recuento-zoom__fila';
+
+      const texto = document.createElement('div');
+      texto.className = 'recuento-zoom__texto';
+      const cuando = document.createElement('span');
+      cuando.className = 'recuento-zoom__cuando';
+      cuando.textContent = s.cuando;
+      const hora = document.createElement('span');
+      hora.className = 'recuento-zoom__hora';
+      hora.textContent = s.hora + ' (hora Colombia)';
+      texto.appendChild(cuando);
+      texto.appendChild(hora);
+      fila.appendChild(texto);
+
+      fila.appendChild(crearBoton({
+        clases: 'btn--sistema recuento-zoom__btn',
+        icono: ICONOS.video,
+        texto: 'Unirse por Zoom',
+        href: s.link,
+      }));
+
+      cont.appendChild(fila);
+    });
+  }
+
   window.TT = {
     ICONOS: ICONOS,
     estaPendiente: estaPendiente,
@@ -304,6 +350,7 @@
     construirICSEvento: construirICSEvento,
     descargarICSEvento: descargarICSEvento,
     pintarReconocimientos: pintarReconocimientos,
+    pintarFilasZoom: pintarFilasZoom,
     seguirCursor: seguirCursor,
   };
 })();

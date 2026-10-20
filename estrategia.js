@@ -1,58 +1,12 @@
 /* ============================================================================
    ESTRATEGIA: render de /estrategia-tactical.
-   Tres accesos: la estrategia en vivo (Telegram), la bitácora de operaciones y el
-   canal de Pre-Mercado. Debajo, los links de Zoom del recuento semanal y
-   de la operación en vivo.
+   Canal de Telegram (protagonista), el recuento semanal destacado (Zoom + link a
+   sus grabaciones), la bitácora de operaciones y el canal de Pre-Mercado.
    ============================================================================ */
 (function () {
   'use strict';
 
-  const { ICONOS, estaPendiente, crearBoton, pintarReconocimientos, seguirCursor } = window.TT;
-
-  // Una sección de filas de Zoom (recuento, operación en vivo). Las que tienen
-  // `hasta` y ya pasaron no se pintan; si no queda ninguna, la sección se oculta.
-  function pintarBloqueZoom(recuento, cont) {
-    if (!cont) return;
-    cont.innerHTML = '';
-    const ahora = Date.now();
-    const sesiones = ((recuento && recuento.sesiones) || []).filter(function (s) {
-      return s.link && !estaPendiente(s.link) && (!s.hasta || Date.parse(s.hasta) > ahora);
-    });
-    cont.hidden = !sesiones.length;
-    if (!sesiones.length) return;
-
-    const titulo = document.createElement('h2');
-    titulo.className = 'recuento-zoom__titulo';
-    titulo.textContent = recuento.titulo;
-    cont.appendChild(titulo);
-
-    sesiones.forEach(function (s) {
-      const fila = document.createElement('div');
-      fila.className = 'recuento-zoom__fila';
-
-      const texto = document.createElement('div');
-      texto.className = 'recuento-zoom__texto';
-      const cuando = document.createElement('span');
-      cuando.className = 'recuento-zoom__cuando';
-      cuando.textContent = s.cuando;
-      const hora = document.createElement('span');
-      hora.className = 'recuento-zoom__hora';
-      hora.textContent = s.hora + ' (hora Colombia)';
-      texto.appendChild(cuando);
-      texto.appendChild(hora);
-      fila.appendChild(texto);
-
-      const btn = crearBoton({
-        clases: 'btn--sistema recuento-zoom__btn',
-        icono: ICONOS.video,
-        texto: 'Unirse por Zoom',
-        href: s.link,
-      });
-      fila.appendChild(btn);
-
-      cont.appendChild(fila);
-    });
-  }
+  const { ICONOS, estaPendiente, crearBoton, pintarFilasZoom, pintarReconocimientos, seguirCursor } = window.TT;
 
   function render() {
     const cfg = window.CONFIG || CONFIG;
@@ -72,11 +26,11 @@
     if (vivoPend) pendientes.push('estrategia.enVivo');
 
     const definiciones = [
-      // Protagonista: ocupa todo el ancho del grid arriba de los otros dos.
+      // Protagonista: ocupa todo el ancho del grid, arriba del recuento.
       {
         clases: 'btn--telegram btn--en-vivo',
         icono: ICONOS.telegram,
-        texto: 'Estrategia en vivo aquí',
+        texto: 'Canal de señales, especulación, estrategia y reportes',
         href: e.enVivo,
         pendiente: vivoPend,
         etiquetaPendiente: cfg.hotmart.labelSoon,
@@ -109,8 +63,24 @@
       cont.appendChild(btn);
     });
 
-    pintarBloqueZoom(e.recuento, document.getElementById('recuento'));
-    pintarBloqueZoom(e.operacionVivo, document.getElementById('operacion-vivo'));
+    // Recuento semanal: tarjeta destacada a todo el ancho, justo debajo del
+    // canal de Telegram (segundo hijo del grid), antes de Bitácora y Pre-Mercado.
+    const recuento = document.createElement('section');
+    recuento.className = 'recuento-zoom recuento-zoom--destacado';
+    recuento.setAttribute('aria-label', 'Recuento semanal de estrategia');
+    pintarFilasZoom(e.recuento, recuento);
+    if (e.recuento.grabaciones && !recuento.hidden) {
+      const enlace = crearBoton({
+        clases: 'btn--compacto recuento-zoom__grabaciones',
+        icono: ICONOS.video,
+        texto: e.recuento.grabaciones.texto,
+        href: e.recuento.grabaciones.href,
+      });
+      enlace.removeAttribute('target');   // mismo sitio: misma pestaña
+      enlace.removeAttribute('rel');
+      recuento.appendChild(enlace);
+    }
+    cont.insertBefore(recuento, cont.children[1] || null);
     pintarReconocimientos(cfg, document.getElementById('reconocimientos'));
 
     if (pendientes.length) {

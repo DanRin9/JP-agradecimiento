@@ -37,11 +37,12 @@ const CONFIG = {
     canalPremercado: 'https://whatsapp.com/channel/0029VaNf7Pq23n3Xfc3Rpt3D',
     enVivo: 'https://t.me/TacticalJP_bot',
 
-    // Secciones de Zoom bajo los botones. Cada sesión sale como
-    // fila con su botón. `hasta` (ISO con hora Colombia) la oculta sola cuando
-    // ya pasó; sin `hasta` se queda siempre.
+    // Recuento semanal: tarjeta destacada bajo el canal de Telegram. Cada sesión
+    // sale como fila con su botón. `hasta` (ISO con hora Colombia) la oculta sola
+    // cuando ya pasó; sin `hasta` se queda siempre.
     recuento: {
       titulo: 'Recuento semanal de estrategia',
+      grabaciones: { texto: 'Ver grabaciones de los recuentos', href: '/recuentos-semanales' },
       sesiones: [
         {
           cuando: 'Todos los lunes, desde el 19 de octubre',
@@ -50,8 +51,13 @@ const CONFIG = {
         },
       ],
     },
+  },
 
-    // Mismo formato que `recuento`, sale como segunda sección de Zoom.
+  /* --------------------------------------------------------------------------
+     CONTENIDO EXCLUSIVO (/contenido-exclusivo)
+     Solo dos accesos: el Zoom de la operación en vivo y el grupo de WhatsApp.
+     -------------------------------------------------------------------------- */
+  contenidoExclusivo: {
     operacionVivo: {
       titulo: 'Operación en Vivo y Especulación',
       sesiones: [
@@ -62,6 +68,7 @@ const CONFIG = {
         },
       ],
     },
+    whatsapp: 'https://chat.whatsapp.com/FpLc71qGE9p26d7Wbw1FPy?mode=gi_t',
   },
 
   /* --------------------------------------------------------------------------
