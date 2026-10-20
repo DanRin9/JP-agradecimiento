@@ -15,7 +15,7 @@
     cont.innerHTML = '';
 
     const zoom = document.createElement('section');
-    zoom.className = 'recuento-zoom';
+    zoom.className = 'recuento-zoom recuento-zoom--destacado';
     zoom.setAttribute('aria-label', c.operacionVivo.titulo);
     pintarFilasZoom(c.operacionVivo, zoom);
     cont.appendChild(zoom);

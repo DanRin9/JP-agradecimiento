@@ -459,7 +459,7 @@
   border-color: var(--amarillo);
 }
 
-/* /contenido-exclusivo: la sección de Zoom va suelta, sin la caja dorada. */
+/* /contenido-exclusivo: la operación en vivo usa la misma tarjeta destacada. */
 .pagina-contenido .links-grid > .recuento-zoom { margin-bottom: 4px; }
 
 /* El override de 2 columnas de arriba gana por especificidad sobre el reset a
