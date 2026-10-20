@@ -54,6 +54,42 @@ const CONFIG = {
   },
 
   /* --------------------------------------------------------------------------
+     SOPORTE (/soporte)
+     Una tarjeta por categoría de problema, cada una con uno o más contactos de
+     WhatsApp. `numero`: solo dígitos con indicativo (57...). `mostrar`: cómo se
+     ve el número en el botón.
+     -------------------------------------------------------------------------- */
+  soporte: {
+    categorias: [
+      {
+        con: 'Con Daniel',
+        titulo: 'Problemas logísticos o dudas de Hotmart',
+        descripcion: 'Escríbele a Daniel si tienes un problema logístico o dudas sobre Hotmart.',
+        contactos: [
+          { nombre: 'Daniel', numero: '573197822696', mostrar: '+57 319 782 2696' },
+        ],
+      },
+      {
+        con: 'Con Felipe y Esteban',
+        titulo: 'Problemas técnicos y financieros',
+        descripcion: 'El equipo técnico resuelve los problemas técnicos y financieros. Escríbele a cualquiera de los dos.',
+        contactos: [
+          { nombre: 'Felipe', numero: '573014597173', mostrar: '+57 301 459 7173' },
+          { nombre: 'Esteban', numero: '573245942816', mostrar: '+57 324 594 2816' },
+        ],
+      },
+      {
+        con: 'Con Isabel',
+        titulo: 'Manager de JP',
+        descripcion: 'Escríbele a Isabel, la manager de Juan Pablo.',
+        contactos: [
+          { nombre: 'Isabel', numero: '573011779037', mostrar: '+57 301 177 9037' },
+        ],
+      },
+    ],
+  },
+
+  /* --------------------------------------------------------------------------
      CONTENIDO EXCLUSIVO (/contenido-exclusivo)
      Solo dos accesos: el Zoom de la operación en vivo y el grupo de WhatsApp.
      -------------------------------------------------------------------------- */

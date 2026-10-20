@@ -843,6 +843,61 @@
 }
 
 /* ============================================================================
+   /soporte: una tarjeta bien separada por categoría de problema, cada una con
+   sus botones de WhatsApp (verde de grupo, el mismo del resto del sitio).
+   ============================================================================ */
+.pagina-soporte .links-titulo { font-size: clamp(30px, 4.2vw, 52px); max-width: 18ch; }
+.pagina-soporte .links-titulo em { white-space: normal; }
+.pagina-soporte .links-subtitulo { max-width: 46ch; margin: 0 auto; }
+
+.soporte-lista {
+  width: 100%;
+  max-width: 760px;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.soporte-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 26px 28px 28px;
+  border: 1px solid var(--borde);
+  border-left: 3px solid var(--amarillo);
+  border-radius: var(--radio);
+  background: var(--superficie);
+}
+.soporte-card__con {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--amarillo);
+}
+.soporte-card__titulo {
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0;
+  color: var(--texto);
+}
+.soporte-card__descripcion { margin: 0 0 12px; font-size: 15px; color: var(--texto-2); max-width: 56ch; }
+
+.soporte-card__acciones { display: flex; flex-wrap: wrap; gap: 14px; }
+.soporte-btn { flex: 1 1 240px; width: auto; min-height: 72px; }
+.soporte-btn .btn__texto { display: flex; flex-direction: column; gap: 2px; font-size: 16px; font-weight: 700; }
+.soporte-btn__numero { font-size: 13px; font-weight: 500; opacity: 0.8; }
+
+@media (max-width: 720px) {
+  .soporte-lista { gap: 20px; }
+  .soporte-card { padding: 20px 18px 22px; }
+  .soporte-btn { flex-basis: 100%; }
+}
+
+/* ============================================================================
    /recuentos-semanales: reproductor arriba (reusa .reproductor__* de
    /grabaciones-2026) + grilla de tarjetas. auto-fill hace que la grilla pase
    sola de 3 columnas en escritorio a 1 en celular.
