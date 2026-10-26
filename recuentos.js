@@ -104,7 +104,7 @@
     const hero = document.createElement('section');
     hero.className = 'links-hero';
     hero.innerHTML =
-      '<span class="badge">Todos los martes</span>' +
+      '<span class="badge">Todos los miércoles</span>' +
       '<h1 class="links-titulo">Recuentos de <em>estrategia semanal</em></h1>' +
       '<p class="links-subtitulo">Juan Pablo repasa su estrategia sobre activos del portafolio y responde preguntas. Aquí quedan todas las grabaciones.</p>';
     cont.appendChild(hero);

@@ -369,12 +369,9 @@
     const office = b.officeHours.subBloques.map(function (sub) {
       return sub.diaTexto.toLowerCase() + ' ' + horaLegible(sub.horaInicio) + ' con ' + sub.con;
     }).join(' y ');
-    const u = b.recuentoMiercoles14;
     const filas = [
       ['Office Hours', office.charAt(0).toUpperCase() + office.slice(1)],
-      ['Recuento semanal', b.recuentoSemanal.diasTexto + ', ' + horaLegible(b.recuentoSemanal.horaInicio) +
-        ' (excepto la semana del 12 de octubre: ' + DIA_LARGO[partes(u.fecha).diaSemana] + ' ' + partes(u.fecha).dia +
-        ', ' + horaLegible(u.horaInicio) + ')'],
+      ['Recuento semanal', b.recuentoSemanal.diasTexto + ', ' + horaLegible(b.recuentoSemanal.horaInicio)],
       ['Operación en Vivo', b.operacionVivo.diasTexto + ', ' + horaLegible(b.operacionVivo.horaInicio)],
     ];
 

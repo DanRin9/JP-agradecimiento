@@ -45,8 +45,8 @@ const CONFIG = {
       grabaciones: { texto: 'Ver grabaciones de los recuentos', href: '/recuentos-semanales' },
       sesiones: [
         {
-          cuando: 'Todos los lunes, desde el 19 de octubre',
-          hora: '8:00 a. m.',
+          cuando: 'Todos los miércoles',
+          hora: '8:30 a. m.',
           link: 'https://us06web.zoom.us/j/84882620322?pwd=YbXQwcaKBsJllbObR2cZuOzRmr0DbO.1',
         },
       ],
@@ -351,7 +351,7 @@ const CONFIG = {
 
   /* --------------------------------------------------------------------------
      RECUENTOS SEMANALES (/recuentos-semanales)
-     Solo las grabaciones del Recuento de Estrategia Semanal (martes con Juan
+     Solo las grabaciones del Recuento de Estrategia Semanal (miércoles con Juan
      Pablo). Agregar cada recuento nuevo al FINAL del array: la página los
      muestra del más nuevo al más viejo. `titulo: null` → "Recuento de estrategia".
      -------------------------------------------------------------------------- */
@@ -461,12 +461,11 @@ const CONFIG = {
         con: 'Juan Pablo',
         tipo: 'recurrente',
         descripcion: 'Juan Pablo analiza su estrategia sobre ciertos activos de su portafolio (no la totalidad) y responde preguntas.',
-        diasTexto: 'Todos los lunes',
-        horaInicio: '08:00',
+        diasTexto: 'Todos los miércoles',
+        horaInicio: '08:30',
         horaFin: null,              // no se especificó, se muestra solo la hora de inicio
         duracionMinutos: 60,        // asumido para el .ics: confirmar
-        fechas: ['2026-10-19', '2026-10-26', '2026-11-02', '2026-11-09'],
-        notaDestacada: 'La semana del 12 de octubre el recuento es el miércoles 14 a las 11:00 a. m. (hora Colombia).',
+        fechas: ['2026-10-28', '2026-11-04', '2026-11-11'],
         linkKey: 'recuentoSemanal',
       },
       officeHours: {
@@ -506,7 +505,7 @@ const CONFIG = {
         horaInicio: '11:00',
         horaFin: null,
         duracionMinutos: 60,
-        descripcion: 'Esta semana el recuento se mueve al miércoles. Desde el 19 de octubre vuelve a ser los lunes a las 8:00 a. m.',
+        descripcion: 'Recuento de estrategia de la semana del 12 de octubre.',
         linkKey: 'recuentoMiercoles14',
       },
     },
