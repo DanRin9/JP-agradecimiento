@@ -417,6 +417,12 @@ const CONFIG = {
             youtubeId: 't7Pz51HJim0',
             descripcion: '',
           },
+          {
+            titulo: null,
+            fecha: '29 de octubre',
+            youtubeId: 'OdLaRGQHPcw',
+            descripcion: '',
+          },
         ],
       },
       {
