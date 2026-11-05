@@ -436,7 +436,14 @@ const CONFIG = {
         clave: 'office-hours',
         etiqueta: 'Office Hours',
         tema: 'Preguntas y acompañamiento con Felipe y Esteban',
-        grabaciones: [],
+        grabaciones: [
+          {
+            titulo: 'Office Hours con Miguel',
+            fecha: '4 de noviembre',
+            youtubeId: 'vb0eauYL4SU',
+            descripcion: '',
+          },
+        ],
       },
     ],
   },
