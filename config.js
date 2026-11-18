@@ -462,12 +462,6 @@ const CONFIG = {
             youtubeId: 'czIhaB4sQEY',
             descripcion: '',
           },
-          {
-            titulo: 'Office Hours con Felipe',
-            fecha: '16 de noviembre',
-            youtubeId: 'psO7r4E4zDs',
-            descripcion: '',
-          },
         ],
       },
     ],
